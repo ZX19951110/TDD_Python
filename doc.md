@@ -1,4 +1,4 @@
-# Python e pyenv
+# Python
 
 ## Installazione di pyenv
 
@@ -18,7 +18,13 @@ In questo caso ho installato la versione 3.7.0 di Python in quanto, al momento i
 
 Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 
-`pyenv uninstall 3.7.0`
+`pyenv uninstall 3.7.0
+
+
+# Installazione di pytest
+
+Per installare _pytest_ utilizzando pip è sufficiente lanciare il seguente comando da terminale:
+`pip install -U pytest`
 
 
 
