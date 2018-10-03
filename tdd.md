@@ -26,10 +26,14 @@ Per installare _Selenium_ è necessario eseguire il seguente comando:
 
 Creare un file _functional_tests.py_ contenente il seguente codice:
 
-`from selenium import webdriver`
+```py
+
+from selenium import webdriver`
 
 `browser = webdriver.Firefox()`
 `browser.get('http://localhost:8000')`
 
-`assert 'Django' in browser.title`
+`assert 'Django' in browser.title
+
+```
 
