@@ -4,7 +4,7 @@
 
 ### Installare _geckodriver_
 
-Per installare _geckodriver_ su macOS come _Homebrew_ eseguire il seguente comando da terminale:
+Per installare _geckodriver_ su macOS con _Homebrew_ eseguire il seguente comando da terminale:
 
 `brew install geckodriver`
 
