@@ -21,13 +21,13 @@ Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 `pyenv uninstall 3.7.0
 
 
-# Installazione di pytest
+## Installazione di pytest
 
 Per installare _pytest_ utilizzando pip è sufficiente lanciare il seguente comando da terminale:
 
 `pip install -U pytest`
 
-Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è disponibile un aggiornamento, effettua l'avanzamento di versione.
+Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è disponibile un aggiornamento, effettua l'avanzamento all'ultima versione disponibile.
 
 
 # Django
