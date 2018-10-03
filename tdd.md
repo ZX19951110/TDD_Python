@@ -37,3 +37,9 @@ from selenium import webdriver`
 
 ```
 
+Eseguire il programma:
+
+`python functional_tests.py`
+
+A questo punto, se abbiamo fatto tutto correttamente, vedremo aprirsi una finestra del browser che tenterà di aprire una pagina web allocata all'indirizzo ip `localhost:8000`. Tuttavia visualizzeremo un errore che ci avviserà che la connessione al server non è riuscita. Ciò è accaduto in quanto non abbiamo ancora avviato il framework Django.
+
