@@ -24,6 +24,7 @@ Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 # Installazione di pytest
 
 Per installare _pytest_ utilizzando pip è sufficiente lanciare il seguente comando da terminale:
+
 `pip install -U pytest`
 
 
