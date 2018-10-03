@@ -27,12 +27,13 @@ Per installare _pytest_ utilizzando pip è sufficiente lanciare il seguente coma
 
 `pip install -U pytest`
 
+Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è disponibile un aggiornamento, effettua l'''''''''&#39;  avanzamento di versione.
 
 
 # Django
 
 ## Che cos'è Django
-[Django](https://www.djangoproject.com/) è un framework open-source per la creazione di applicazioni in Python.
+[Django](https://www.djangoproject.com/) è un framework open-source per la creazione di applicazioni in Python.'''
 
 
 ## Installare Django
