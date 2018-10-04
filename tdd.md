@@ -156,7 +156,57 @@ self.assertEqual(1 + 1, 3)
 
 ```
 
-ed eseguiamo il programma:
+Ora eseguiamo il programma:
 
 `python manage.py test`
 
+Ora modifichiamo nuovamente il file _tests.py_ in modo tale che, una volta eseguito, possa verificare l'esistenza della home page. Il codice è il seguente:
+
+```py
+
+from django.urls import resolve
+from django.test import TestCase
+from lists.views import home_page  
+
+class HomePageTest(TestCase):
+
+def test_root_url_resolves_to_home_page_view(self):
+found = resolve('/')  
+self.assertEqual(found.func, home_page)
+
+```
+
+
+### Creazione della prima _view_
+Per creare la nostra prima _view_ apriamo il file `lists/views.py` e inseriamo le seguenti righe di codice:
+
+```py
+
+from django.shortcuts import render
+
+# Create your views here.
+home_page = None
+
+```
+Lanciando nuovamente il comando `python manage.py test` ci verrà segnalato che abbiamo bisogno di un _URL mapping_.
+
+Per far ciò dovremo modificare il file `superlists/urls.py` inserendo il seguente codice:
+
+```py
+
+from django.conf.urls import url
+from lists import views
+
+urlpatterns = [
+url(r'^$', views.home_page, name='home'),
+]
+
+```
+
+Eseguendo nuovamente `python manage.py test` visualizzeremo il seguente errore:
+
+```
+[...]
+TypeError: view must be a callable or a list/tuple in the case of include().
+
+```
