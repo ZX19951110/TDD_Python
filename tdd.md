@@ -128,3 +128,35 @@ unittest.main(warnings='ignore')
 
 Ovviamente qusto programma per il test funzionale ci segnalerà che il test eseguito è fallito.
 Osservando il codice è importante notare che la classe _NewVisitorTest_ eredita i metodi dalla classe _TestCase_ inclusa nella libreria _unittest_.
+
+
+## Chapter 3: Testing a Simple Home Page with Unit Tests
+
+Ora creiamo la nostra prima applicazione web utilizzando Django. Per creare un nuovo progetto eseguiamo il seguente comando:
+
+`python manage.py startapp lists`
+
+A questo punto creiamo il nostro primo test errato per verificare che la nostra macchina funzioni correttamente:
+
+`cd lists`
+
+`vim tests.py`
+
+e inseriamo questo codice nel file appena aperto:
+
+```py
+
+from django.test import TestCase
+
+class SmokeTest(TestCase):
+
+def test_bad_maths(self):
+
+self.assertEqual(1 + 1, 3)
+
+```
+
+ed eseguiamo il programma:
+
+`python manage.py test`
+
