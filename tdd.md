@@ -43,3 +43,12 @@ Eseguire il programma:
 
 A questo punto, se abbiamo fatto tutto correttamente, vedremo aprirsi una finestra del browser che tenterà di aprire una pagina web allocata all'indirizzo `localhost:8000`. Tuttavia visualizzeremo un errore che ci avviserà che la connessione al server non è riuscita. Ciò è accaduto in quanto non abbiamo ancora avviato il framework Django.
 
+Ora creiamo un nuovo progetto Django con il comando:
+
+`django-admin.py startproject superlists .`
+
+ed eseguiamo il server Django digitando:
+
+`python manage.py runserver`
+
+A questo punto se eseguiamo nuovamente il programma _functional_test.py_, si aprirà una finestra del browser e vedremo comparire un messaggio che ci segnalerà che il server Django è stato avviato correttamente.
