@@ -1,5 +1,16 @@
 # Python
 
+## Installazione di zlib
+
+Prima di installare Python in _pyenv_ è necessario installare _zlib_.
+
+### macOS
+
+Per installare _zlib_ con _Homebrew_ lanciare il seguente programma da terminale:
+
+`brew install zlib`
+
+
 ## Installazione di pyenv
 
 ### macOS
@@ -18,7 +29,7 @@ In questo caso ho installato la versione 3.7.0 di Python in quanto, al momento i
 
 Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 
-`pyenv uninstall 3.7.0
+`pyenv uninstall 3.7.0`
 
 
 ## Installazione di pytest
