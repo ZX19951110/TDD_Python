@@ -1,12 +1,8 @@
 # Python
 
-## Installazione di zlib
+## Installazione di zlib macOS
 
-Prima di installare Python in _pyenv_ è necessario installare _zlib_.
-
-### macOS
-
-Per installare _zlib_ con _Homebrew_ lanciare il seguente programma da terminale:
+Per installare _zlib_ con _Homebrew_ su macOS lanciare il seguente programma da terminale:
 
 `brew install zlib`
 

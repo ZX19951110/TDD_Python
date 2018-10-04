@@ -121,8 +121,8 @@ class NewVisitorTest(unittest.TestCase):
     	self.assertIn('To-Do', self.browser.title)  
     	self.fail('Finish the test!')
 
-    	if __name__ == '__main__':  
-    		unittest.main(warnings='ignore')
+if __name__ == '__main__':  
+    unittest.main(warnings='ignore')
 
 ```
 
@@ -219,8 +219,8 @@ A questo punto possiamo modificare nuovamente il file _lists/views.py_ come segu
 from django.shortcuts import render
 
 # Create your views here.
-	def home_page():
-		pass
+def home_page():
+    pass
 
 ```
 ed eseguendo nuovamente `python manage.py test` otterremo il seguente risultato soddisfacente:
