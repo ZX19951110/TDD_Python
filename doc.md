@@ -64,6 +64,6 @@ Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è dis
 ## Installare SearchSploit
 
 ### macOS
-Come è descritto sulla guida d'installazione presente sulla pagina ufficiale del progetto, per installare SearchSploit su macOS con Homebrew è sufficiente lanciare il seguente comando da terminale:
+Come è descritto nella guida d'installazione presente sulla pagina ufficiale del progetto, per installare SearchSploit su macOS con Homebrew è sufficiente lanciare il seguente comando da terminale:
 
 `brew install exploitdb`
