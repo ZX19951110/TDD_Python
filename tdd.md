@@ -106,23 +106,23 @@ import unittest
 
 class NewVisitorTest(unittest.TestCase):  
 
-def setUp(self):  
-self.browser = webdriver.Firefox()
+    def setUp(self):  
+    self.browser = webdriver.Firefox()
 
-def tearDown(self):  
-self.browser.quit()
+    def tearDown(self):  
+    self.browser.quit()
 
-def test_can_start_a_list_and_retrieve_it_later(self):  
-# Edith has heard about a cool new online to-do app. She goes
-# to check out its homepage
-self.browser.get('http://localhost:8000')
+    def test_can_start_a_list_and_retrieve_it_later(self):  
+    # Edith has heard about a cool new online to-do app. She goes
+    # to check out its homepage
+    self.browser.get('http://localhost:8000')
 
-# She notices the page title and header mention to-do lists
-self.assertIn('To-Do', self.browser.title)  
-self.fail('Finish the test!')
+    # She notices the page title and header mention to-do lists
+    self.assertIn('To-Do', self.browser.title)  
+    self.fail('Finish the test!')
 
-if __name__ == '__main__':  
-unittest.main(warnings='ignore')
+    if __name__ == '__main__':  
+    unittest.main(warnings='ignore')
 
 ```
 
@@ -150,9 +150,9 @@ from django.test import TestCase
 
 class SmokeTest(TestCase):
 
-def test_bad_maths(self):
+    def test_bad_maths(self):
 
-self.assertEqual(1 + 1, 3)
+    self.assertEqual(1 + 1, 3)
 
 ```
 
@@ -170,9 +170,9 @@ from lists.views import home_page
 
 class HomePageTest(TestCase):
 
-def test_root_url_resolves_to_home_page_view(self):
-found = resolve('/')  
-self.assertEqual(found.func, home_page)
+    def test_root_url_resolves_to_home_page_view(self):
+    found = resolve('/')  
+    self.assertEqual(found.func, home_page)
 
 ```
 
@@ -206,7 +206,69 @@ url(r'^$', views.home_page, name='home'),
 Eseguendo nuovamente `python manage.py test` visualizzeremo il seguente errore:
 
 ```
+
 [...]
 TypeError: view must be a callable or a list/tuple in the case of include().
 
 ```
+
+A questo punto possiamo modificare nuovamente il file _lists/views.py_ come segue:
+
+```py
+
+from django.shortcuts import render
+
+# Create your views here.
+def home_page():
+pass
+
+```
+ed eseguendo nuovamente `python manage.py test` otterremo il seguente risultato soddisfacente:
+
+```
+
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+Destroying test database for alias 'default'...
+
+```
+
+
+### Test di unità di una _view_
+Modifichiamo il file _lists/tests.py_ come segue:
+
+```py
+
+from django.urls import resolve
+from django.test import TestCase
+from django.http import HttpRequest
+
+from lists.views import home_page
+
+
+class HomePageTest(TestCase):
+
+    def test_root_url_resolves_to_home_page_view(self):
+    found = resolve('/')
+    self.assertEqual(found.func, home_page)
+
+
+    def test_home_page_returns_correct_html(self):
+    request = HttpRequest()  
+    response = home_page(request)  
+    html = response.content.decode('utf8')  
+    self.assertTrue(html.startswith('<html>'))  
+    self.assertIn('<title>To-Do lists</title>', html)  
+    self.assertTrue(html.endswith('</html>'))
+
+```
+
+Nel metodo `test_home_page_returns_correct_html(self)` creiamo un oggetto `HttpRequest`, e lo passiamo all'oggetto `response`, ovvero la nostra home page. Nei passaggi seguenti estraiamo il contenuto della pagina ed andiamo a verificare che il titolo della nostra pagina sia _To-Do_ e che il codice della pagina inizi con `<html>` e finisca con `</html>`.
+
+Eseguiamo nuovamente il test di unità
+
