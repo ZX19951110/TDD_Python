@@ -31,6 +31,35 @@ Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 
 `pyenv uninstall 3.7.0`
 
+### Linux
+
+È possibile installare _pyenv_ su una distro Linux seguendo [la guida ufficiale su GitHub](https://github.com/pyenv/pyenv).
+Quando si arriva al punto in cui bisogna installare una versione di Python in _pyenv_ eseguire il seguente comando:
+
+`pyenv install 3.7.0`
+
+Se si dovesse incontrare un errore in fase d'installazione a causa della mancanza delle librerie di _zlib_ e di _openssl_, eseguire le seguenti operazioni:
+
+```
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
+sudo apt-get install libncursesw5-dev libgdbm-dev libc6-dev
+sudo apt-get install zlib1g-dev libsqlite3-dev tk-dev
+sudo apt-get install libssl-dev openssl
+sudo apt-get install libffi-dev
+git clone https://github.com/python/cpython
+./configure
+make
+sudo make altinstall
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+
+```
+
+A questo punto è possibile procedere con l'installazione di Python 3.7 in _pyenv_.
+
 
 ## Installazione di pytest
 
@@ -49,10 +78,9 @@ Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è dis
 
 ## Installare Django
 
-### macOS
 È possibile installare django utilizzando _pip_; quindi è necessario eseguire il seguente comando da terminale:
 
-`pip install Django`
+`pip install django`
 
 
 

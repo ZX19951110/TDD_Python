@@ -28,12 +28,12 @@ Creare un file _functional_tests.py_ contenente il seguente codice:
 
 ```py
 
-from selenium import webdriver`
+from selenium import webdriver
 
-`browser = webdriver.Firefox()`
-`browser.get('http://localhost:8000')`
+browser = webdriver.Firefox()
+browser.get('http://localhost:8000')
 
-`assert 'Django' in browser.title
+assert 'Django' in browser.title
 
 ```
 
@@ -107,22 +107,22 @@ import unittest
 class NewVisitorTest(unittest.TestCase):  
 
     def setUp(self):  
-    self.browser = webdriver.Firefox()
+    	self.browser = webdriver.Firefox()
 
     def tearDown(self):  
-    self.browser.quit()
+    	self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):  
-    # Edith has heard about a cool new online to-do app. She goes
-    # to check out its homepage
-    self.browser.get('http://localhost:8000')
+    	# Edith has heard about a cool new online to-do app. She goes
+   	# to check out its homepage
+    	self.browser.get('http://localhost:8000')
 
-    # She notices the page title and header mention to-do lists
-    self.assertIn('To-Do', self.browser.title)  
-    self.fail('Finish the test!')
+    	# She notices the page title and header mention to-do lists
+    	self.assertIn('To-Do', self.browser.title)  
+    	self.fail('Finish the test!')
 
-    if __name__ == '__main__':  
-    unittest.main(warnings='ignore')
+    	if __name__ == '__main__':  
+    		unittest.main(warnings='ignore')
 
 ```
 
@@ -152,7 +152,7 @@ class SmokeTest(TestCase):
 
     def test_bad_maths(self):
 
-    self.assertEqual(1 + 1, 3)
+    	self.assertEqual(1 + 1, 3)
 
 ```
 
@@ -171,8 +171,8 @@ from lists.views import home_page
 class HomePageTest(TestCase):
 
     def test_root_url_resolves_to_home_page_view(self):
-    found = resolve('/')  
-    self.assertEqual(found.func, home_page)
+    	found = resolve('/')  
+    	self.assertEqual(found.func, home_page)
 
 ```
 
@@ -219,8 +219,8 @@ A questo punto possiamo modificare nuovamente il file _lists/views.py_ come segu
 from django.shortcuts import render
 
 # Create your views here.
-def home_page():
-pass
+	def home_page():
+		pass
 
 ```
 ed eseguendo nuovamente `python manage.py test` otterremo il seguente risultato soddisfacente:
@@ -254,21 +254,21 @@ from lists.views import home_page
 class HomePageTest(TestCase):
 
     def test_root_url_resolves_to_home_page_view(self):
-    found = resolve('/')
-    self.assertEqual(found.func, home_page)
+    	found = resolve('/')
+    	self.assertEqual(found.func, home_page)
 
 
     def test_home_page_returns_correct_html(self):
-    request = HttpRequest()  
-    response = home_page(request)  
-    html = response.content.decode('utf8')  
-    self.assertTrue(html.startswith('<html>'))  
-    self.assertIn('<title>To-Do lists</title>', html)  
-    self.assertTrue(html.endswith('</html>'))
+    	request = HttpRequest()  
+    	response = home_page(request)  
+    	html = response.content.decode('utf8')  
+    	self.assertTrue(html.startswith('<html>'))  
+    	self.assertIn('<title>To-Do lists</title>', html)  
+    	self.assertTrue(html.endswith('</html>'))
 
 ```
 
 Nel metodo `test_home_page_returns_correct_html(self)` creiamo un oggetto `HttpRequest`, e lo passiamo all'oggetto `response`, ovvero la nostra home page. Nei passaggi seguenti estraiamo il contenuto della pagina ed andiamo a verificare che il titolo della nostra pagina sia _To-Do_ e che il codice della pagina inizi con `<html>` e finisca con `</html>`.
 
-Eseguiamo nuovamente il test di unità
+Eseguiamo nuovamente il test di unità [...]
 
