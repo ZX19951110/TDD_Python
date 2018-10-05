@@ -448,6 +448,7 @@ in quanto non abbiamo aggiunto `lists` alla variabile `INSTALLED _APPS` presente
 
 ```
 
+[...]
 self.assertTrue(html.endswith('</html>'))
 AssertionError: False is not true
 
@@ -461,6 +462,45 @@ del file `lists/tests.py` con la seguente:
 
 `self.assertTrue(html.strip().endswith('</html>'))`
 
-A questo punto, rilanciando il test, otterremo un successo! 
+A questo punto, rilanciando il test, otterremo un successo!
+
+
+### Django Test Client
+
+Ora utilizziamo il Django Test Client per controllare quali _templates_ sono usati. Perciò dobbiamo modificare il file `lists/tests.py` come segue:
+
+```py
+
+from django.urls import resolve
+from django.test import TestCase
+from django.http import HttpRequest
+from lists.views import home_page
+from django.template.loader import render_to_string
+
+
+class HomePageTest(TestCase):
+
+	def test_root_url_resolves_to_home_page_view(self):
+		found = resolve('/')
+		self.assertEqual(found.func, home_page)
+
+
+	def test_home_page_returns_correct_html(self):
+        	response = self.client.get('/')  
+
+        	html = response.content.decode('utf8')  
+        	self.assertTrue(html.startswith('<html>'))
+        	self.assertIn('<title>To-Do lists</title>', html)
+        	self.assertTrue(html.strip().endswith('</html>'))
+
+        	self.assertTemplateUsed(response, 'home.html')
+
+```
+
+Utilizzando il metodo `response = self.client.get('/')` abbiamo evitato di creare manualmente un oggetto `HttpRequest`.
+Il metodo `self.assertTemplateUsed(response, 'home.html')` invece ci permette di verificare se il _template_ `home.html` è effettivamente utilizzato.
+Ora, se eseguiamo il test, dovremmo ottenere un successo.
+
+On Refactoring [...]
 
 
