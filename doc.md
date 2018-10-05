@@ -111,7 +111,7 @@ Come è descritto nella guida d'installazione presente sulla pagina ufficiale de
 
 Per installare _SearchSploit_ su Linux Ubuntu, come descritto sulla pagina ufficiale del progetto è sufficiente eseguire il _clone_ dal repository ufficiale:
 
-`$ git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb`
+`$ sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb`
 
 Per poter successivamente lanciare il programma da terminale con il comando `searchsploit`, eseguire il seguente comando:
 
