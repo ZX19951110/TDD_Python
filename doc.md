@@ -21,6 +21,8 @@ A questo punto possiamo installare una versione di Python 3 in pyenv utilizzando
 
 `$ CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install -v 3.7.0`
 
+`$ pyenv global 3.7.0`
+
 In questo caso ho installato la versione 3.7.0 di Python in quanto, al momento in cui sto scrivendo è la più recente.
 
 Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
@@ -44,6 +46,8 @@ Per potere chiamare _pyenv_ dalla shell con il comando `pyenv` lanciare i seguen
 Quando si arriva al punto in cui bisogna installare una versione di Python in _pyenv_ eseguire il seguente comando:
 
 `$ pyenv install 3.7.0`
+
+`$ pyenv global 3.7.0`
 
 Se si dovesse incontrare un errore in fase d'installazione a causa della mancanza delle librerie di _zlib_ e di _openssl_, eseguire le seguenti operazioni:
 
