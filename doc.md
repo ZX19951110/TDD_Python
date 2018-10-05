@@ -36,7 +36,9 @@ Per rimuovere la versione di Python appena installata invece dovrete utilizzare:
 Per potere chiamare _pyenv_ dalla shell con il comando `pyenv` lanciare i seguenti comandi da terminale:
 
 `$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc`
+
 `$ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc`
+
 `$ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc`
 
 Quando si arriva al punto in cui bisogna installare una versione di Python in _pyenv_ eseguire il seguente comando:
@@ -68,7 +70,7 @@ Per installare _pytest_ utilizzando pip è sufficiente lanciare il seguente coma
 
 `$ pip install -U pytest`
 
-Il flag '`-U` fa in modo che se _pytest_ è gia installato sul sistema ed è disponibile un aggiornamento, effettua l'avanzamento all'ultima versione disponibile.
+Il flag `-U` fa in modo che se _pytest_ è gia installato sul sistema ed è disponibile un aggiornamento, effettua l'avanzamento all'ultima versione disponibile.
 
 
 # Django
