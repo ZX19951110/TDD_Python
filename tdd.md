@@ -383,7 +383,7 @@ if __name__ == '__main__':
 ed eseguendolo dopo aver avviato il server django, otteniamo il seguente messaggio di errore:
 
 ```
-
+[...]
 selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: h1
 
 ```
