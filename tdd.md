@@ -270,5 +270,23 @@ class HomePageTest(TestCase):
 
 Nel metodo `test_home_page_returns_correct_html(self)` creiamo un oggetto `HttpRequest`, e lo passiamo all'oggetto `response`, ovvero la nostra home page. Nei passaggi seguenti estraiamo il contenuto della pagina ed andiamo a verificare che il titolo della nostra pagina sia _To-Do_ e che il codice della pagina inizi con `<html>` e finisca con `</html>`.
 
-Eseguiamo nuovamente il test di unità [...]
+Eseguiamo nuovamente il test di unità e otterremo il seguente errore:
+
+`TypeError: home_page() takes 0 positional arguments but 1 was given`
+
+Procedendo ciclicamente in modo tale da eseguire un test per ogni singola istruzione che scriviamo possiamo giustificare ogni istruzione presente nel nostro codice.
+Alla fine del ciclo di programmazione e test della nostra prima view, il file `lists/tests.py` avrà il seguente aspetto:
+
+```py
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def home_page(request):
+    return HttpResponse('<html><title>To-Do lists</title></html>')
+
+```
+
+ed eseguendo nuovamente il test otterremo il nostro primo successo!
 
