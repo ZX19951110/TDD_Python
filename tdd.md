@@ -4,9 +4,17 @@
 
 ### Installare _geckodriver_
 
-Per installare _geckodriver_ su macOS con _Homebrew_ eseguire il seguente comando da terminale:
+* Per installare _geckodriver_ su macOS con _Homebrew_ eseguire il seguente comando da terminale:
 
 `$ brew install geckodriver`
+
+* Per installare _geckodriver_ su Linux Ubuntu scaricare l'ultima versione sul [sito ufficiale](https://github.com/mozilla/geckodriver/releases), decomprimere l'archivio, rendere il file eseguibile con il comando:
+
+`$ chmod +x geckodriver`
+
+e copiare l'eseguibile nella directory `/usr/local/bin/`:
+
+`$ sudo cp geckodriver /usr/local/bin/`
 
 Su macOS eseguire anche:
 
@@ -289,4 +297,25 @@ def home_page(request):
 ```
 
 ed eseguendo nuovamente il test otterremo il nostro primo successo!
+
+Invece, avviando il server di Django ed eseguendo il nostro test funzionale precedentemente creato otterremo il seguente errore:
+
+```
+
+F
+======================================================================
+FAIL: test_can_start_a_list_and_retrieve_it_later (__main__.NewVisitorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "functional_test2.py", line 19, in test_can_start_a_list_and_retrieve_it_later
+    self.fail('Finish the test!')
+AssertionError: Finish the test!
+
+----------------------------------------------------------------------
+Ran 1 test in 2.910s
+
+FAILED (failures=1)
+
+```
+
 
