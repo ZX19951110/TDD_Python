@@ -6,11 +6,11 @@
 
 Per installare _geckodriver_ su macOS con _Homebrew_ eseguire il seguente comando da terminale:
 
-`brew install geckodriver`
+`$ brew install geckodriver`
 
 Su macOS eseguire anche:
 
-`export PATH=$PATH:/usr/local/Cellar/geckodriver/0.22.0`
+`$ export PATH=$PATH:/usr/local/Cellar/geckodriver/0.22.0`
 
 dove `/usr/local/Cellar/geckodriver/0.22.0` è la directory nella quale è installato _geckodriver_
 
@@ -19,7 +19,7 @@ dove `/usr/local/Cellar/geckodriver/0.22.0` è la directory nella quale è insta
 
 Per installare _Selenium_ è necessario eseguire il seguente comando:
 
-`pip install selenium`
+`$ pip install selenium`
 
 
 ### Creare il primo test funzionale
@@ -39,17 +39,17 @@ assert 'Django' in browser.title
 
 Eseguire il programma:
 
-`python functional_tests.py`
+`$ python functional_tests.py`
 
 A questo punto, se abbiamo fatto tutto correttamente, vedremo aprirsi una finestra del browser che tenterà di aprire una pagina web allocata all'indirizzo `localhost:8000`. Tuttavia visualizzeremo un errore che ci avviserà che la connessione al server non è riuscita. Ciò è accaduto in quanto non abbiamo ancora avviato il framework Django.
 
 Ora creiamo un nuovo progetto Django con il comando:
 
-`django-admin.py startproject superlists .`
+`$ django-admin.py startproject superlists .`
 
 ed eseguiamo il server Django digitando:
 
-`python manage.py runserver`
+`$ python manage.py runserver`
 
 A questo punto se eseguiamo nuovamente il programma _functional_test.py_, si aprirà una finestra del browser e vedremo comparire un messaggio che ci segnalerà che il server Django è stato avviato correttamente.
 
@@ -134,7 +134,7 @@ Osservando il codice è importante notare che la classe _NewVisitorTest_ eredita
 
 Ora creiamo la nostra prima applicazione web utilizzando Django. Per creare un nuovo progetto eseguiamo il seguente comando:
 
-`python manage.py startapp lists`
+`$ python manage.py startapp lists`
 
 A questo punto creiamo il nostro primo test errato per verificare che la nostra macchina funzioni correttamente:
 
@@ -158,7 +158,7 @@ class SmokeTest(TestCase):
 
 Ora eseguiamo il programma:
 
-`python manage.py test`
+`$ python manage.py test`
 
 Ora modifichiamo nuovamente il file _tests.py_ in modo tale che, una volta eseguito, possa verificare l'esistenza della home page. Il codice è il seguente:
 
@@ -188,7 +188,7 @@ from django.shortcuts import render
 home_page = None
 
 ```
-Lanciando nuovamente il comando `python manage.py test` ci verrà segnalato che abbiamo bisogno di un _URL mapping_.
+Lanciando nuovamente il comando `$ python manage.py test` ci verrà segnalato che abbiamo bisogno di un _URL mapping_.
 
 Per far ciò dovremo modificare il file `superlists/urls.py` inserendo il seguente codice:
 
@@ -203,7 +203,7 @@ urlpatterns = [
 
 ```
 
-Eseguendo nuovamente `python manage.py test` visualizzeremo il seguente errore:
+Eseguendo nuovamente `$ python manage.py test` visualizzeremo il seguente errore:
 
 ```
 
@@ -223,7 +223,7 @@ def home_page():
     pass
 
 ```
-ed eseguendo nuovamente `python manage.py test` otterremo il seguente risultato soddisfacente:
+ed eseguendo nuovamente `$ python manage.py test` otterremo il seguente risultato soddisfacente:
 
 ```
 
