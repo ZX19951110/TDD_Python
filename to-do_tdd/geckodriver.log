@@ -1,0 +1,34 @@
+1538753986988	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.pkulNJMObGS2"
+
+(firefox:29742): Gtk-WARNING **: 17:39:47.807: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:29742): Gtk-WARNING **: 17:39:47.807: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1538753989087	Marionette	INFO	Listening on port 42685
+1538753989098	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538753989161	Marionette	DEBUG	[2147483649] Frame script loaded
+1538753989165	Marionette	DEBUG	[2147483649] Frame script registered
+1538753989197	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1538753989251	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1538753989252	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1538753989288	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for about:neterror?e=connectionFailure&u=http%3A//localhost%3A8000/&c=UTF-8&f=regular&d=Firefox%20non%20pu%C3%B2%20stabilire%20una%20connessione%20con%20il%20server%20localhost%3A8000.
+1538753989311	Marionette	INFO	Stopped listening on port 42685
+JavaScript error: resource:///modules/SavantShieldStudy.jsm, line 171: TypeError: this.addonListener is undefined
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+1538754046122	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.NQ0EVKIo5ILB"
+
+(firefox:30239): Gtk-WARNING **: 17:40:46.933: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:30239): Gtk-WARNING **: 17:40:46.933: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1538754048128	Marionette	INFO	Listening on port 40889
+1538754048241	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538754048310	Marionette	DEBUG	[2147483649] Frame script loaded
+1538754048312	Marionette	DEBUG	[2147483649] Frame script registered
+1538754048335	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1538754048358	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1538754048367	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:8000/
+1538754048407	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:8000/
+1538754048447	Marionette	INFO	Stopped listening on port 40889
