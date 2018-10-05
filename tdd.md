@@ -391,7 +391,7 @@ selenium.common.exceptions.NoSuchElementException: Message: Unable to locate ele
 in quanto non è stato possibile trovare un elemento `<h1>` all'interno della pagina web.
 
 
-###Template
+### Template
 
 Creiamo il nostro primo template _home.html_ in `lists/templates` con il seguente codice HTML:
 
