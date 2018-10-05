@@ -115,5 +115,5 @@ Per installare _SearchSploit_ su Linux Ubuntu, come descritto sulla pagina uffic
 
 Per poter successivamente lanciare il programma da terminale con il comando `searchsploit`, eseguire il seguente comando:
 
-`$ ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit`
+`$ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit`
 
