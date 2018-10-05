@@ -391,4 +391,76 @@ selenium.common.exceptions.NoSuchElementException: Message: Unable to locate ele
 in quanto non è stato possibile trovare un elemento `<h1>` all'interno della pagina web.
 
 
+###Template
+
+Creiamo il nostro primo template _home.html_ in `lists/templates` con il seguente codice HTML:
+
+```html
+
+<html>
+    <title>To-Do lists</title>
+</html>
+
+```
+
+e modifichiamo la nostra view `lists/views.py` come segue:
+
+```py
+
+from django.shortcuts import render
+
+def home_page(request):
+    return render(request, 'home.html')
+
+```
+
+Eseguendo:
+
+`$ python manage.py test`
+
+Vedremo apparire il seguente messaggio di errore:
+
+```
+
+E.
+======================================================================
+ERROR: test_home_page_returns_correct_html (lists.tests.HomePageTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nicolas/Nextcloud/Documents/UNIPV/triennale/tesi/django/lists/tests.py", line 17, in test_home_page_returns_correct_html
+    response = home_page(request)
+  File "/home/nicolas/Nextcloud/Documents/UNIPV/triennale/tesi/django/lists/views.py", line 5, in home_page
+    return render(request, 'home.html')
+  File "/home/nicolas/.pyenv/versions/3.7.0/lib/python3.7/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nicolas/.pyenv/versions/3.7.0/lib/python3.7/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nicolas/.pyenv/versions/3.7.0/lib/python3.7/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+```
+
+in quanto non abbiamo aggiunto `lists` alla variabile `INSTALLED _APPS` presente nel file `superlists/settings.py`. Effettuando questa aggiunta ed eseguendo nuovamente il test otterremo il seguente messaggio d'errore:
+
+```
+
+self.assertTrue(html.endswith('</html>'))
+AssertionError: False is not true
+
+```
+
+Per risolvere il problema causato dall'ultima riga del nostro codice HTML è sufficiente sostituire la riga 
+
+`self.assertTrue(html.endswith('</html>'))`
+
+del file `lists/tests.py` con la seguente:
+
+`self.assertTrue(html.strip().endswith('</html>'))`
+
+A questo punto, rilanciando il test, otterremo un successo! 
+
 
