@@ -152,3 +152,33 @@ JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is 
 1538833653807	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:8000/
 1538833664062	Marionette	INFO	Stopped listening on port 45819
 [Parent 4497, Gecko_IOThread] WARNING: pipe error (74): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1538835875423	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.35PQkYx2Z8UP"
+
+(firefox:5127): Gtk-WARNING **: 16:24:36.239: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:5127): Gtk-WARNING **: 16:24:36.239: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1538835877537	Marionette	INFO	Listening on port 35153
+1538835877656	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538835877723	Marionette	DEBUG	[2147483649] Frame script loaded
+1538835877727	Marionette	DEBUG	[2147483649] Frame script registered
+1538835877754	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1538835877803	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1538835877814	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:8000/
+1538835877880	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:8000/
+1538835880171	Marionette	INFO	Stopped listening on port 35153
+[Parent 5127, Gecko_IOThread] WARNING: pipe error (74): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1538835956672	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ntYZaQaFYHx6"
+
+(firefox:5392): Gtk-WARNING **: 16:25:57.430: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:5392): Gtk-WARNING **: 16:25:57.430: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1538835958686	Marionette	INFO	Listening on port 40991
+1538835958784	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538835958846	Marionette	DEBUG	[2147483649] Frame script loaded
+1538835958847	Marionette	DEBUG	[2147483649] Frame script registered
+1538835958877	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1538835958894	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1538835958902	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:8000/
+1538835958963	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:8000/
+1538835961250	Marionette	INFO	Stopped listening on port 40991
+[Parent 5392, Gecko_IOThread] WARNING: pipe error (74): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
