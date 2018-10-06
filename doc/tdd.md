@@ -815,6 +815,11 @@ Eseguendo il test funzionale otteniamo il seguente messaggio di errore:
 `AssertionError: '1: Buy peacock feathers' not found in ['1: Use peacock feathers to make a fly']`
 
 
+### The Django ORM
+
+Un ORM è uno strato di astrazione per lo _storage_ dei dati in un database con tabelle, righe e colonne
+
+
 
 
 
