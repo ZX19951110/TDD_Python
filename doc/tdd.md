@@ -655,7 +655,7 @@ Eseguendo di nuovo il test funzionale otterremo il seguente errore:
 `AssertionError: False is not true : New to-do item did not appear in table`
 
 
-### Processare una richiesta POST su server
+### Processare una richiesta POST sul server
 
 [...]
 
