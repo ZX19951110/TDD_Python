@@ -656,6 +656,95 @@ Eseguendo di nuovo il test funzionale otterremo il seguente errore:
 
 
 ### Processare una richiesta POST sul server
+Aggiungendo i seguenti metodi al file `lists/tests.py`:
 
-[...]
+```py
+
+def test_uses_home_template(self):
+    response = self.client.get('/')
+    self.assertTemplateUsed(response, 'home.html')
+
+
+def test_can_save_a_POST_request(self):
+    response = self.client.post('/', data={'item_text': 'A new list item'})
+    self.assertIn('A new list item', response.content.decode())
+
+```
+
+ed eseguendo il comando:
+
+`$ python manage.py test`
+
+otteniamo il seguente messaggio di errore:
+
+```
+
+self.assertIn('A new list item', response.content.decode())
+AssertionError: 'A new list item' not found in '<html>\n    <head>\n        <title>To-Do lists</title>\n    </head>\n\n    <body>\n        <h1>Your To-Do list</h1>\n        <form method="POST">\n\t    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />\n\t    <input type="hidden" name="csrfmiddlewaretoken" value="t6h7RCCdD0xN4g1goOcrfsSoHVB7f6jtTpisL9p63BpvF3bajw7sBJFkXbnqlM7z">\n\t</form>\n\n\t<table id="id_list_table">\n        </table>\n    </body>\n</html>\n'
+
+```
+
+Ora modifichiamo il corpo del file `lists/templates/home.html` come segue:
+
+```html
+
+<body>
+    <h1>Your To-Do list</h1>
+    <form method="POST">
+        <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+	    {% csrf_token %}
+    </form>
+
+    <table id="id_list_table">
+        <tr><td>{{ new_item_text }}</td></tr>
+    </table>
+</body>
+
+```
+
+`new_item_text` è il nome della variabile dell'input immesso dall'utente che viene visualizzato nel _template_.
+
+Modifichiamo il metodo `test_can_save_a_POST_request(self)` contenuto nel file `lists/tests.py` nel seguente modo:
+
+```py
+
+def test_can_save_a_POST_request(self):
+        response = self.client.post('/', data={'item_text': 'A new list item'})
+        self.assertIn('A new list item', response.content.decode())
+        self.assertTemplateUsed(response, 'home.html')
+
+```
+
+ed eseguiamo il test. Otterremo un messaggio d'errrore.
+
+Ora modifichiamo il metodo `home_page(request)` presente in `lists/views.py`:
+
+```py
+
+def home_page(request):
+	return render(request, 'home.html', {
+		'new_item_text': request.POST['item_text'],
+	})
+
+```
+
+ed otterremo un altro messaggio di errore in quanto abbiamo commesso una svista nel metodo `home_page(request)` presente in `lists/views.py`. Ora modifichiamolo in questo modo:
+
+```py
+
+def home_page(request):
+	return render(request, 'home.html', {
+		'new_item_text': request.POST.get('item_text', ''),
+	})
+
+```
+
+Ora il nostro test dovrebbe passare correttamente, tuttavia la stessa cosa non si può dire per il test fuzionale. Per rimediare all'errore iniziamo ad effettuare la seguente modifica nel file `lists/templates/home.html`:
+
+`<tr><td>1: {{ new_item_text }}</td></tr>`
+
+Tuttavia ciò non è sufficiente in quanto eseguendo il test funzionale otteniamo nuovamente un errore:
+
+`AssertionError: Finish the test!`
+
 
