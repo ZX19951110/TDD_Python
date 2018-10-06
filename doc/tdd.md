@@ -603,5 +603,59 @@ FAILED (failures=1)
 
 ## Chapter 5: Saving User Input: Testing the Database
 
+### POST Request
+
+Ora modifichiamo il file `lists/templates/home.html` come segue:
+
+```html
+
+<html>
+    <head>
+        <title>To-Do lists</title>
+    </head>
+    
+    <body>
+        <h1>Your To-Do list</h1>
+        <form method="POST">
+	    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+	    {% csrf_token %}
+	</form>	
+
+	<table id="id_list_table">
+        </table>
+    </body>
+</html>
+
+```
+
+ed eseguiamo il test funzionale. Riceveremo un messaggio di errore del seguente tipo:
+
+```
+
+[...]
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: [id="id_list_table"]
+
+```
+
+Per avere il tempo di visualizzare il messaggio di errore apparso nella scheda del browser possiamo modificare l'istruzione `time.sleep(1)` presente in `functional tests.py` in `time.sleep(10)`, dove il parametro passato al metodo indica il tempo che dovrà intercorrere prima che l'esecuzione del programma possa continuare.
+
+Ora utilizziamo un _template tag_ per inserire un _token CSRF_ all'interno della nostra pagina html:
+
+```html
+
+<form method="POST">
+    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+    {% csrf_token %}
+</form>
+
+```
+
+Eseguendo di nuovo il test funzionale otterremo il seguente errore:
+
+`AssertionError: False is not true : New to-do item did not appear in table`
+
+
+### Processare una richiesta POST su server
+
 [...]
 
