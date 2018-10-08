@@ -1080,3 +1080,6 @@ Eseguiamo il comando:
 `$ python manage.py migrate`
 
 
+## Chapter 6: Improving Functional Tests: Ensuring Isolation and Removing Voodoo Sleeps
+
+
