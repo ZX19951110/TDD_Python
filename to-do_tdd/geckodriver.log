@@ -258,3 +258,151 @@ JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifie
 1539012171679	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:8000/
 1539012174058	Marionette	INFO	Stopped listening on port 33435
 [Parent 6638, Gecko_IOThread] WARNING: pipe error (79): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539013813331	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.GQOkhdPIriko"
+
+(firefox:7229): Gtk-WARNING **: 15:50:14.153: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:7229): Gtk-WARNING **: 15:50:14.154: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539013815349	Marionette	INFO	Listening on port 33579
+1539013815440	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539013815501	Marionette	DEBUG	[2147483649] Frame script loaded
+1539013815503	Marionette	DEBUG	[2147483649] Frame script registered
+1539013815516	Marionette	INFO	Stopped listening on port 33579
+1539014056223	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.nb872V6hhWMF"
+
+(firefox:7507): Gtk-WARNING **: 15:54:16.886: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:7507): Gtk-WARNING **: 15:54:16.886: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014058118	Marionette	INFO	Listening on port 34431
+1539014058138	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014058200	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014058209	Marionette	DEBUG	[2147483649] Frame script registered
+1539014058235	Marionette	INFO	Stopped listening on port 34431
+JavaScript error: resource:///modules/SavantShieldStudy.jsm, line 171: TypeError: this.addonListener is undefined
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+1539014084167	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.5yV6SFviGu3M"
+
+(firefox:7763): Gtk-WARNING **: 15:54:44.991: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:7763): Gtk-WARNING **: 15:54:44.992: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014086243	Marionette	INFO	Listening on port 40037
+1539014086288	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014086350	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014086351	Marionette	DEBUG	[2147483649] Frame script registered
+1539014086364	Marionette	INFO	Stopped listening on port 40037
+JavaScript error: resource:///modules/SavantShieldStudy.jsm, line 171: TypeError: this.addonListener is undefined
+1539014181192	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.EP6TMHjL7pQa"
+
+(firefox:8039): Gtk-WARNING **: 15:56:21.813: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:8039): Gtk-WARNING **: 15:56:21.813: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014182885	Marionette	INFO	Listening on port 40633
+1539014182917	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014182985	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014182989	Marionette	DEBUG	[2147483649] Frame script registered
+1539014183002	Marionette	INFO	Stopped listening on port 40633
+1539014183041	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: TypeError: setting getter-only property "_currentSearchHostname" (resource://activity-stream/lib/TopSitesFeed.jsm:86:5) JS Stack trace: uninit@TopSitesFeed.jsm:86:5
+onAction@TopSitesFeed.jsm:707:9
+_middleware/</<@Store.jsm:51:11
+Store/this[method]@Store.jsm:29:55
+uninit@Store.jsm:170:7
+uninit@ActivityStream.jsm:363:5
+uninit@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@bootstrap.js:86:5
+shutdown@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@bootstrap.js:194:3
+callBootstrapMethod@XPIProvider.jsm:1592:20
+_shutdown@XPIProvider.jsm:1728:12
+observe@AsyncShutdown.jsm:541:9
+GeckoDriver.prototype.quit@driver.js:3319:3
+despatch@server.js:297:20
+execute@server.js:271:11
+onPacket/<@server.js:246:15
+onPacket@server.js:245:8
+_onJSONObjectReady/<@transport.js:500:9
+JavaScript error: resource:///modules/SavantShieldStudy.jsm, line 171: TypeError: this.addonListener is undefined
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: jar:file:///usr/lib/firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 321: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/JSONFile.jsm, line 159: Error: Data is not ready.
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+JavaScript error: resource://gre/modules/osfile/osfile_async_front.jsm, line 408: Error: OS.File has been shut down. Rejecting post to DirectoryIterator_prototype_close
+JavaScript error: resource://gre/modules/osfile/osfile_async_front.jsm, line 408: Error: OS.File has been shut down. Rejecting post to DirectoryIterator_prototype_close
+JavaScript error: resource://gre/modules/ProfileAge.jsm, line 197: Error: Unable to fetch oldest profile entry: Error: OS.File has been shut down. Rejecting request to DirectoryIterator_prototype_next
+JavaScript error: resource://gre/modules/ProfileAge.jsm, line 197: Error: Unable to fetch oldest profile entry: Error: OS.File has been shut down. Rejecting request to DirectoryIterator_prototype_next
+1539014218316	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.8Ggy4IzQ1GU9"
+
+(firefox:8257): Gtk-WARNING **: 15:56:59.020: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:8257): Gtk-WARNING **: 15:56:59.020: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014220143	Marionette	INFO	Listening on port 46787
+1539014220223	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014220273	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014220273	Marionette	DEBUG	[2147483649] Frame script registered
+1539014220288	Marionette	INFO	Stopped listening on port 46787
+1539014220320	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: TypeError: setting getter-only property "_currentSearchHostname" (resource://activity-stream/lib/TopSitesFeed.jsm:86:5) JS Stack trace: uninit@TopSitesFeed.jsm:86:5
+onAction@TopSitesFeed.jsm:707:9
+_middleware/</<@Store.jsm:51:11
+Store/this[method]@Store.jsm:29:55
+uninit@Store.jsm:170:7
+uninit@ActivityStream.jsm:363:5
+uninit@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@bootstrap.js:86:5
+shutdown@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@bootstrap.js:194:3
+callBootstrapMethod@XPIProvider.jsm:1592:20
+_shutdown@XPIProvider.jsm:1728:12
+observe@AsyncShutdown.jsm:541:9
+GeckoDriver.prototype.quit@driver.js:3319:3
+despatch@server.js:297:20
+execute@server.js:271:11
+onPacket/<@server.js:246:15
+onPacket@server.js:245:8
+_onJSONObjectReady/<@transport.js:500:9
+JavaScript error: resource:///modules/SavantShieldStudy.jsm, line 171: TypeError: this.addonListener is undefined
+1539014241153	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.BmsyHJzaM3Ay"
+
+(firefox:8475): Gtk-WARNING **: 15:57:21.973: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:8475): Gtk-WARNING **: 15:57:21.973: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014243075	Marionette	INFO	Listening on port 45099
+1539014243169	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014243238	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014243240	Marionette	DEBUG	[2147483649] Frame script registered
+1539014243267	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539014243297	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539014243305	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:39607/
+1539014243373	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:39607/
+1539014245811	Marionette	INFO	Stopped listening on port 45099
+[Parent 8475, Gecko_IOThread] WARNING: pipe error (77): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539014289915	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.tWgqy7tRqBU7"
+
+(firefox:8730): Gtk-WARNING **: 15:58:10.553: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:8730): Gtk-WARNING **: 15:58:10.553: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014291687	Marionette	INFO	Listening on port 33555
+1539014291743	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014291808	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014291816	Marionette	DEBUG	[2147483649] Frame script registered
+1539014291841	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539014291863	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539014291873	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:50319/
+1539014291931	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:50319/
+1539014294336	Marionette	INFO	Stopped listening on port 33555
+[Parent 8730, Gecko_IOThread] WARNING: pipe error (78): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539014437307	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ATR4PerkUndd"
+
+(firefox:8986): Gtk-WARNING **: 16:00:38.110: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:8986): Gtk-WARNING **: 16:00:38.110: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539014439371	Marionette	INFO	Listening on port 45559
+1539014439416	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539014439480	Marionette	DEBUG	[2147483649] Frame script loaded
+1539014439485	Marionette	DEBUG	[2147483649] Frame script registered
+1539014439511	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539014439544	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539014439556	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:34647/
+1539014439617	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:34647/
+1539014442044	Marionette	INFO	Stopped listening on port 45559
+[Parent 8986, Gecko_IOThread] WARNING: pipe error (79): Connessione interrotta dal corrispondente: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
