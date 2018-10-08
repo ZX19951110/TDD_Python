@@ -1028,14 +1028,55 @@ def home_page(request):
 Ora eseguendo il test dovremmo ottenere un successo.
 
 
-### Rendering Items In the Templates
+### Rendering Items in the Templates
 
-[...]
+Ora modifichiamo la classe `HomePageTest()` del nostro test `lists/tests.py` in modo tale che possa verificare che il _template_ possa mostrare più item. Perciò aggiungiamo il seguente metodo alla classe:
 
+```py
 
+def test_displays_all_list_items(self):
+        Item.objects.create(text='itemey 1')
+        Item.objects.create(text='itemey 2')
 
+        response = self.client.get('/')
 
+        self.assertIn('itemey 1', response.content.decode())
+        self.assertIn('itemey 2', response.content.decode())
 
+```
 
+La sintassi del template di Django ha un tag per iterare attraverso le liste:
+
+`{% for .. in .. %}`
+
+Possiamo usarlo nel seguente modo aggiungendolo al file `lists/templates/home.html`:
+
+```html
+
+<table id="id_list_table">
+    {% for item in items %}
+        <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+    {% endfor %}
+</table>
+
+```
+
+Ora dobbiamo fare il modo di passare gli item al nostro template modificando `lists/views.py`:
+
+```py
+
+def home_page(request):
+	if request.method == 'POST':
+		Item.objects.create(text=request.POST['item_text'])
+		return redirect('/')
+
+	items = Item.objects.all()
+	return render(request, 'home.html', {'items': items})
+
+```
+
+Eseguiamo il comando:
+
+`$ python manage.py migrate`
 
 
