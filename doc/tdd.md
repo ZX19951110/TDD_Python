@@ -916,6 +916,81 @@ Eseguiamo di nuovo la migrazione. Se è andato tutto a buon fine, eseguendo il s
 dovremmo ottenere un successo.
 
 
+### Salvare la richiesta POST nel database
+
+Iniziamo a modificare il metodo `test_can_save_a_POST_request(self)` presente nel file `lists/tests.py` nel seguente modo:
+
+```py
+
+def test_can_save_a_POST_request(self):
+    response = self.client.post('/', data={'item_text': 'A new list item'})
+
+    self.assertEqual(Item.objects.count(), 1)  
+    new_item = Item.objects.first()  
+    self.assertEqual(new_item.text, 'A new list item')  
+
+    self.assertIn('A new list item', response.content.decode())
+    self.assertTemplateUsed(response, 'home.html')
+
+```
+
+Modifichiamo `lists/views.py`:
+
+```py
+
+from django.shortcuts import render
+from lists.models import Item
+
+# Create your views here.
+def home_page(request):
+    item = Item()
+    item.text = request.POST.get('item_text', '')
+    item.save()
+
+    return render(request, 'home.html', {
+        'new_item_text': item.text
+    })
+
+```
+
+Aggiungiamo un nuovo metodo di test al file `lists/tests.py`:
+
+```py
+
+def test_only_saves_items_when_necessary(self):
+    self.client.get('/')
+    self.assertEqual(Item.objects.count(), 0)
+
+```
+
+Modifichiamo il metodo `home_page(request)` in `lists/views` come segue:
+
+```py
+
+def home_page(request):
+    if request.method == 'POST':
+        new_item_text = request.POST['item_text']  
+        Item.objects.create(text=new_item_text)  
+    else:
+        new_item_text = ''  
+    
+    return render(request, 'home.html', {
+        'new_item_text': new_item_text,  
+    })
+
+```
+
+A questo punto il test dovrebbe andare a buon fine!
+
+
+### Reindirizzamento dopo una richiesta POST
+
+[...]
+
+
+
+
+
 
 
 
