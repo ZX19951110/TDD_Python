@@ -817,7 +817,103 @@ Eseguendo il test funzionale otteniamo il seguente messaggio di errore:
 
 ### The Django ORM
 
-Un ORM è uno strato di astrazione per lo _storage_ dei dati in un database con tabelle, righe e colonne
+Un ORM (Object-Relational Mapper) è uno strato di astrazione per lo _storage_ dei dati in un database con tabelle, righe e colonne.
+
+Ora inseriamo la seguente istruzione di _import_:
+
+```py
+
+from lists.models import Item
+
+```
+
+e creiamo una nuova classe nel file `lists/tests.py`:
+
+```py
+
+class ItemModelTest(TestCase):
+
+    def test_saving_and_retrieving_items(self):
+        first_item = Item()
+        first_item.text = 'The first (ever) list item'
+        first_item.save()
+
+        second_item = Item()
+        second_item.text = 'Item the second'
+        second_item.save()
+
+        saved_items = Item.objects.all()
+        self.assertEqual(saved_items.count(), 2)
+
+        first_saved_item = saved_items[0]
+        second_saved_item = saved_items[1]
+        self.assertEqual(first_saved_item.text, 'The first (ever) list item')
+        self.assertEqual(second_saved_item.text, 'Item the second')
+
+```
+Da queste righe di codice possiamo intuire che per salvare un nuovo _Item_ nel database è sufficiente utilizzare il metodo `save()`.
+Per interrogare il database utilizziamo il metodo `objects()`, mentre per contare gli elementi restituiti dalla query possiamo utilizzare il metodo `count()`. Il metodo `all()`, invece, ci restituisce tutti gli _Item_ contenuti in una determinata _table_.
+
+Creiamo la classe `Item` all'interno del file `lists/models.py`:
+
+```py
+
+from django.db import models
+
+# Create your models here.
+class Item(models.Model):
+    pass
+    
+```
+
+
+### Database migration
+_migrations_ è il sistema che ci permette di costruire il database e di creare e rimuovere tabelle e colonne.
+
+Ora effettuiamo la nostra prima _database migration_:
+
+`$ python manage.py makemigrations`
+
+Modifichiamo la classe che abbiamo appena  creato in `lists/models.py`:
+
+```py
+
+class Item(models.Model):
+    text = models.TextField()
+
+```
+
+Eseguendo nuovamente il test otterremo il seguente errore:
+
+`django.db.utils.OperationalError: no such column: lists_item.text`
+
+in quanto abbiamo aggiunto un nuovo campo al nostro database e abbiamo bisogno una nuova _migration_:
+
+```
+
+$ python manage.py makemigrations
+You are trying to add a non-nullable field 'text' to item without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+2) Quit, and let me add a default in models.py
+Select an option: 2
+
+```
+
+Selezioniamo la seconda opzione  e modifichiamo la classe Item contenuta nelò file `lists/models.pt`:
+
+```py
+
+class Item(models.Model):
+    text = models.TextField(default='')
+
+```
+
+Eseguiamo di nuovo la migrazione. Se è andato tutto a buon fine, eseguendo il seguente test:
+
+`$ python manage.py test lists`
+
+dovremmo ottenere un successo.
 
 
 
