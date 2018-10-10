@@ -1317,4 +1317,119 @@ Eseguendo nuovamente il test otteniamo l'errore:
 
 ### A New View Function
 
+Creiamo il metodo `view_list(request` in `lists/views.py`:
+
+```py
+
+def view_list(request):
+    items = Item.objects.all()
+    return render(request, 'home.html', {'items': items})
+
+```
+
+eseguendo il test d'unità su `lists` otteniamo un successo, mentre se eseguiamo il test funzionale otteniamo un errore.
+
+Modifichiamo il file `lists/templates/home.html` in modo tale che la richiesta POST venga reindirizzata alla directory radice al posto che alla stessa pagina che ha effettuato la richiesta:
+
+```html
+
+<form method="POST" action="/">
+    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+    {% csrf_token %}
+</form>
+
+```
+
+Avviando nuovamente il test funzionale otterremo il seguente errore:
+
+`AssertionError: 'Buy peacock feathers' unexpectedly found in 'Your To-Do list\n1: Buy peacock feathers'`
+
+
+### Green? Refactor
+
+Possiamo eliminare il metodo per il test unitario `test_displays_all_list_items`.
+
+
+### Another Small Step: A Separate Template for Viewing Lists
+
+Aggiungiamo il seguente metodo:
+
+```py
+
+def test_uses_list_template(self):
+    response = self.client.get('/lists/the-only-list-in-the-world/')
+    self.assertTemplateUsed(response, 'list.html')
+
+```
+
+alla classe `ListViewTest`, presente nel file `lists/tests.py`, in modo tale da testare l'effettivo utilizzo del _template_ `list.html`.
+
+Modifichiamo anche il metodo `view_list(request)` in `lists/views`:
+
+```py
+
+def view_list(request):
+    items = Item.objects.all()
+    return render(request, 'list.html', {'items': items})
+
+```
+
+Semplifichiamo il _body_ del file `lists/templates/home.html` in quanto alcune funzionalità verranno integrate nel _template_ `list.html`:
+
+```html
+
+<body>
+    <h1>Your To-Do list</h1>
+    <form method="POST" action="/">
+        <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+        {% csrf_token %}
+    </form>
+</body>
+
+```
+e modifichiamo di conseguenza anche il metodo `home_page(request)` presente in `lists/views.py`:
+
+```py
+
+def home_page(request):
+    if request.method == 'POST':
+        Item.objects.create(text=request.POST['item_text'])
+        return redirect('/lists/the-only-list-in-the-world/')
+    return render(request, 'home.html')
+
+```
+
+
+### A Test Class for New List Creation
+
+Spostiamo i metodi `test_can_save_a_POST_request` e `test_redirects_after_POST`, presenti in `lists/tests.py` in una nuova classe chiamata `NewListTest(TestCase)` e modifichiamoli nel seguente modo:
+
+```py
+
+class NewListTest(TestCase):
+    def test_can_save_a_POST_request(self):
+        self.client.post('/lists/new', data={'item_text': 'A new list item'})
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
+
+    def test_redirects_after_POST(self):
+        response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
+        self.assertRedirects(response, '/lists/the-only-list-in-the-world/')
+
+```
+
+Eseguendo il test di unità su `lists` otteniamo i seguenti errori:
+
+```
+
 [...]
+self.assertEqual(Item.objects.count(), 1)
+AssertionError: 0 != 1
+[...]
+AssertionError: 404 != 302 : Response didn't redirect as expected: Response code was 404 (expected 302)
+
+```
+
+Il primo errore è dovuto al fatto che non stiamo salvando il nuovo item all'interno del database.
