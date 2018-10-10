@@ -1241,6 +1241,80 @@ def test_multiple_users_can_start_lists_at_different_urls(self):
 
 ```
 
+Modifichiamo il metodo `test_redirects_after_POST(self)` nel file `lists/tests.py`:
+
+```py
+
+def test_redirects_after_POST(self):
+    response = self.client.post('/', data={'item_text': 'A new list item'})
+    self.assertEqual(response.status_code, 302)
+    self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
+
+```
+Eseguendo il test di unità in `lists` otteniamo il seguente errore:
+
+`AssertionError: '/' != '/lists/the-only-list-in-the-world/'`
+
+Ora modifichiamo la _view_ della nostra `home_page` nel file `lists/views`:
+
+```py
+
+def home_page(request):
+    if request.method == 'POST':
+        Item.objects.create(text=request.POST['item_text'])
+        return redirect('/lists/the-only-list-in-the-world/')
+
+    items = Item.objects.all()
+    return render(request, 'home.html', {'items': items})
+
+```
+
+Così facendo abbiamo introdotto una regressione in quanto, non solo il nuovo test produce un errore, ma produce un errore anche il vecchio test.
 
 
+### Taking a First, Self-Contained Step: One New URL
 
+Creaimo una nuova classe in `lists/tests.py`:
+
+```py
+
+class ListViewTest(TestCase):
+
+    def test_displays_all_items(self):
+        Item.objects.create(text='itemey 1')
+        Item.objects.create(text='itemey 2')
+
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+
+        self.assertContains(response, 'itemey 1')  
+        self.assertContains(response, 'itemey 2')
+
+```
+
+Lanciando il nuovo test otteniamo il seguente errore:
+
+`AssertionError: 404 != 200 : Couldn't retrieve content: Response code was 404 (expected 200)`
+
+in quanto non è stato possibile trovare la pagina richiesta.
+
+
+### A new URL
+
+Aggiungiamo l'URL alla nostra nuova lista nel file `superlists/urls.py`:
+
+```py
+
+urlpatterns = [
+    url(r'^$', views.home_page, name='home'),
+    url(r'^lists/the-only-list-in-the-world/$', views.view_list, name='view_list'),
+]
+
+```
+Eseguendo nuovamente il test otteniamo l'errore:
+
+`AttributeError: module 'lists.views' has no attribute 'view_list'`
+
+
+### A New View Function
+
+[...]
