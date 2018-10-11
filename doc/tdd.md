@@ -1373,13 +1373,13 @@ def view_list(request):
     return render(request, 'list.html', {'items': items})
 
 ```
-
-Semplifichiamo il _body_ del file `lists/templates/home.html` in quanto alcune funzionalità verranno integrate nel _template_ `list.html`:
+Facciamo una copia di `lists/templates/home.html` e rinominiamola `lists/templates/list.html`
+Semplifichiamo il _body_ del file `lists/templates/home.html` in quanto abbiamo integrato alcune funzionalità nel _template_ `list.html`:
 
 ```html
 
 <body>
-    <h1>Your To-Do list</h1>
+    <h1>Start a new To-Do list</h1>
     <form method="POST" action="/">
         <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
         {% csrf_token %}
@@ -1432,4 +1432,40 @@ AssertionError: 404 != 302 : Response didn't redirect as expected: Response code
 
 ```
 
-Il primo errore è dovuto al fatto che non stiamo salvando il nuovo item all'interno del database.
+Il primo errore è dovuto al fatto che non stiamo salvando il nuovo item all'interno del database. Il secondo, _errore 404_, invece si presenta dal momento che non abbiamo ancora creato un URL per `lists/new` Procediamo alla correzione del secondo errore modificando il file `superlists/urls.py`:
+
+```py
+
+urlpatterns = [
+	url(r'^$', views.home_page, name='home'),
+	url(r'^lists/new$', views.new_list, name='new_list'),
+	url(r'^lists/the-only-list-in-the-world/$', views.view_list, name='view_list'),
+]
+
+```
+
+e definiamo il metodo `new_list(request)` in `lists/views.py`:
+
+```py
+
+def new_list(request):
+	Item.objects.create(text=request.POST['item_text'])
+	return redirect('/lists/the-only-list-in-the-world/')
+
+```
+
+A questo punto il test d'unità dovrebbe passare, mentre quello di funzionalità dovrebbe restituire ancora due errori
+
+
+### Removing Now-Redundant Code and Tests
+
+Facciamo un po' di refactor in `lists/views.py`:
+
+```py
+
+def home_page(request):
+	return render(request, 'home.html')
+
+```
+
+e in `lists/tests.py` rimuovendo il metodo `test_only_saves_​items_when_necessary`.

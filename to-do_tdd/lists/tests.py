@@ -23,10 +23,6 @@ class HomePageTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response, 'home.html')
 
-	def test_only_saves_items_when_necessary(self):
-		self.client.get('/')
-		self.assertEqual(Item.objects.count(), 0)
-
 
 class ItemModelTest(TestCase):
     
@@ -46,6 +42,7 @@ class ItemModelTest(TestCase):
 	        second_saved_item = saved_items[1]
 	        self.assertEqual(first_saved_item.text, 'The first (ever) list item')
 	        self.assertEqual(second_saved_item.text, 'Item the second')
+
 
 class ListViewTest(TestCase):
 
