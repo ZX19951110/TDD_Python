@@ -1469,3 +1469,14 @@ def home_page(request):
 ```
 
 e in `lists/tests.py` rimuovendo il metodo `test_only_saves_​items_when_necessary`.
+
+
+### A Regression! Pointing Our Forms at the New URL
+
+Effettuiamo la seguente modifica sia in `lists/templates/home.html` che in `lists/templates/list.html`:
+
+```html
+
+<form method="POST" action="/lists/new">
+
+```
