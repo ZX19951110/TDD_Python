@@ -1596,6 +1596,72 @@ AttributeError: 'Item' object has no attribute 'list'
 
 ### A Foreign Key Relationship
 
+Modifichiamo la classe `Item` in `lists/models.py`:
+
+ ```py
+
+class Item(models.Model):
+	text = models.TextField(default='')
+	list = models.ForeignKey(List, default=None, on_delete=models.DO_NOTHING)
+
+```
+
+Eseguire i seguenti comandi da riga di comando:
+
+```
+
+$ rm lists/migrations/0004_item_list.py
+$ python manage.py makemigrations
+
+```
+
+
+### Adjusting the Rest of the World to Our New Models
+
+Se ora eseguiamo il test di unità su `lists` otteniamo tre errori. Per risolvere il problema modifichiamo il file `lists/tests.py` in quanto abbiamo appena introdotto una nuova relazione fra gli oggetti di tipo `Item` e quelli di tipo `List` che richiede che ogni item abbia una lista genitore:
+
+```py
+
+class ListViewTest(TestCase):
+
+	[...]
+
+	def test_displays_all_items(self):
+		list_ = List.objects.create()
+		Item.objects.create(text='itemey 1', list=list_)
+		Item.objects.create(text='itemey 2', list=list_)
+
+```
+
+Modifichiamo anche `lists/views.py`:
+
+```py
+
+from django.shortcuts import redirect, render
+from lists.models import Item, List
+
+# Create your views here.
+def home_page(request):
+	return render(request, 'home.html')
+
+def view_list(request):
+    items = Item.objects.all()
+    return render(request, 'list.html', {'items': items})
+
+
+def new_list(request):
+	list_ = List.objects.create()	
+	Item.objects.create(text=request.POST['item_text'], list=list_)
+	return redirect('/lists/the-only-list-in-the-world/')
+
+```
+
+Se abbiamo fato tutto correttamente, ora il nostro test d'unità dovrebbe passare.
+
+### Each List Should Have Its Own URL
+
 [...]
+
+
 
 
