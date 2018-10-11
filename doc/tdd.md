@@ -1660,8 +1660,80 @@ Se abbiamo fato tutto correttamente, ora il nostro test d'unità dovrebbe passar
 
 ### Each List Should Have Its Own URL
 
-[...]
+Modifichiamo il file `lists/tests.py` in modo tale da testare che vengano visualizzati solo gli item appartenenti ad una determinata lista:
 
+```py
 
+class ListViewTest(TestCase):
+
+	def test_uses_list_template(self):
+		list_ = List.objects.create()
+		response = self.client.get(f'/lists/{list_.id}/')
+		self.assertTemplateUsed(response, 'list.html')
+
+	def test_displays_only_items_for_that_list(self):
+		correct_list = List.objects.create()
+		Item.objects.create(text='itemey 1', list=correct_list)
+		Item.objects.create(text='itemey 2', list=correct_list)
+		other_list = List.objects.create()
+		Item.objects.create(text='other list item 1', list=other_list)
+		Item.objects.create(text='other list item 2', list=other_list)
+
+		response = self.client.get(f'/lists/{correct_list.id}/')
+
+		self.assertContains(response, 'itemey 1')
+		self.assertContains(response, 'itemey 2')
+		self.assertNotContains(response, 'other list item 1')
+		self.assertNotContains(response, 'other list item 2')
+
+```
+
+Modifichiamo il file `superlists/urls.py` in modo tale che sia possibile passare i parametri dagli URL alle _view_:
+
+```py
+
+urlpatterns = [
+	url(r'^$', views.home_page, name='home'),
+	url(r'^lists/new$', views.new_list, name='new_list'),
+	url(r'^lists/(.+)/$', views.view_list, name='view_list'),
+]
+
+```
+Abbiamo aggiunto un _capture group_ `(.+)` in modo tale da catturare la stringa dopo lo `/` e passarla come argomento alla _view_.
+
+Modifichiamo il metodo `view_list` in `lists/views.py`:
+
+```py
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	items = Item.objects.filter(list=list_)
+	return render(request, 'list.html', {'items': items})
+
+```
+
+e il metodo `test_redirects_after_POST` in `lists/tests.py`:
+
+```py
+
+def test_redirects_after_POST(self):
+	response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
+	new_list = List.objects.first()
+	self.assertRedirects(response, f'/lists/{new_list.id}/')
+
+```
+
+in modo tale da poter verificare il funzionamento del _capture group_. Ora non ci resta che modificare `lists/views.py` in modo tale che la _view_ possa ricevere come argomento il parametro passato dall'URL:
+
+```py
+
+def new_list(request):
+	list_ = List.objects.create()	
+	Item.objects.create(text=request.POST['item_text'], list=list_)
+	return redirect(f'/lists/{list_.id}/')
+
+```
+
+Eseguendo il test d'unità dovremmo ottenere un successo!
 
 
