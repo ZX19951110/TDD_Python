@@ -1737,3 +1737,14 @@ def new_list(request):
 Eseguendo il test d'unità dovremmo ottenere un successo!
 
 
+### Testing the Response Context Objects Directly
+
+Ora in `lists/templates/list.html`effettuiamo la seguente modifica in modo tale che veniamo reindirizzati alla lista corretta:
+
+```html
+
+<form method="POST" action="/lists/{{ list.id }}/add_item">
+
+```
+
+
