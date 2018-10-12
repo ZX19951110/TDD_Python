@@ -1185,59 +1185,67 @@ Aggiungiamo i seguenti due metodi al file `functional_tests/tests.py`:
 ```py
 
 def test_can_start_a_list_for_one_user(self):
-    # Edith has heard about a cool new online to-do app. She goes
-    #[...]
-    # The page updates again, and now shows both items on her list
-    self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
-    self.wait_for_row_in_list_table('1: Buy peacock feathers')
+	self.browser.get(self.live_server_url)		
+	inputbox = self.browser.find_element_by_id('id_new_item')
+	inputbox.send_keys('Buy peacock feathers')		
+	inputbox.send_keys(Keys.ENTER)
+	self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
-    # Satisfied, she goes back to sleep
+	# There is still a text box inviting her to add another item. She
+	# enters "Use peacock feathers to make a fly" (Edith is very
+	# methodical)
+	inputbox = self.browser.find_element_by_id('id_new_item')
+	inputbox.send_keys('Use peacock feathers to make a fly')
+	inputbox.send_keys(Keys.ENTER)
 
+	# The page updates again, and now shows both items on her list
+	self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
+	self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
 def test_multiple_users_can_start_lists_at_different_urls(self):
-    # Edith starts a new to-do list
-    self.browser.get(self.live_server_url)
-    inputbox = self.browser.find_element_by_id('id_new_item')
-    inputbox.send_keys('Buy peacock feathers')
-    inputbox.send_keys(Keys.ENTER)
-    self.wait_for_row_in_list_table('1: Buy peacock feathers')
+    	# Edith starts a new to-do list
+    	self.browser.get(self.live_server_url)
+    	inputbox = self.browser.find_element_by_id('id_new_item')
+    	inputbox.send_keys('Buy peacock feathers')
+    	inputbox.send_keys(Keys.ENTER)
+    	self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
-    # She notices that her list has a unique URL
-    edith_list_url = self.browser.current_url
-    self.assertRegex(edith_list_url, '/lists/.+')
+    	# She notices that her list has a unique URL
+    	edith_list_url = self.browser.current_url
+    	self.assertRegex(edith_list_url, '/lists/.+')
 
-    # Now a new user, Francis, comes along to the site.
+    	# Now a new user, Francis, comes along to the site.
 
-    ## We use a new browser session to make sure that no information
-    ## of Edith's is coming through from cookies etc
-    self.browser.quit()
-    self.browser = webdriver.Firefox()
+    	## We use a new browser session to make sure that no information
+    	## of Edith's is coming through from cookies etc
+    	self.browser.quit()
+    	self.browser = webdriver.Firefox()
 
-    # Francis visits the home page.  There is no sign of Edith's
-    # list
-    self.browser.get(self.live_server_url)
-    page_text = self.browser.find_element_by_tag_name('body').text
-    self.assertNotIn('Buy peacock feathers', page_text)
-    self.assertNotIn('make a fly', page_text)
+    	# Francis visits the home page.  There is no sign of Edith's
+    	# list
+    	self.browser.get(self.live_server_url)
+    	page_text = self.browser.find_element_by_tag_name('body').text
+    	self.assertNotIn('Buy peacock feathers', page_text)
+    	self.assertNotIn('make a fly', page_text)
 
-    # Francis starts a new list by entering a new item. He
-    # is less interesting than Edith...
-    inputbox = self.browser.find_element_by_id('id_new_item')
-    inputbox.send_keys('Buy milk')
-    inputbox.send_keys(Keys.ENTER)
-    self.wait_for_row_in_list_table('1: Buy milk')
+    	# Francis starts a new list by entering a new item. He
+    	# is less interesting than Edith...
+    	inputbox = self.browser.find_element_by_id('id_new_item')
+    	inputbox.send_keys('Buy milk')
+    	inputbox.send_keys(Keys.ENTER)
+    	self.wait_for_row_in_list_table('1: Buy milk')
 
-    # Francis gets his own unique URL
-    francis_list_url = self.browser.current_url
-    self.assertRegex(francis_list_url, '/lists/.+')
-    self.assertNotEqual(francis_list_url, edith_list_url)
+    	# Francis gets his own unique URL
+    	francis_list_url = self.browser.current_url
+    	self.assertRegex(francis_list_url, '/lists/.+')
+    	self.assertNotEqual(francis_list_url, edith_list_url)
 
-    # Again, there is no trace of Edith's list
-    page_text = self.browser.find_element_by_tag_name('body').text
-    self.assertNotIn('Buy peacock feathers', page_text)
-    self.assertIn('Buy milk', page_text)
+    	# Again, there is no trace of Edith's list
+    	page_text = self.browser.find_element_by_tag_name('body').text
+    	self.assertNotIn('Buy peacock feathers', page_text)
+    	self.assertIn('Buy milk', page_text)
 
-    # Satisfied, they both go back to sleep
+    	# Satisfied, they both go back to sleep
 
 ```
 
@@ -1255,7 +1263,7 @@ Eseguendo il test di unità in `lists` otteniamo il seguente errore:
 
 `AssertionError: '/' != '/lists/the-only-list-in-the-world/'`
 
-Ora modifichiamo la _view_ della nostra `home_page` nel file `lists/views`:
+Ora modifichiamo la _view_ della nostra `home_page` nel file `lists/views.py`:
 
 ```py
 
@@ -1737,6 +1745,56 @@ def new_list(request):
 Eseguendo il test d'unità dovremmo ottenere un successo!
 
 
+### One More View to Handle Adding Items to an Existing List
+
+Ora creiamo una nuova classe `NewItemTest` in `lists/tests.py` per testare l'aggiunta di nuovi item ad una lista esistente:
+
+```py
+
+class NewItemTest(TestCase):
+
+	def test_can_save_a_POST_request_to_an_existing_list(self):
+		other_list = List.objects.create()
+		correct_list = List.objects.create()
+
+		self.client.post(
+		f'/lists/{correct_list.id}/add_item',
+			data={'item_text': 'A new item for an existing list'}
+		)
+
+		self.assertEqual(Item.objects.count(), 1)
+		new_item = Item.objects.first()
+		self.assertEqual(new_item.text, 'A new item for an existing list')
+		self.assertEqual(new_item.list, correct_list)
+
+	def test_redirects_to_list_view(self):
+		other_list = List.objects.create()
+		correct_list = List.objects.create()
+
+		response = self.client.post(
+			f'/lists/{correct_list.id}/add_item',
+			data={'item_text': 'A new item for an existing list'}
+		)
+
+		self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
+```
+
+
+### The Last New View
+
+Creiamo un nuovo metodo in `lists/views.py` che permetta di gestire l'inserimento di nuovi item in una lista esistente:
+
+```py
+
+def add_item(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	Item.objects.create(text=request.POST['item_text'], list=list_)
+	return redirect(f'/lists/{list_.id}/')
+
+```
+
+
 ### Testing the Response Context Objects Directly
 
 Ora in `lists/templates/list.html`effettuiamo la seguente modifica in modo tale che veniamo reindirizzati alla lista corretta:
@@ -1744,6 +1802,79 @@ Ora in `lists/templates/list.html`effettuiamo la seguente modifica in modo tale 
 ```html
 
 <form method="POST" action="/lists/{{ list.id }}/add_item">
+
+```
+
+e creiamo un nuovo test di unità in `lists/tests.py` nella classe `ListViewTest`:
+
+```py
+
+def test_passes_correct_list_to_template(self):
+	other_list = List.objects.create()
+	correct_list = List.objects.create()
+	response = self.client.get(f'/lists/{correct_list.id}/')
+	self.assertEqual(response.context['list'], correct_list)
+
+```
+
+Modifichiamo il metodo `view_list` in `lists/views.py`:
+
+```py
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	return render(request, 'list.html', {'list': list_})
+
+```
+
+e il `body` di `lists/templates/list.html`:
+
+```html
+
+<body>
+        <h1>Your To-Do list</h1>
+        <form method="POST" action="/lists/{{ list.id }}/add_item">
+	    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+	    {% csrf_token %}
+            <table id="id_list_table">
+    	        {% for item in list.item_set.all %}
+                <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+                {% endfor %}
+            </table>
+	</form>
+    </body>
+
+```
+
+Ora dovrebbe passare sia il test d'unità sia il test funzionale.
+
+
+### A Final Refactor Using URL includes
+
+`superlists/urls.py`:
+
+```py
+
+from django.conf.urls import include, url
+from lists import views as list_views
+from lists import urls as list_urls
+
+urlpatterns = [
+	url(r'^$', list_views.home_page, name='home'),
+	url(r'^lists/', include(list_urls)),
+]
+
+```
+
+`lists/urls.py`:
+
+```py
+
+urlpatterns = [
+	url(r'^new$', views.new_list, name='new_list'),
+	url(r'^(\d+)/$', views.view_list, name='view_list'),
+	url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
+]
 
 ```
 
