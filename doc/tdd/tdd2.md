@@ -270,6 +270,3 @@ e modificando il template `base.html`:
 ```
 
 Eseguendo il test funzionale dovremmo ottenere un successo.
-
-
-### What We Glossed Over: collectstatic and Other Static Directories
