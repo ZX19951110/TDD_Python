@@ -141,7 +141,7 @@ Ora vediamo come integrare il CSS di Bootstrap nel nostro progetto. Modifichiamo
         <div class="container">
 
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6 col-md-offset-3 style="margin-left:auto;margin-right:auto;"">
                     <div class="text-center">
                         <h1>{% block header_text %}{% endblock %}</h1>
                         <form method="POST" action="{% block form_action %}{% endblock %}">
@@ -170,4 +170,106 @@ Ora vediamo come integrare il CSS di Bootstrap nel nostro progetto. Modifichiamo
 
 ### Static Files in Django
 
-[...]
+Django ci permette di utilizzare un prefisso per segnalare che un URL che inizia con tale prefisso deve essere trattato come una richiesta per un file statico.
+Al momento i link al CSS in `base.html` non funzionano in quanto non abbiamo utilizzato il prefisso `/static/` per l'URL. perciò modifichiamo l'`head` del file `lists/templates/base.html` come segue:
+
+```html
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-Do lists</title>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+```
+
+
+### Switching to StaticLiveServerTestCase
+
+Tuttavia, se eseguiamo il test funzionale, otteniamo un altro errore; ciò è dovuto al fatto che, a differenza del _runserver_, la classe `LiveServerTestCase` non è in grado di trovare automaticamente i file statici. Per risolvere il problema dobbiamo utilizzare la classe `StaticLiveServerTestCase`. Modifichiamo quindi il file `functional/tests/tests.py` come segue:
+
+```py
+
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.common.exceptions import WebDriverException
+
+MAX_WAIT = 10
+
+class NewVisitorTest(StaticLiveServerTestCase):
+	[...]
+
+```
+
+
+### Using Bootstrap Components to Improve the Look of the Site
+
+Utilizziamo la classe `jumbotron` per migliorare l'estetica dei nostri template.
+`lists/templates/base.html`:
+
+```html
+
+<div class="col-md-6 col-md-offset-3 jumbotron style="margin-left:auto;margin-right:auto;"">
+    [...]
+</div>
+
+```
+
+Utilizziamo la classe `form-control` di Bootstrap per allargare la _textbox_ per l'inserimento del testo:
+
+```html
+
+<input name="item_text" id="id_new_item"
+    class="form-control input-lg"
+    placeholder="Enter a to-do item" />
+
+```
+
+In `lists/templates/list.html` utilizziamo la classe `table` per migliorare il layout della lista delle cose da fare:
+
+```html
+
+<table id="id_list_table" class="table">
+    {% for item in list.item_set.all %}
+      <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+    {% endfor %}
+</table>
+
+```
+
+
+### Using Our Own CSS
+
+Aggiungiamo un offset al contenuto della textbox creando il file `lists/static/base.css`:
+
+```css
+
+#id_new_item {
+	margin-top: 2ex;
+}
+
+```
+
+e modificando il template `base.html`:
+
+```html
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-Do lists</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/base.css" rel="stylesheet">
+</head>
+
+```
+
+Eseguendo il test funzionale dovremmo ottenere un successo.
+
+
+### What We Glossed Over: collectstatic and Other Static Directories

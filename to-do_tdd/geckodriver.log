@@ -3028,3 +3028,662 @@ See /usr/include/servers/bootstrap_defs.h for the error codes.
 1539698405891	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:42289/
 1539698406606	Marionette	INFO	Stopped listening on port 38679
 [Parent 5997, Gecko_IOThread] WARNING: pipe error (60): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702160662	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.f5aIuVs0XdRY"
+
+(firefox:10436): Gtk-WARNING **: 15:02:41.488: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:10436): Gtk-WARNING **: 15:02:41.488: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702162722	Marionette	INFO	Listening on port 35195
+1539702162771	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702162844	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702162850	Marionette	DEBUG	[2147483649] Frame script registered
+1539702162871	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702162896	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702162905	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:59629/
+1539702162975	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:59629/
+1539702164393	Marionette	INFO	Stopped listening on port 35195
+[Parent 10436, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702164942	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.o5C5h8c8Ev12"
+
+(firefox:10653): Gtk-WARNING **: 15:02:45.718: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:10653): Gtk-WARNING **: 15:02:45.719: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702166864	Marionette	INFO	Listening on port 42979
+1539702166952	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702167014	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702167024	Marionette	DEBUG	[2147483649] Frame script registered
+1539702167059	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702167083	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702167093	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:59629/
+1539702167158	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:59629/
+1539702167262	Marionette	INFO	Stopped listening on port 42979
+[Parent 10653, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702167939	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.uY0FRbAdbRBq"
+
+(firefox:10847): Gtk-WARNING **: 15:02:48.759: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:10847): Gtk-WARNING **: 15:02:48.759: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702169982	Marionette	INFO	Listening on port 41019
+1539702170080	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702170143	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702170144	Marionette	DEBUG	[2147483649] Frame script registered
+1539702170169	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702170188	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702170197	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:59629/
+1539702170269	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:59629/
+1539702170956	Marionette	INFO	Stopped listening on port 41019
+[Parent 10847, Gecko_IOThread] WARNING: pipe error (78): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702171478	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.yZCEMIfZDBvu"
+
+(firefox:11050): Gtk-WARNING **: 15:02:52.292: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:11050): Gtk-WARNING **: 15:02:52.292: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702173437	Marionette	INFO	Listening on port 33407
+1539702173507	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702173583	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702173585	Marionette	DEBUG	[2147483649] Frame script registered
+1539702173604	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702173617	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702173627	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:59629/
+1539702173711	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:59629/
+1539702174516	Marionette	INFO	Stopped listening on port 33407
+[Parent 11050, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702822441	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.kpCu0JPDBIeX"
+
+(firefox:11403): Gtk-WARNING **: 15:13:43.260: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:11403): Gtk-WARNING **: 15:13:43.260: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702824520	Marionette	INFO	Listening on port 38249
+1539702824563	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702824643	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702824651	Marionette	DEBUG	[2147483649] Frame script registered
+1539702824697	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702824720	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702824729	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:45287/
+1539702824820	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:45287/
+1539702826241	Marionette	INFO	Stopped listening on port 38249
+[Parent 11403, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702826804	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.AM90tSNiY3I8"
+
+(firefox:11610): Gtk-WARNING **: 15:13:47.618: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:11610): Gtk-WARNING **: 15:13:47.618: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702828817	Marionette	INFO	Listening on port 35711
+1539702828924	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702828987	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702828988	Marionette	DEBUG	[2147483649] Frame script registered
+1539702829006	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702829027	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702829038	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:45287/
+1539702829154	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:45287/
+1539702829248	Marionette	INFO	Stopped listening on port 35711
+[Parent 11610, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702829809	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.yg5UpJYvmxQJ"
+
+(firefox:11805): Gtk-WARNING **: 15:13:50.637: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:11805): Gtk-WARNING **: 15:13:50.637: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702831763	Marionette	INFO	Listening on port 33483
+1539702831827	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702831900	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702831906	Marionette	DEBUG	[2147483649] Frame script registered
+1539702831939	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702831973	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702831982	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:45287/
+1539702832090	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:45287/
+1539702832799	Marionette	INFO	Stopped listening on port 33483
+[Parent 11805, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539702833333	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.LZoXCyrrcS6O"
+
+(firefox:12004): Gtk-WARNING **: 15:13:54.177: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:12004): Gtk-WARNING **: 15:13:54.177: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539702835343	Marionette	INFO	Listening on port 42065
+1539702835453	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539702835501	Marionette	DEBUG	[2147483649] Frame script loaded
+1539702835501	Marionette	DEBUG	[2147483649] Frame script registered
+1539702835524	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539702835535	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539702835542	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:45287/
+1539702835622	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:45287/
+1539702836379	Marionette	INFO	Stopped listening on port 42065
+[Parent 12004, Gecko_IOThread] WARNING: pipe error (75): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703021357	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.yuOzT3pop02t"
+
+(firefox:12371): Gtk-WARNING **: 15:17:02.174: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:12371): Gtk-WARNING **: 15:17:02.174: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703023386	Marionette	INFO	Listening on port 44191
+1539703023492	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703023552	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703023554	Marionette	DEBUG	[2147483649] Frame script registered
+1539703023579	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703023601	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703023611	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:33193/
+1539703023711	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:33193/
+1539703025062	Marionette	INFO	Stopped listening on port 44191
+[Parent 12371, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703025620	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.H01wpfFQbdAg"
+
+(firefox:12581): Gtk-WARNING **: 15:17:06.434: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:12581): Gtk-WARNING **: 15:17:06.434: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703027690	Marionette	INFO	Listening on port 42947
+1539703027727	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703027789	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703027792	Marionette	DEBUG	[2147483649] Frame script registered
+1539703027817	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703027835	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703027843	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:33193/
+1539703027949	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:33193/
+1539703028018	Marionette	INFO	Stopped listening on port 42947
+[Parent 12581, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703028606	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.8n5Ejb4WB5Jz"
+
+(firefox:12783): Gtk-WARNING **: 15:17:09.442: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:12783): Gtk-WARNING **: 15:17:09.442: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703030593	Marionette	INFO	Listening on port 38461
+1539703030628	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703030690	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703030700	Marionette	DEBUG	[2147483649] Frame script registered
+1539703030724	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703030748	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703030758	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:33193/
+1539703030861	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:33193/
+1539703031616	Marionette	INFO	Stopped listening on port 38461
+[Parent 12783, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703033146	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.kC4PlNPArhtV"
+
+(firefox:12986): Gtk-WARNING **: 15:17:13.958: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:12986): Gtk-WARNING **: 15:17:13.958: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703035134	Marionette	INFO	Listening on port 34261
+1539703035174	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703035239	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703035244	Marionette	DEBUG	[2147483649] Frame script registered
+1539703035269	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703035306	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703035316	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:33193/
+1539703035424	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:33193/
+1539703036244	Marionette	INFO	Stopped listening on port 34261
+[Parent 12986, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703267380	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.WH3eUEMiHE8C"
+
+(firefox:13253): Gtk-WARNING **: 15:21:08.192: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:13253): Gtk-WARNING **: 15:21:08.192: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703269337	Marionette	INFO	Listening on port 42243
+1539703269392	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703269454	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703269459	Marionette	DEBUG	[2147483649] Frame script registered
+1539703269488	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703269518	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703269528	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:34725/
+1539703269598	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:34725/
+1539703271022	Marionette	INFO	Stopped listening on port 42243
+[Parent 13253, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703271575	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.inkb7B4jaPr7"
+
+(firefox:13453): Gtk-WARNING **: 15:21:12.399: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:13453): Gtk-WARNING **: 15:21:12.399: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703273494	Marionette	INFO	Listening on port 46557
+1539703273601	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703273666	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703273677	Marionette	DEBUG	[2147483649] Frame script registered
+1539703273702	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703273720	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703273728	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:34725/
+1539703273789	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:34725/
+1539703273911	Marionette	INFO	Stopped listening on port 46557
+[Parent 13453, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703274588	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.55bhLCZCJsUQ"
+
+(firefox:13646): Gtk-WARNING **: 15:21:15.409: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:13646): Gtk-WARNING **: 15:21:15.409: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703276631	Marionette	INFO	Listening on port 33103
+1539703276704	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703276767	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703276774	Marionette	DEBUG	[2147483649] Frame script registered
+1539703276795	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703276817	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703276826	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:34725/
+1539703276888	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:34725/
+1539703277605	Marionette	INFO	Stopped listening on port 33103
+[Parent 13646, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703279121	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ybqf5ytFtbeH"
+
+(firefox:13861): Gtk-WARNING **: 15:21:19.935: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:13861): Gtk-WARNING **: 15:21:19.935: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703281138	Marionette	INFO	Listening on port 39657
+1539703281234	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703281296	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703281297	Marionette	DEBUG	[2147483649] Frame script registered
+1539703281317	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703281331	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703281340	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:34725/
+1539703281409	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:34725/
+1539703282151	Marionette	INFO	Stopped listening on port 39657
+[Parent 13861, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703333264	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.nOvTVqfA5iSt"
+
+(firefox:14115): Gtk-WARNING **: 15:22:14.092: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:14115): Gtk-WARNING **: 15:22:14.092: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703335284	Marionette	INFO	Listening on port 35215
+1539703335379	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703335443	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703335452	Marionette	DEBUG	[2147483649] Frame script registered
+1539703335480	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703335512	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703335520	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35269/
+1539703335600	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35269/
+1539703337041	Marionette	INFO	Stopped listening on port 35215
+[Parent 14115, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703337599	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Nj4L74togZLm"
+
+(firefox:14324): Gtk-WARNING **: 15:22:18.424: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:14324): Gtk-WARNING **: 15:22:18.424: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703339715	Marionette	INFO	Listening on port 39901
+1539703339807	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703339874	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703339875	Marionette	DEBUG	[2147483649] Frame script registered
+1539703339933	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703339954	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703339964	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35269/
+1539703340052	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35269/
+1539703340108	Marionette	INFO	Stopped listening on port 39901
+[Parent 14324, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703340665	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.jeL3tJISih6u"
+
+(firefox:14521): Gtk-WARNING **: 15:22:21.487: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:14521): Gtk-WARNING **: 15:22:21.487: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703342700	Marionette	INFO	Listening on port 34987
+1539703342776	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703342849	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703342850	Marionette	DEBUG	[2147483649] Frame script registered
+1539703342880	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703342901	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703342915	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35269/
+1539703342987	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35269/
+1539703343702	Marionette	INFO	Stopped listening on port 34987
+[Parent 14521, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703344232	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.G9mTnSSiLyB2"
+
+(firefox:14724): Gtk-WARNING **: 15:22:25.034: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:14724): Gtk-WARNING **: 15:22:25.034: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703346245	Marionette	INFO	Listening on port 36927
+1539703346342	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703346405	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703346409	Marionette	DEBUG	[2147483649] Frame script registered
+1539703346432	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703346447	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703346458	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35269/
+1539703346533	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35269/
+1539703347279	Marionette	INFO	Stopped listening on port 36927
+[Parent 14724, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703494818	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.LymEK1CPVsqG"
+
+(firefox:14999): Gtk-WARNING **: 15:24:55.638: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:14999): Gtk-WARNING **: 15:24:55.638: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703496745	Marionette	INFO	Listening on port 41125
+1539703496834	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703496901	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703496903	Marionette	DEBUG	[2147483649] Frame script registered
+1539703496925	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703496954	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703496965	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:52179/
+1539703497036	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:52179/
+1539703498379	Marionette	INFO	Stopped listening on port 41125
+[Parent 14999, Gecko_IOThread] WARNING: pipe error (78): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703498961	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.EqCybSFFV4vY"
+
+(firefox:15207): Gtk-WARNING **: 15:24:59.779: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:15207): Gtk-WARNING **: 15:24:59.779: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703500865	Marionette	INFO	Listening on port 38321
+1539703500890	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703500953	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703500970	Marionette	DEBUG	[2147483649] Frame script registered
+1539703500996	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703501016	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703501025	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:52179/
+1539703501097	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:52179/
+1539703502001	Marionette	INFO	Stopped listening on port 38321
+[Parent 15207, Gecko_IOThread] WARNING: pipe error (78): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703502562	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.iw0hIulh5kwL"
+
+(firefox:15411): Gtk-WARNING **: 15:25:03.378: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:15411): Gtk-WARNING **: 15:25:03.378: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703504588	Marionette	INFO	Listening on port 41523
+1539703504670	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703504737	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703504743	Marionette	DEBUG	[2147483649] Frame script registered
+1539703504764	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703504781	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703504792	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:52179/
+1539703504868	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:52179/
+1539703505565	Marionette	INFO	Stopped listening on port 41523
+[Parent 15411, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703506083	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.OZ0xtbkjtDkC"
+
+(firefox:15613): Gtk-WARNING **: 15:25:06.917: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:15613): Gtk-WARNING **: 15:25:06.918: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703508033	Marionette	INFO	Listening on port 44509
+1539703508103	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703508168	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703508172	Marionette	DEBUG	[2147483649] Frame script registered
+1539703508194	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703508210	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703508219	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:52179/
+1539703508310	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:52179/
+1539703509086	Marionette	INFO	Stopped listening on port 44509
+[Parent 15613, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703611335	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.enY8atUXb2lV"
+
+(firefox:15891): Gtk-WARNING **: 15:26:52.160: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:15891): Gtk-WARNING **: 15:26:52.160: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703613346	Marionette	INFO	Listening on port 41979
+1539703613446	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703613508	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703613510	Marionette	DEBUG	[2147483649] Frame script registered
+1539703613538	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703613563	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703613573	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:48903/
+1539703613639	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:48903/
+1539703615084	Marionette	INFO	Stopped listening on port 41979
+[Parent 15891, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703615669	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.7IWqmUD0YSSy"
+
+(firefox:16099): Gtk-WARNING **: 15:26:56.494: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:16099): Gtk-WARNING **: 15:26:56.494: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703617667	Marionette	INFO	Listening on port 43849
+1539703617682	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703617748	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703617750	Marionette	DEBUG	[2147483649] Frame script registered
+1539703617779	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703617810	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703617820	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:48903/
+1539703617880	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:48903/
+1539703618045	Marionette	INFO	Stopped listening on port 43849
+[Parent 16099, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703618736	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.JUSmKhNOyChZ"
+
+(firefox:16294): Gtk-WARNING **: 15:26:59.541: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:16294): Gtk-WARNING **: 15:26:59.541: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703620754	Marionette	INFO	Listening on port 39065
+1539703620863	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703620927	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703620928	Marionette	DEBUG	[2147483649] Frame script registered
+1539703620948	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703620962	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703620971	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:48903/
+1539703621034	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:48903/
+1539703621735	Marionette	INFO	Stopped listening on port 39065
+[Parent 16294, Gecko_IOThread] WARNING: pipe error (77): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703623250	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.9lBQfr9YJ2jj"
+
+(firefox:16501): Gtk-WARNING **: 15:27:04.056: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:16501): Gtk-WARNING **: 15:27:04.056: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703625383	Marionette	INFO	Listening on port 37369
+1539703625468	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703625530	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703625554	Marionette	DEBUG	[2147483649] Frame script registered
+1539703625582	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703625598	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703625607	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:48903/
+1539703625684	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:48903/
+1539703626413	Marionette	INFO	Stopped listening on port 37369
+[Parent 16501, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703821050	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ZT9zCpAdMgny"
+
+(firefox:16973): Gtk-WARNING **: 15:30:21.859: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:16973): Gtk-WARNING **: 15:30:21.859: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703823121	Marionette	INFO	Listening on port 33173
+1539703823167	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703823232	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703823239	Marionette	DEBUG	[2147483649] Frame script registered
+1539703823266	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703823303	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703823313	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35985/
+1539703823413	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35985/
+1539703824837	Marionette	INFO	Stopped listening on port 33173
+[Parent 16973, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703825406	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.4xxTcSZ8BlMz"
+
+(firefox:17174): Gtk-WARNING **: 15:30:26.131: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:17174): Gtk-WARNING **: 15:30:26.131: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703827258	Marionette	INFO	Listening on port 39499
+1539703827339	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703827405	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703827407	Marionette	DEBUG	[2147483649] Frame script registered
+1539703827430	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703827461	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703827472	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35985/
+1539703827612	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35985/
+1539703827803	Marionette	INFO	Stopped listening on port 39499
+[Parent 17174, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703828375	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.AQ06BduwSDyM"
+
+(firefox:17375): Gtk-WARNING **: 15:30:29.188: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:17375): Gtk-WARNING **: 15:30:29.188: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703830382	Marionette	INFO	Listening on port 45613
+1539703830487	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703830550	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703830551	Marionette	DEBUG	[2147483649] Frame script registered
+1539703830573	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703830590	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703830604	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35985/
+1539703830719	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35985/
+1539703831384	Marionette	INFO	Stopped listening on port 45613
+[Parent 17375, Gecko_IOThread] WARNING: pipe error (73): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539703831909	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.cwnUtvIumty3"
+
+(firefox:17575): Gtk-WARNING **: 15:30:32.725: Theme parsing error: <data>:1:34: Expected ')' in color definition
+
+(firefox:17575): Gtk-WARNING **: 15:30:32.725: Theme parsing error: <data>:1:77: Expected ')' in color definition
+1539703833952	Marionette	INFO	Listening on port 41047
+1539703834026	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539703834095	Marionette	DEBUG	[2147483649] Frame script loaded
+1539703834096	Marionette	DEBUG	[2147483649] Frame script registered
+1539703834120	Marionette	DEBUG	[2147483649] Received DOM event beforeunload for about:blank
+1539703834136	Marionette	DEBUG	[2147483649] Received DOM event pagehide for about:blank
+1539703834152	Marionette	DEBUG	[2147483649] Received DOM event DOMContentLoaded for http://localhost:35985/
+1539703834254	Marionette	DEBUG	[2147483649] Received DOM event pageshow for http://localhost:35985/
+1539703835009	Marionette	INFO	Stopped listening on port 41047
+[Parent 17575, Gecko_IOThread] WARNING: pipe error (78): Connection reset by peer: file /build/firefox-IVlCbR/firefox-62.0.3+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1539782754825	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_h/4vlb24455y576891vvjjnm3c0000gn/T/rust_mozprofile.IVZliAvkYX8w"
+2018-10-17 13:25:56.142 plugin-container[1509:35395] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x8543, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:56.237 plugin-container[1509:35395] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xb7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:56.336 plugin-container[1509:35395] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x1080c91c0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:25:56.340 plugin-container[1509:35405] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+2018-10-17 13:25:56.391 plugin-container[1510:35423] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7737, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:56.486 plugin-container[1510:35423] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x137b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:56.500 plugin-container[1510:35423] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x114317ac0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:25:56.503 plugin-container[1510:35440] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782756657	Marionette	INFO	Listening on port 50254
+1539782756667	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539782756709	Marionette	DEBUG	[4294967297] Frame script loaded
+1539782756710	Marionette	DEBUG	[4294967297] Frame script registered
+1539782756749	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for about:blank
+1539782756781	Marionette	DEBUG	[4294967297] Received DOM event pagehide for about:blank
+1539782756792	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for http://localhost:50242/
+1539782757026	Marionette	DEBUG	[4294967297] Received DOM event pageshow for http://localhost:50242/
+2018-10-17 13:25:57.202 plugin-container[1511:35544] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x803b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:57.300 plugin-container[1511:35544] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:25:57.309 plugin-container[1511:35544] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x1009ea070 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:25:57.311 plugin-container[1511:35552] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782758286	Marionette	INFO	Stopped listening on port 50254
+1539782759733	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_h/4vlb24455y576891vvjjnm3c0000gn/T/rust_mozprofile.6QzIWllIivLu"
+2018-10-17 13:26:00.965 plugin-container[1514:35699] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7c3b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:01.072 plugin-container[1514:35699] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xb7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:01.091 plugin-container[1514:35699] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x10b440250 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:01.094 plugin-container[1514:35710] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+2018-10-17 13:26:01.156 plugin-container[1515:35727] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x853b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:01.251 plugin-container[1515:35727] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xb7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:01.264 plugin-container[1515:35727] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x11591bac0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:01.266 plugin-container[1515:35732] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782761404	Marionette	INFO	Listening on port 50297
+1539782761494	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539782761530	Marionette	DEBUG	[4294967297] Frame script loaded
+1539782761532	Marionette	DEBUG	[4294967297] Frame script registered
+1539782761550	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for about:blank
+1539782761579	Marionette	DEBUG	[4294967297] Received DOM event pagehide for about:blank
+1539782761587	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for http://localhost:50242/
+1539782761800	Marionette	DEBUG	[4294967297] Received DOM event pageshow for http://localhost:50242/
+2018-10-17 13:26:01.955 plugin-container[1516:35851] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x8107, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:02.065 plugin-container[1516:35851] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x97b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:02.074 plugin-container[1516:35851] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x1077eb070 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:02.076 plugin-container[1516:35859] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782762503	Marionette	INFO	Stopped listening on port 50297
+1539782762521	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: TypeError: setting getter-only property "_currentSearchHostname" (resource://activity-stream/lib/TopSitesFeed.jsm:86:5) JS Stack trace: uninit@TopSitesFeed.jsm:86:5
+onAction@TopSitesFeed.jsm:707:9
+_middleware/</<@Store.jsm:51:11
+Store/this[method]@Store.jsm:29:55
+uninit@Store.jsm:170:7
+uninit@ActivityStream.jsm:363:5
+uninit@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:86:5
+shutdown@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:194:3
+callBootstrapMethod@XPIProvider.jsm:1592:20
+_shutdown@XPIProvider.jsm:1728:12
+flushAllWindowsAsync@SessionStore.jsm:1697:7
+ssi_onQuitApplicationGranted/<@SessionStore.jsm:1624:27
+trigger@AsyncShutdown.jsm:710:23
+_wait@AsyncShutdown.jsm:857:7
+wait@AsyncShutdown.jsm:841:28
+observe@AsyncShutdown.jsm:524:17
+GeckoDriver.prototype.quit@driver.js:3319:3
+despatch@server.js:297:20
+execute@server.js:271:11
+onPacket/<@server.js:246:15
+onPacket@server.js:245:8
+_onJSONObjectReady/<@transport.js:500:9
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+1539782763938	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_h/4vlb24455y576891vvjjnm3c0000gn/T/rust_mozprofile.cxPXHtNq3hvO"
+2018-10-17 13:26:05.157 plugin-container[1519:35989] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x773b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:05.261 plugin-container[1519:35989] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x1403, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:05.277 plugin-container[1519:35989] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x107840250 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:05.280 plugin-container[1519:35991] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+2018-10-17 13:26:05.346 plugin-container[1520:36015] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7143, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:05.449 plugin-container[1520:36015] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xb7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:05.462 plugin-container[1520:36015] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x109919ac0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:05.465 plugin-container[1520:36023] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782765590	Marionette	INFO	Listening on port 50337
+1539782765667	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539782765711	Marionette	DEBUG	[4294967297] Frame script loaded
+1539782765712	Marionette	DEBUG	[4294967297] Frame script registered
+1539782765728	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for about:blank
+1539782765744	Marionette	DEBUG	[4294967297] Received DOM event pagehide for about:blank
+1539782765752	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for http://localhost:50242/
+1539782765977	Marionette	DEBUG	[4294967297] Received DOM event pageshow for http://localhost:50242/
+2018-10-17 13:26:06.157 plugin-container[1521:36136] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x720b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:06.255 plugin-container[1521:36136] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa07, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:06.264 plugin-container[1521:36136] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x1104ea040 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:06.266 plugin-container[1521:36138] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782766610	Marionette	INFO	Stopped listening on port 50337
+1539782766627	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: TypeError: setting getter-only property "_currentSearchHostname" (resource://activity-stream/lib/TopSitesFeed.jsm:86:5) JS Stack trace: uninit@TopSitesFeed.jsm:86:5
+onAction@TopSitesFeed.jsm:707:9
+_middleware/</<@Store.jsm:51:11
+Store/this[method]@Store.jsm:29:55
+uninit@Store.jsm:170:7
+uninit@ActivityStream.jsm:363:5
+uninit@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:86:5
+shutdown@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:194:3
+callBootstrapMethod@XPIProvider.jsm:1592:20
+_shutdown@XPIProvider.jsm:1728:12
+flushAllWindowsAsync@SessionStore.jsm:1697:7
+ssi_onQuitApplicationGranted/<@SessionStore.jsm:1624:27
+trigger@AsyncShutdown.jsm:710:23
+_wait@AsyncShutdown.jsm:857:7
+wait@AsyncShutdown.jsm:841:28
+observe@AsyncShutdown.jsm:524:17
+GeckoDriver.prototype.quit@driver.js:3319:3
+despatch@server.js:297:20
+execute@server.js:271:11
+onPacket/<@server.js:246:15
+onPacket@server.js:245:8
+_onJSONObjectReady/<@transport.js:500:9
+1539782768028	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_h/4vlb24455y576891vvjjnm3c0000gn/T/rust_mozprofile.j959r2DkWuPe"
+2018-10-17 13:26:09.264 plugin-container[1524:36278] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7b3b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:09.370 plugin-container[1524:36278] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa7b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:09.384 plugin-container[1524:36278] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x10db40250 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:09.388 plugin-container[1524:36289] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+2018-10-17 13:26:09.445 plugin-container[1525:36307] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7c3b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:09.541 plugin-container[1525:36307] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x127b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:09.551 plugin-container[1525:36307] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x110521ac0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:09.554 plugin-container[1525:36323] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782769686	Marionette	INFO	Listening on port 50374
+1539782769765	Marionette	WARN	TLS certificate errors will be ignored for this session
+1539782769808	Marionette	DEBUG	[4294967297] Frame script loaded
+1539782769809	Marionette	DEBUG	[4294967297] Frame script registered
+1539782769825	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for about:blank
+1539782769854	Marionette	DEBUG	[4294967297] Received DOM event pagehide for about:blank
+1539782769861	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for http://localhost:50242/
+1539782770073	Marionette	DEBUG	[4294967297] Received DOM event pageshow for http://localhost:50242/
+2018-10-17 13:26:10.260 plugin-container[1526:36430] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x893b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:10.361 plugin-container[1526:36430] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x147b, name = 'com.apple.coredrag'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-10-17 13:26:10.370 plugin-container[1526:36430] unable to obtain configuration from file:///Library/Preferences/com.apple.ViewBridge.plist due to Error Domain=NSCocoaErrorDomain Code=257 "The file “com.apple.ViewBridge.plist” couldn’t be opened because you don’t have permission to view it." UserInfo={NSFilePath=/Library/Preferences/com.apple.ViewBridge.plist, NSUnderlyingError=0x10e3ea040 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+2018-10-17 13:26:10.372 plugin-container[1526:36431] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection invalid
+1539782770742	Marionette	INFO	Stopped listening on port 50374
+1539782770758	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: TypeError: setting getter-only property "_currentSearchHostname" (resource://activity-stream/lib/TopSitesFeed.jsm:86:5) JS Stack trace: uninit@TopSitesFeed.jsm:86:5
+onAction@TopSitesFeed.jsm:707:9
+_middleware/</<@Store.jsm:51:11
+Store/this[method]@Store.jsm:29:55
+uninit@Store.jsm:170:7
+uninit@ActivityStream.jsm:363:5
+uninit@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:86:5
+shutdown@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///Applications/Firefox.app/Contents/Resources/browser/features/activity-stream@bootstrap.js:194:3
+callBootstrapMethod@XPIProvider.jsm:1592:20
+_shutdown@XPIProvider.jsm:1728:12
+flushAllWindowsAsync@SessionStore.jsm:1697:7
+ssi_onQuitApplicationGranted/<@SessionStore.jsm:1624:27
+trigger@AsyncShutdown.jsm:710:23
+_wait@AsyncShutdown.jsm:857:7
+wait@AsyncShutdown.jsm:841:28
+observe@AsyncShutdown.jsm:524:17
+GeckoDriver.prototype.quit@driver.js:3319:3
+despatch@server.js:297:20
+execute@server.js:271:11
+onPacket/<@server.js:246:15
+onPacket@server.js:245:8
+_onJSONObjectReady/<@transport.js:500:9
