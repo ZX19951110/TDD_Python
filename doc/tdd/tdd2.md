@@ -270,3 +270,51 @@ e modificando il template `base.html`:
 ```
 
 Eseguendo il test funzionale dovremmo ottenere un successo.
+
+
+## Chapter 9: Testing Deployment Using a Staging Site
+
+Modifichiamo il metodo `SetUp` in `functional_tests/tests.py` affinchè possa verificare la presenza di una variabile d'ambiente chimata `STAGING_SERVER`:
+
+```py
+
+def setUp(self):
+	self.browser = webdriver.Firefox()
+	staging_server = os.environ.get('STAGING_SERVER')  
+	if staging_server:
+		self.live_server_url = 'http://' + staging_server
+
+```
+
+### Virtualenv
+
+Utilizziamo _virtualenv_ per gestire i pacchetti e le dipendenze quando sul computer possono girare più applicazioni scritte in Python. Nel caso di Python 3, _virtualenv_ è gia installato. Aggiungiamo _virtualenv_ al nostro progetto usando il seguente comando:
+
+`$ python -m venv virtualenv`
+
+A questo punto vedremo i file di _virtualenv_ all'interno della directory `./virtualenv`
+
+Per attivare _virtualenv_:
+
+`$ source virtualenv/bin/activate`
+
+Per disattivarlo:
+
+`$ deactivate`
+
+Inoltre ricordiamoci di installre _Django_ e _Selenium_ in _virtualenv_. Per eseguire il nostro programma in _virtualenv_ dobbiamo utilizzare il comando:
+
+`$ ./virtualenv/bin/python manage.py runserver`
+
+Eseguendo il test d'unità ci accorgiamo di un errore causato dall'istruzione:
+
+`self.assertTrue(html.startswith('<html>'))`
+
+Perciò modifichiamola in:
+
+`self.assertTrue(html.startswith('<!DOCTYPE html>'))`
+
+Ora il nostro test d'unità dovrebbe passare correttamente.
+
+
+### Chapter 10: Getting to a Production-Ready Deployment
