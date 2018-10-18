@@ -332,7 +332,17 @@ def test_cannot_add_empty_list_items(self):
 
 ### Skipping a test
 
-[...]
+Utilizzando `@skip`possiamo saltare un determinato metodo di test:
+
+```py
+
+from unittest import skip
+
+@skip
+def test_cannot_add_empty_list_items(self):
+	self.fail('write me!')
+
+```
 
 
 

@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 from selenium.common.exceptions import WebDriverException
 import os
+from unittest import skip
 
 MAX_WAIT = 10
 
@@ -120,5 +121,6 @@ class NewVisitorTest(StaticLiveServerTestCase):
 			delta=10
 		)
 
+	@skip
 	def test_cannot_add_empty_list_items(self):
 		self.fail('write me!')
