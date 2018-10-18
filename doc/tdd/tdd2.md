@@ -272,6 +272,7 @@ e modificando il template `base.html`:
 Eseguendo il test funzionale dovremmo ottenere un successo.
 
 
+
 ## Chapter 9: Testing Deployment Using a Staging Site
 
 Modifichiamo il metodo `SetUp` in `functional_tests/tests.py` affinchè possa verificare la presenza di una variabile d'ambiente chimata `STAGING_SERVER`:
@@ -317,4 +318,24 @@ Perciò modifichiamola in:
 Ora il nostro test d'unità dovrebbe passare correttamente.
 
 
-### Chapter 10: Getting to a Production-Ready Deployment
+
+## Chapter 12: Splitting Our Tests into Multiple Files, and a Generic Wait Helper
+
+Ora modifichiamo il nostro test funzionale in modo tale che possa verificare che la nostra _textbox_ non accetti in input stringhe vuote. Quindi aggiungiamo il seguente metodo:
+
+```py
+
+def test_cannot_add_empty_list_items(self):
+	self.fail('write me!')
+
+```
+
+### Skipping a test
+
+[...]
+
+
+
+
+
+
