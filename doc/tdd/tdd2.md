@@ -996,4 +996,57 @@ Ora il nostro test d'unità passerà correttamente!
 
 ### Surfacing Model Validation Errors in the View
 
+Facciamo in modo che il nostro template HTML possa mostrare un errore nel caso in cui l'input inserito sia una stringa vuota. Pertanto modifichiamo `lists/templates/base.html`:
+
+```html
+
+<form method="POST" action="{% block form_action %}{% endblock %}">
+    <input name="item_text" id="id_new_item"
+        class="form-control input-lg"
+        placeholder="Enter a to-do item" />
+    {% csrf_token %}
+    {% if error %}
+        <div class="form-group has-error">
+            <span class="help-block">{{ error }}</span>
+        </div>
+    {% endif %}
+</form>
+
+```
+
+Scriviamo un nuovo metodo nella classe `NewListTest` del file `lists/tests/test_views.py` per testare che il messaggio di errore venga passato al nostro _template_:
+
+```py
+
+def test_validation_errors_are_sent_back_to_home_page_template(self):
+	response = self.client.post('/lists/new', data={'item_text': ''})
+	self.assertEqual(response.status_code, 200)
+	self.assertTemplateUsed(response, 'home.html')
+	expected_error = escape("You can't have an empty list item")
+	print(response.content.decode())
+	self.assertContains(response, expected_error)
+
+```
+
+Modifichiamo in `lists/views.py` il metodo `new_list`:
+
+```py
+
+def new_list(request):
+	list_ = List.objects.create()
+	item = Item.objects.create(text=request.POST['item_text'], list=list_)
+	try:
+		item.full_clean()
+	except ValidationError:
+		error = "You can't have an empty list item"
+		return render(request, 'home.html', {"error": error})
+	return redirect(f'/lists/{list_.id}/')
+
+```
+
+Ora il nostro test di unità passerà correttamente.
+
+
+### Checking That Invalid Input Isn’t Saved to the Database
+
 [...]
