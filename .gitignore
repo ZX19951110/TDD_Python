@@ -1,5 +1,6 @@
 to-do_tdd/static/
 to-do_tdd/lists/__pycache__/
+to-do_tdd/lists/tests/__pycache__/
 to-do_tdd/superlists/__pycache__/
 to-do_tdd/functional_tests/__pycache__/
 to-do_tdd/virtualenv/
