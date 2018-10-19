@@ -927,5 +927,73 @@ Se abbiamo fatto tutto correttamente il nostro test d'unità dovrebbe passare co
 
 ## Chapter 13: Validation at the Database Layer
 
-[...]
+Nel capitolo 12, eseguendo il seguente test:
 
+`$ python3 manage.py test functional_tests.test_list_item_validation`
+
+abbiamo ottenuto il seguente errore:
+
+`selenium.common.exceptions.NoSuchElementException: Message: Unable to locateelement: .has-error`
+
+
+### Model-Layer Validation
+
+In una web app è possibile effettuare il controllo dell'input immesso dall'utente sia lato client, utilizzando JavaScript o HTML5, oppure lato server. Quest'ultimo metodo generalmente è più sicuro. Una cosa simile avviene anche con il framework Django, dove è possibile eseguire il controllo sia al livello dei modelli (livello basso) sia al livello dei _forms_ (livello alto). Anche in quest'ultimo caso è preferibile utilizzare il modello più basso per una maggiore sicurezzza.
+
+Aggiungiamo un nuovo metodo al file `lists/tests/test_models.py`:
+
+```py
+
+from django.test import TestCase
+from lists.models import Item, List
+from django.core.exceptions import ValidationError
+
+
+
+class ListAndItemModelsTest(TestCase):
+    
+	[...]	
+
+	def test_cannot_save_empty_list_items(self):
+		list_ = List.objects.create()
+		item = Item(list=list_, text='')
+		with self.assertRaises(ValidationError):
+			item.save()
+
+```
+
+Il costrutto `with` serve per assicurare che una risorsa venga liberata quando il codice in esecuzione termina. In questo caso è stato utilizzato in sostituzione al costrutto `try...except`:
+
+```py
+
+try:
+	item.save()
+	self.fail('The save should have raised an exception')
+except ValidationError:
+	pass
+
+```
+
+Eseguendo il test di unità si ottiene il seguente errore:
+
+`AssertionError: ValidationError not raised`
+
+
+### A Django Quirk: Model Save Doesn’t Run Validation
+
+L'errore appena descritto si presenta dal momento in cui dobbiamo invocare il metodo `full_clean()` della classe `Item` dopo aver effettuato il salvataggio dell'_item_ all'interno del database:
+
+```py
+
+with self.assertRaises(ValidationError):
+	item.save()
+	item.full_clean()
+
+```
+
+Ora il nostro test d'unità passerà correttamente!
+
+
+### Surfacing Model Validation Errors in the View
+
+[...]
