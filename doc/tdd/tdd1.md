@@ -12,6 +12,8 @@
 
 	`$ export PATH=$PATH:/usr/local/Cellar/geckodriver/0.22.0`
 
+dove `/usr/local/Cellar/geckodriver/0.22.0` è la directory nella quale è installato _geckodriver_
+
 * Per installare _geckodriver_ su Linux Ubuntu scaricare l'ultima versione sul [sito ufficiale](https://github.com/mozilla/geckodriver/releases), decomprimere l'archivio, rendere il file eseguibile con il comando:
 
 	`$ chmod +x geckodriver`
@@ -19,8 +21,6 @@
 	e copiare l'eseguibile nella directory `/usr/local/bin/`:
 
 	`$ sudo cp geckodriver /usr/local/bin/`
-
-	dove `/usr/local/Cellar/geckodriver/0.22.0` è la directory nella quale è installato _geckodriver_
 
 
 ### Installare _Selenium_
