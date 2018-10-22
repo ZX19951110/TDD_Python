@@ -858,6 +858,12 @@ class ListViewTest(TestCase):
 		response = self.client.get(f'/lists/{list_.id}/')
 		self.assertTemplateUsed(response, 'list.html')
 
+	def test_passes_correct_list_to_template(self):
+		other_list = List.objects.create()
+		correct_list = List.objects.create()
+		response = self.client.get(f'/lists/{correct_list.id}/')
+		self.assertEqual(response.context['list'], correct_list)
+
 	def test_displays_only_items_for_that_list(self):
 		correct_list = List.objects.create()
 		Item.objects.create(text='itemey 1', list=correct_list)
@@ -886,11 +892,6 @@ class NewListTest(TestCase):
 		new_list = List.objects.first()
 		self.assertRedirects(response, f'/lists/{new_list.id}/')
 
-	def test_passes_correct_list_to_template(self):
-		other_list = List.objects.create()
-		correct_list = List.objects.create()
-		response = self.client.get(f'/lists/{correct_list.id}/')
-		self.assertEqual(response.context['list'], correct_list)
 
 class NewItemTest(TestCase):
 
@@ -1083,4 +1084,121 @@ Tuttavia il test funzionale non passa ancora.
 
 ### Django Pattern: Processing POST Requests in the Same View as Renders the Form
 
+Ora è il momento di utilizzare un pattern molto diffuso in Django che consiste nell'utilizzare la stessa _view_ per processare le rischieste POST e per renderizzare il _form_ dal quale tali richieste provengono. In questo modo si ha il vantaggio di utilizzare lo stesso URL sia per processare l'input che per mostrare un messaggio di errore nel caso in cui l'input non sia considerato valido.
+
+`lists/templates/list.html`:
+
+```html
+
+{% extends 'base.html' %}
+
+{% block header_text %}Your To-Do list{% endblock %}
+
+{% block form_action %}/lists/{{ list.id }}/{% endblock %}
+
+{% block table %}
+  <table id="id_list_table" class="table">
+    {% for item in list.item_set.all %}
+      <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
+```
+
+`lists/templates/home.html`:
+
+```html
+
+{% extends 'base.html' %}
+
+{% block header_text %}Start a new To-Do list{% endblock %}
+
+{% block form_action %}/{% endblock %}
+
+```
+
+
+### Refactor: Transferring the new_item Functionality into view_list
+
+Aggiungiamo alcuni nuovi metodi della classe `ListViewTest` presente nel file `lists/tests/test_views.py`:
+
+```py
+
+class ListViewTest(TestCase):
+
+	def test_uses_list_template(self):
+		[...]
+
+	def test_passes_correct_list_to_template(self):
+		[...]
+
+	def test_displays_only_items_for_that_list(self):
+		[...]
+
+	def test_can_save_a_POST_request_to_an_existing_list(self):
+		other_list = List.objects.create()
+		correct_list = List.objects.create()
+
+		self.client.post(
+			f'/lists/{correct_list.id}/',
+			data={'item_text': 'A new item for an existing list'}
+		)
+
+		self.assertEqual(Item.objects.count(), 1)
+		new_item = Item.objects.first()
+		self.assertEqual(new_item.text, 'A new item for an existing list')
+		self.assertEqual(new_item.list, correct_list)
+
+
+	def test_POST_redirects_to_list_view(self):
+		other_list = List.objects.create()
+		correct_list = List.objects.create()
+
+		response = self.client.post(
+			f'/lists/{correct_list.id}/',
+			data={'item_text': 'A new item for an existing list'}
+		)
+		self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
+```
+
+ed eliminiamo gli omonimi metodi dalla classe `NewItemTest`. Di conseguenza possiamo anche eliminare tale classe.
+
+Modifichiamo anche il metodo `view_list` in `lists/views.py`:
+
+```py
+
+def view_list(request):
+	list_ = List.objects.get(id=list_id)
+	if request.method == 'POST':
+		Item.objects.create(text=request.POST['item_text'], list=list_)
+		return redirect(f'/lists/{list_.id}/')
+	return render(request, 'list.html', {'list': list_})
+
+```
+
+e rimuoviamo il metodo `add_item` dal momento che abbiamo integrato le sue funzionalità in `view_list`. Dal momento che abbiamo rimosso tale metodo dobbiamo anche modificare il file `lists/urls.py`:
+
+```py
+
+from django.conf.urls import url
+from lists import views
+
+urlpatterns = [
+	url(r'^new$', views.new_list, name='new_list'),
+	url(r'^(\d+)/$', views.view_list, name='view_list'),
+]
+
+```
+
+Tuttavia eseguendo nuovamente il nostro test funzionale otteniamo nuovamente un fallimento:
+
+`ERROR: test_cannot_add_empty_list_items`
+
+
+### Enforcing Model Validation in view_list
+
 [...]
+
+
