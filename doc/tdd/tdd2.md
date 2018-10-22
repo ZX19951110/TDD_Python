@@ -1049,4 +1049,38 @@ Ora il nostro test di unità passerà correttamente.
 
 ### Checking That Invalid Input Isn’t Saved to the Database
 
+All'interno del nostro codice è presente un errore in quanto stiamo inserendo degli oggetti nel database nonostante non siano validi. Perciò creiamo un nuovo metodo nella classe `NewListTest` presente nel file `lists/tests/test_views.py` per assicurarci che tale errore non si presenti nuovamente:
+
+```py
+
+def test_invalid_list_items_arent_saved(self):
+	self.client.post('/lists/new', data={'item_text': ''})
+	self.assertEqual(List.objects.count(), 0)
+	self.assertEqual(Item.objects.count(), 0)
+
+```
+
+Ora fixiamo il nostro codice in `lists/views.py`:
+
+```py
+
+def new_list(request):
+	list_ = List.objects.create()
+	item = Item.objects.create(text=request.POST['item_text'], list=list_)
+	try:
+		item.full_clean()
+		item.save()
+	except ValidationError:
+		list_.delete()
+		error = "You can't have an empty list item"
+		return render(request, 'home.html', {"error": error})
+	return redirect(f'/lists/{list_.id}/')
+
+```
+
+Tuttavia il test funzionale non passa ancora.
+
+
+### Django Pattern: Processing POST Requests in the Same View as Renders the Form
+
 [...]

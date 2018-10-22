@@ -75,6 +75,11 @@ class NewListTest(TestCase):
 		print(response.content.decode())
 		self.assertContains(response, expected_error)
 
+	def test_invalid_list_items_arent_saved(self):
+		self.client.post('/lists/new', data={'item_text': ''})
+		self.assertEqual(List.objects.count(), 0)
+		self.assertEqual(Item.objects.count(), 0)
+
 
 class NewItemTest(TestCase):
 
