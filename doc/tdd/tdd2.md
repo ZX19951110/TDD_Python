@@ -1395,6 +1395,69 @@ In `Meta` specifichiamo per quale modello utilizziamo il _form_ e quali campi an
 
 ### Testing and Customising Form Validation
 
-[...]
+Creiamo un nuovo metodo in `ists/tests/test_forms.py` per verificare che non vengano accettate stringhe vuote come input:
+
+```py
+
+def test_form_validation_for_blank_items(self):
+	form = ItemForm(data={'text': ''})
+	self.assertFalse(form.is_valid())
+	self.assertEqual(
+		form.errors['text'],
+		["You can't have an empty list item"]
+	)
+
+```
+
+Django ha un messaggio di errore di default (`error_messages`). Modifichiamo `lists/forms.py`:
+
+```py
+
+from django import forms
+from lists.models import Item
+
+EMPTY_ITEM_ERROR = "You can't have an empty list item"
+
+
+class ItemForm(forms.models.ModelForm):
+
+	class Meta:
+		model = Item
+		fields = ('text',)
+		widgets = {
+			'text': forms.fields.TextInput(attrs={
+				'placeholder': 'Enter a to-do item',
+				'class': 'form-control input-lg',
+			}),
+		}
+		error_messages = {
+			'text': {'required': EMPTY_ITEM_ERROR}
+		}
+
+```
+
+Il nostro test d'unità dovrebbe passare correttamente.
+Importiamo la costante appena definita anche in `ists/tests/test_forms.py`:
+
+```py
+
+from django.test import TestCase
+from lists.forms import EMPTY_ITEM_ERROR, ItemForm
+
+
+
+class ItemFormTest(TestCase):
+
+	[...]
+
+	def test_form_validation_for_blank_items(self):
+		form = ItemForm(data={'text': ''})
+		self.assertFalse(form.is_valid())
+		self.assertEqual(
+			form.errors['text'],
+			[EMPTY_ITEM_ERROR]
+		)
+
+```
 
 
