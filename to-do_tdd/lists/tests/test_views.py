@@ -8,20 +8,13 @@ from lists.models import Item, List
 from django.utils.html import escape
 
 class HomePageTest(TestCase):
-	def test_root_url_resolves_to_home_page_view(self):
-		found = resolve('/')
-		self.assertEqual(found.func, home_page)
-
+	
 	def test_home_page_returns_correct_html(self):
 		response = self.client.get('/')
 		html = response.content.decode('utf8')
 		self.assertTrue(html.startswith('<!DOCTYPE html>'))
 		self.assertIn('<title>To-Do lists</title>', html)
 		self.assertTrue(html.strip().endswith('</html>'))
-		self.assertTemplateUsed(response, 'home.html')
-
-	def test_uses_home_template(self):
-		response = self.client.get('/')
 		self.assertTemplateUsed(response, 'home.html')
 
 
@@ -58,7 +51,7 @@ class ListViewTest(TestCase):
 		correct_list = List.objects.create()
 
 		self.client.post(
-			f'/lists/{correct_list.id}/',
+		f'/lists/{correct_list.id}/',
 			data={'item_text': 'A new item for an existing list'}
 		)
 
@@ -67,8 +60,7 @@ class ListViewTest(TestCase):
 		self.assertEqual(new_item.text, 'A new item for an existing list')
 		self.assertEqual(new_item.list, correct_list)
 
-
-	def test_POST_redirects_to_list_view(self):
+	def test_redirects_to_list_view(self):
 		other_list = List.objects.create()
 		correct_list = List.objects.create()
 
@@ -76,7 +68,19 @@ class ListViewTest(TestCase):
 			f'/lists/{correct_list.id}/',
 			data={'item_text': 'A new item for an existing list'}
 		)
+
 		self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
+	def test_validation_errors_end_up_on_lists_page(self):
+		list_ = List.objects.create()
+		response = self.client.post(
+			f'/lists/{list_.id}/',
+			data={'item_text': ''}
+		)
+		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(response, 'list.html')
+		expected_error = escape("You can't have an empty list item")
+		self.assertContains(response, expected_error)
 
 
 class NewListTest(TestCase):
@@ -97,7 +101,6 @@ class NewListTest(TestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertTemplateUsed(response, 'home.html')
 		expected_error = escape("You can't have an empty list item")
-		print(response.content.decode())
 		self.assertContains(response, expected_error)
 
 	def test_invalid_list_items_arent_saved(self):

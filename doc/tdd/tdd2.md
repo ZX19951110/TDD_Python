@@ -1067,7 +1067,7 @@ Ora fixiamo il nostro codice in `lists/views.py`:
 
 def new_list(request):
 	list_ = List.objects.create()
-	item = Item.objects.create(text=request.POST['item_text'], list=list_)
+	item = Item(text=request.POST['item_text'], list=list_)
 	try:
 		item.full_clean()
 		item.save()
@@ -1103,18 +1103,6 @@ Ora è il momento di utilizzare un pattern molto diffuso in Django che consiste 
     {% endfor %}
   </table>
 {% endblock %}
-
-```
-
-`lists/templates/home.html`:
-
-```html
-
-{% extends 'base.html' %}
-
-{% block header_text %}Start a new To-Do list{% endblock %}
-
-{% block form_action %}/{% endblock %}
 
 ```
 
@@ -1169,7 +1157,7 @@ Modifichiamo anche il metodo `view_list` in `lists/views.py`:
 
 ```py
 
-def view_list(request):
+def view_list(request, list_id):
 	list_ = List.objects.get(id=list_id)
 	if request.method == 'POST':
 		Item.objects.create(text=request.POST['item_text'], list=list_)
@@ -1199,6 +1187,86 @@ Tuttavia eseguendo nuovamente il nostro test funzionale otteniamo nuovamente un 
 
 ### Enforcing Model Validation in view_list
 
+Creiamo un nuovo metodo di test nella classe `ListViewTest` del file `lists/tests/test_views.py ` per testare la corretta validazione degli input nel _template_ `list.html`:
+
+```py
+
+def test_validation_errors_end_up_on_lists_page(self):
+	list_ = List.objects.create()
+	response = self.client.post(
+		f'/lists/{list_.id}/',
+		data={'item_text': ''}
+	)
+	self.assertEqual(response.status_code, 200)
+	self.assertTemplateUsed(response, 'list.html')
+	expected_error = escape("You can't have an empty list item")
+	self.assertContains(response, expected_error)
+
+```
+
+e aggiungiamo la nuova funzionalità in `lists/views.py`:
+
+```py
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	error = None
+
+	if request.method == 'POST':
+		try:
+			item = Item(text=request.POST['item_text'], list=list_)
+			item.full_clean()
+			item.save()
+			return redirect(f'/lists/{list_.id}/')
+		except ValidationError:
+			error = "You can't have an empty list item"
+
+	return render(request, 'list.html', {'list': list_, 'error': error})
+
+```
+
+Ora il test funzionale e quello di unità dovranno passare correttamente.
+
+### Refactor: Removing Hardcoded URLs
+
+Facciamo un po' di refactoring in `lists/templates/home.html`:
+
+```html
+
+{% extends 'base.html' %}
+
+{% block header_text %}Start a new To-Do list{% endblock %}
+
+{% block form_action %}{% url 'new_list' %}{% endblock %}
+
+```
+
+e anche in `lists/templates/list.html`:
+
+```html
+
+{% extends 'base.html' %}
+
+{% block header_text %}Your To-Do list{% endblock %}
+
+{% block form_action %}{% url 'view_list' list.id %}{% endblock %}
+
+{% block table %}
+  <table id="id_list_table" class="table">
+    {% for item in list.item_set.all %}
+      <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
+```
+
+Con questo refactor del codice ci siamo limitati semplicemente a utilizzare il _template tag_ di Django per riferirsi ad un URL.
+
+
+### Using get_absolute_url for Redirects
+
 [...]
+
 
 
