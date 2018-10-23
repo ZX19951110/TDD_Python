@@ -1266,7 +1266,62 @@ Con questo refactor del codice ci siamo limitati semplicemente a utilizzare il _
 
 ### Using get_absolute_url for Redirects
 
-[...]
+Per il reindirizzamento al _template_ desiderato possiamo utilizzare l'URL assoluto:
+
+```py
+
+def new_list(request):
+	list_ = List.objects.create()
+	item = Item(text=request.POST['item_text'], list=list_)
+	try:
+		item.full_clean()
+		item.save()
+	except ValidationError:
+		list_.delete()
+		error = "You can't have an empty list item"
+		return render(request, 'home.html', {"error": error})
+	return redirect('view_list', list_.id)
+
+```
+
+In Django è possibile definire una funzione chiamata `get_absolute_url` la quale ci dice qual è la pagina che visualizza gli item. Creiamo il metodo per testare tale funzione in `lists/tests/test_models.py`:
+
+```py
+
+def test_get_absolute_url(self):
+	list_ = List.objects.create()
+	self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
+
+```
+
+e creiamo il metodo `get_absolute_url` nella classe `List` del file `lists/models.py`:
+
+```py
+
+from django.urls import reverse
 
 
+class List(models.Model):
+	def get_absolute_url(self):
+		return reverse('view_list', args=[self.id])
+
+```
+
+Ora utilizziamo tale metodo in `lists/views.py`:
+
+```py
+
+def new_list(request):
+	list_ = List.objects.create()
+	item = Item(text=request.POST['item_text'], list=list_)
+	try:
+		item.full_clean()
+		item.save()
+	except ValidationError:
+		list_.delete()
+		error = "You can't have an empty list item"
+		return render(request, 'home.html', {"error": error})
+	return redirect(list_)
+
+```
 
