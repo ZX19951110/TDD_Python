@@ -1437,7 +1437,7 @@ class ItemForm(forms.models.ModelForm):
 ```
 
 Il nostro test d'unità dovrebbe passare correttamente.
-Importiamo la costante appena definita anche in `ists/tests/test_forms.py`:
+Importiamo la costante appena definita anche in `lists/tests/test_forms.py`:
 
 ```py
 
