@@ -1341,3 +1341,60 @@ def view_list(request, list_id):
 
 ```
 
+
+
+## Chapter 14: A Simple Form
+
+### Moving Validation Logic into a Form
+
+Creaimo un nuovo file `lists/tests/test_forms.py` che servirà per testare il file `lists/forms.py` che creeremo successivamente:
+
+```py
+
+from django.test import TestCase
+from lists.forms import ItemForm
+
+
+
+class ItemFormTest(TestCase):
+
+	def test_form_renders_item_text_input(self):
+		form = ItemForm()
+		self.fail(form.as_p())
+
+```
+
+Il metodo `as_p` server per renderizzare il form come codice HTML.
+
+
+### Switching to a Django ModelForm
+
+Django ci fornisce una classe speciale chiamata `ModelForm` che è in grado di autogenerare un _form_ per un modello. Tale classe viene configurata utilizzando la classe `Meta`. In `lists/forms.py`:
+
+```py
+
+from django import forms
+from lists.models import Item
+
+
+class ItemForm(forms.models.ModelForm):
+
+	class Meta:
+		model = Item
+		fields = ('text',)
+		widgets = {
+			'text': forms.fields.TextInput(attrs={
+				'placeholder': 'Enter a to-do item',
+				'class': 'form-control input-lg',
+			}),
+		}
+```
+
+In `Meta` specifichiamo per quale modello utilizziamo il _form_ e quali campi andremo ad utilizzare.
+
+
+### Testing and Customising Form Validation
+
+[...]
+
+
