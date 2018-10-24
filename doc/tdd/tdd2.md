@@ -1515,3 +1515,71 @@ e, in `ists/templates/base.html`, rimpiazziamo il vecchio `<input ...>` con `{{ 
 
 ```
 
+
+### A Big Find and Replace
+
+L'insieme delle modifiche che abbiamo appena portato impediscono al test funzionale di andare a buon fine:
+
+`selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: [id="id_new_item"]`
+
+Creiamo un nuovo metodo in `functional_tests/base.py`:
+
+```py
+
+def get_item_input_box(self):
+	return self.browser.find_element_by_id('id_text')
+
+```
+
+In `functional_tests/test_simple_list_creation.py` sostituiamo le istruzioni:
+
+```py
+
+inputbox = self.browser.find_element_by_id('id_new_item')
+
+```
+
+con una chiamata al metodo appena creato:
+
+```py
+
+inputbox = self.get_item_input_box()
+
+```
+
+Dobbiamo fare la stessa cosa anche per i file:
+
+* `test_simple_list_creation.py`
+* `test_layout_and_styling.py`
+* `test_list_item_validation.py`
+
+e in `functional_tests/test_list_item_validation.py` sostituiamo:
+
+```py
+
+self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
+
+```
+
+con:
+
+```py
+
+self.get_item_input_box().send_keys(Keys.ENTER)
+
+```
+
+Ora dobbiamo sostituire tutte le ricorrenze di `id_new_item` nei file in `lists` con `id_text`. Tali ricorrenze si possono trovare con il comando:
+
+`$ grep -r id_new_item lists/`
+
+Analogamente dobbiamo sostituire anche tutte le ricorrenze di `item_text` semplicemente con `text`. Per individuarle usiamo:
+
+`$ grep -Ir item_text lists`
+
+A questo punto il nostro test d'unità dovrebbe passare correttamente, ma la stessa cosa non si può dire per il test funzionale.
+
+
+### Using the Form in a View That Takes POST Requests
+
+[...]
