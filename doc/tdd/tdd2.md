@@ -1461,3 +1461,57 @@ class ItemFormTest(TestCase):
 ```
 
 
+### Using the Form in Our Views
+
+Creiamo un nuovo metodo di test nella classe `HomePageTest` del file `lists/tests/test_views.py` per verificare che stiamo utilizzando il giusto _form_:
+
+```py
+from lists.forms import ItemForm
+
+
+
+class HomePageTest(TestCase):
+	
+	[...]
+
+	def test_home_page_uses_item_form(self):
+		response = self.client.get('/')
+		self.assertIsInstance(response.context['form'], ItemForm)
+
+```
+
+Il metodo `assertIsInstance` serve per controllare il tipo di classe a cui il nostro _form_ appartiene.
+Modifichiamo il file `lists/views.py` in modo da utilizzare il nostro _form_ nella _homepage_:
+
+```py
+
+[...]
+from lists.forms import ItemForm
+from lists.models import Item, List
+
+
+
+def home_page(request):
+	return render(request, 'home.html', {'form': ItemForm()})
+
+
+[...]
+
+```
+
+e, in `ists/templates/base.html`, rimpiazziamo il vecchio `<input ...>` con `{{ form.text }}`:
+
+```html
+
+<form method="POST" action="{% block form_action %}{% endblock %}">
+    {{ form.text }}
+    {% csrf_token %}
+    {% if error %}
+        <div class="form-group has-error">
+            <span class="help-block">{{ error }}</span>
+        </div>
+    {% endif %}
+</form>
+
+```
+
