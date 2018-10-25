@@ -1791,3 +1791,67 @@ def test_cannot_add_empty_list_items(self):
 
 Abbiamo modificato il nostro metodo in modo da andare a controllare se l'input inserito non è valido utilizzando lo pseudoselettore `:invalid` messo a disposizione dal CSS. A qursto punto anche il test funzionale dovrebbe passare correttamente.
 
+
+### Using the Form’s Own Save Method
+
+Scriviamo in `lists/tests/test_forms.py` un memtodo per testare il salvataggio di un item in una lista utilizzando un _form_:
+
+```py
+
+def test_form_save_handles_saving_to_a_list(self):
+	list_ = List.objects.create()
+	form = ItemForm(data={'text': 'do me'})
+	new_item = form.save(for_list=list_)
+	self.assertEqual(new_item, Item.objects.first())
+	self.assertEqual(new_item.text, 'do me')
+	self.assertEqual(new_item.list, list_)
+
+```
+
+e poi implementiamolo nella classe `ItemForm` presente nel file `lists/forms.py`:
+
+```py
+
+def save(self, for_list):
+	self.instance.list = for_list
+	return super().save()
+
+```
+
+L'attributo `instance` di un _form_ rappresenta l'oggetto del database che stiamo per creare o per modificare.
+
+Facciamo il _refactor_ dei metodi `new_list` e `view_list` presenti in `lists/views.py`:
+
+```py
+
+def new_list(request):
+	form = ItemForm(data=request.POST)  
+	if form.is_valid():  
+		list_ = List.objects.create()
+		form.save(for_list=list_)
+		return redirect(list_)
+	else:
+		return render(request, 'home.html', {"form": form})
+
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	form = ItemForm()
+	if request.method == 'POST':
+		form = ItemForm(data=request.POST)
+		if form.is_valid():
+			form.save(for_list=list_)
+			return redirect(list_)
+	return render(request, 'list.html', {'list': list_, "form": form})
+
+```
+
+e verifichiamo che i nostri test passino correttamente.
+
+
+### Chapter 15: More Advanced Forms
+
+[...]
+
+
+
