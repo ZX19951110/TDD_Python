@@ -1849,9 +1849,183 @@ def view_list(request, list_id):
 e verifichiamo che i nostri test passino correttamente.
 
 
-### Chapter 15: More Advanced Forms
+## Chapter 15: More Advanced Forms
+
+È arrivato il momento di fare in modo che nella nostra _to-do list_ non si possano inserire item duplicati.
+
+
+### Another FT for Duplicate Items
+
+Aggiungiamo un secondo metodo alla classe `ItemValidationTest` presente nel file `functional_tests/test_list_item_validation.py `:
+
+```py
+
+def test_cannot_add_duplicate_items(self):
+		# Edith goes to the home page and starts a new list
+		self.browser.get(self.live_server_url)
+		self.get_item_input_box().send_keys('Buy wellies')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Buy wellies')
+
+		# She accidentally tries to enter a duplicate item
+		self.get_item_input_box().send_keys('Buy wellies')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		# She sees a helpful error message
+		self.wait_for(lambda: self.assertEqual(
+		self.browser.find_element_by_css_selector('.has-error').text,
+			"You've already got this in your list"
+		))
+
+```
+
+
+### Preventing Duplicates at the Model Layer
+
+Scriviamo due nuovi test di unità in `lists/tests/test_models.py` in modo tale da verificare che gli item duplicati in una lista generino un errore, ma che la stessa cosa non avvenga per due item uguali in due liste diverse:
+
+```py
+
+def test_duplicate_items_are_invalid(self):
+	list_ = List.objects.create()
+	Item.objects.create(list=list_, text='bla')
+	with self.assertRaises(ValidationError):
+		item = Item(list=list_, text='bla')
+		item.full_clean()
+
+
+def test_CAN_save_same_item_to_different_lists(self):
+	list1 = List.objects.create()
+	list2 = List.objects.create()
+	Item.objects.create(list=list1, text='bla')
+	item = Item(list=list2, text='bla')
+	item.full_clean()  # should not raise
+
+```
+
+Se vogliamo imporre il vincolo sull'unicità di un item in una lista dobbiamo farlo nella classe `Meta` presente all'interno della classe `Item`del file `lists/models.py`:
+
+```py
+
+class Item(models.Model):
+	text = models.TextField(default='')
+	list = models.ForeignKey(List, default=None, on_delete=models.DO_NOTHING)
+
+	class Meta:
+		unique_together = ('list', 'text')
+
+```
+
+### A Little Digression on Queryset Ordering and String Representations
+
+Modifichiamo il metodo `test_saving_and_retrieving_items` in `lists/tests/test_models.py` come segue:
+
+```py
+
+def test_saving_and_retrieving_items(self):
+	list_ = List()
+	list_.save()
+
+	first_item = Item()
+	first_item.text = 'The first (ever) list item'
+	first_item.list = list_
+	first_item.save()
+
+	second_item = Item()
+	second_item.text = 'Item the second'
+	second_item.list = list_
+	second_item.save()
+
+	saved_list = List.objects.first()
+	self.assertEqual(saved_list, list_)
+
+	saved_items = Item.objects.all()
+	self.assertEqual(saved_items.count(), 2)
+
+	first_saved_item = saved_items[0]
+	print(first_saved_item.text)
+	second_saved_item = saved_items[1]
+	print(second_saved_item.text)
+	self.assertEqual(first_saved_item.text, 'The first (ever) list item')
+	self.assertEqual(first_saved_item.list, list_)
+	self.assertEqual(second_saved_item.text, 'Item the second')
+	self.assertEqual(second_saved_item.list, list_)
+
+```
+
+e, nello stesso file, creiamo due nuovi metodi:
+
+```py
+
+def test_list_ordering(self):
+	list1 = List.objects.create()
+	item1 = Item.objects.create(list=list1, text='i1')
+	item2 = Item.objects.create(list=list1, text='item 2')
+	item3 = Item.objects.create(list=list1, text='3')
+	self.assertEqual(
+		Item.objects.all(),
+		[item1, item2, item3]
+	)
+
+
+def test_string_representation(self):
+	item = Item(text='some text')
+	self.assertEqual(str(item), 'some text')
+
+```
+
+Eseguendo il test d'unità ci imbatteremo in alcuni errori. Iniziamo a risolverli!
+Aggiungiamo il seguente metodo nella classe `Item` del file `lists/models.py`:
+
+```py
+
+class Item(models.Model):
+	
+	[...]
+
+
+	def __str__(self):
+		return self.text
+
+```
+
+Questo nuovo metodo produce il seguente errore:
+
+`AssertionError: <QuerySet [<Item: i1>, <Item: item 2>, <Item: 3>]> != [<Item: i1>, <Item: item 2>, <Item: 3>]`
+
+Possiamo risolverlo agendo sulla classe `Meta` in `lists/models.py`:
+
+```py
+
+class Item(models.Model):
+	
+	[...]
+
+	class Meta:
+		ordering = ('id',)
+		unique_together = ('list', 'text')
+
+```
+
+Tuttavia otteniamo un altro errore. Per risolverlo definitivamente dobbiamo convertire la _queryset_ in una lista. In `lists/tests/test_models.py`:
+
+```py
+
+def test_list_ordering(self):
+	list1 = List.objects.create()
+	item1 = Item.objects.create(list=list1, text='i1')
+	item2 = Item.objects.create(list=list1, text='item 2')
+	item3 = Item.objects.create(list=list1, text='3')
+	self.assertEqual(
+		list(Item.objects.all()),
+		[item1, item2, item3]
+	)
+
+```
+
+Ora il test d'unità dovrebbe passare correttamente!
+
+### Rewriting the Old Model Test
 
 [...]
-
-
 
