@@ -1552,6 +1552,7 @@ Dobbiamo fare la stessa cosa anche per i file:
 * `test_simple_list_creation.py`
 * `test_layout_and_styling.py`
 * `test_list_item_validation.py`
+* `lists/static/base.css`
 
 e in `functional_tests/test_list_item_validation.py` sostituiamo:
 
@@ -1742,6 +1743,51 @@ Tuttavia il nostro test funzionale restituirà ancora un errore.
 
 ### An Unexpected Benefit: Free Client-Side Validation from HTML5
 
-[...]
+Django ha aggiunto automaticamente l'attributo `required` all'input HTML. Ciò significa che l'input non può essere una stringa vuota. Alla luce di questa osservazione dobbiamo modificare il nostro test funzionale. In `functional_tests/test_list_item_validation.py`:
 
+```py
+
+def test_cannot_add_empty_list_items(self):
+		# Edith goes to the home page and accidentally tries to submit
+		# an empty list item. She hits Enter on the empty input box
+		self.browser.get(self.live_server_url)
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		# The browser intercepts the request, and does not load the
+		# list page
+		self.wait_for(lambda: self.browser.find_elements_by_css_selector(
+			'#id_text:invalid'  
+		))
+
+		# She starts typing some text for the new item and the error disappears
+		self.get_item_input_box().send_keys('Buy milk')
+		self.wait_for(lambda: self.browser.find_elements_by_css_selector(
+			'#id_text:valid'  
+		))
+
+		# And she can submit it successfully
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Buy milk')
+
+		# Perversely, she now decides to submit a second blank list item
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		# Again, the browser will not comply
+		self.wait_for_row_in_list_table('1: Buy milk')
+		self.wait_for(lambda: self.browser.find_elements_by_css_selector(
+			'#id_text:invalid'
+		))
+
+		# And she can correct it by filling some text in
+		self.get_item_input_box().send_keys('Make tea')
+		self.wait_for(lambda: self.browser.find_elements_by_css_selector(
+			'#id_text:valid'
+		))
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Buy milk')
+		self.wait_for_row_in_list_table('2: Make tea')
+
+```
+
+Abbiamo modificato il nostro metodo in modo da andare a controllare se l'input inserito non è valido utilizzando lo pseudoselettore `:invalid` messo a disposizione dal CSS. A qursto punto anche il test funzionale dovrebbe passare correttamente.
 
