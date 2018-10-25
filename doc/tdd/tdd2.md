@@ -2027,5 +2027,74 @@ Ora il test d'unità dovrebbe passare correttamente!
 
 ### Rewriting the Old Model Test
 
-[...]
+In `lists/tests/test_models.py` sostituiamo il metodo `test_saving_and_retrieving_items` con i seguenti:
 
+```py
+
+class ListAndItemModelsTest(TestCase):
+
+	def test_default_text(self):
+		item = Item()
+		self.assertEqual(item.text, '')
+
+
+	def test_item_is_related_to_list(self):
+		list_ = List.objects.create()
+		item = Item()
+		item.list = list_
+		item.save()
+		self.assertIn(item, list_.item_set.all())
+
+		
+		[...]
+
+```
+
+Per completare il refactor della nostra classe di test possiamo anche dividere la classe `ListAndItemModelsTest` nelle rispettive classi:
+
+```py
+
+class ItemModelsTest(TestCase):
+    
+	def test_default_text(self):
+		[...]
+
+
+	def test_item_is_related_to_list(self):
+		[...]
+	
+	
+	def test_cannot_save_empty_list_items(self):
+		[...]
+
+
+	def test_duplicate_items_are_invalid(self):
+		[...]
+
+
+	def test_CAN_save_same_item_to_different_lists(self):
+		[...]
+
+
+	def test_list_ordering(self):
+		[...]
+
+
+	def test_string_representation(self):
+		[...]
+
+
+
+class ListModelTest(TestCase):
+
+	def test_get_absolute_url(self):
+		[...]
+
+```
+
+Ora verifichiamo che il test d'unità passi correttamente.
+
+
+### Some Integrity Errors Do Show Up on Save
+
+[...]
