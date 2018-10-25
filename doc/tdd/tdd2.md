@@ -1582,4 +1582,166 @@ A questo punto il nostro test d'unità dovrebbe passare correttamente, ma la ste
 
 ### Using the Form in a View That Takes POST Requests
 
+Creiamo tre nuovi metodi nella classe `NewListTest` del file `lists/tests/test_views.py`:
+
+```py
+
+def test_for_invalid_input_renders_home_template(self):
+	response = self.client.post('/lists/new', data={'text': ''})
+	self.assertEqual(response.status_code, 200)
+	self.assertTemplateUsed(response, 'home.html')
+
+
+def test_validation_errors_are_shown_on_home_page(self):
+	response = self.client.post('/lists/new', data={'text': ''})
+	self.assertContains(response, escape(EMPTY_ITEM_ERROR))
+
+
+def test_for_invalid_input_passes_form_to_template(self):
+	response = self.client.post('/lists/new', data={'text': ''})
+	self.assertIsInstance(response.context['form'], ItemForm)
+
+```
+
+Riscriviamo il metodo `new_list` in `lists/views.py` in modo tale da utilizzare il _form_ appena creato:
+
+```py
+
+def new_list(request):
+	form = ItemForm(data=request.POST)  
+	if form.is_valid():  
+		list_ = List.objects.create()
+		Item.objects.create(text=request.POST['text'], list=list_)
+		return redirect(list_)
+	else:
+		return render(request, 'home.html', {"form": form})
+
+```
+
+Eseguendo il test funzionale otteniamo il seguente errore:
+
+`AssertionError: False is not true : Couldn't find 'You can&#39;t have an empty list item' in response`
+
+### Using the Form to Display Errors in the Template
+
+L'errore che abbiamo ottenuto è dovuto al fatto che non utilizziamo il _form_ per visualizzare gli errori nel _template_. Perciò modifichiamo il file `lists/templates/base.html`:
+
+```html
+
+<form method="POST" action="{% block form_action %}{% endblock %}">
+    {{ form.text }}
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="form-group has-error">
+            <span class="help-block">{{ form.text.errors }}</span>
+        </div>
+    {% endif %}
+</form>
+
+```
+
+`form.errors` contiene una lista di tutti gli errori del _form_.
+`form.text.errors` è una lista degli errori per il campo `text`.
+
+
+### Using the Form in the Other View
+
+Scriviamo un metodo di test in `lists/tests/test_views.py` per controllare che il nostro _form_ sia utilizzato nelle richieste GET:
+
+```py
+
+class ListViewTest(TestCase):
+
+	[...]
+
+	def test_displays_item_form(self):
+		list_ = List.objects.create()
+		response = self.client.get(f'/lists/{list_.id}/')
+		self.assertIsInstance(response.context['form'], ItemForm)
+		self.assertContains(response, 'name="text"')
+
+```
+
+e modifichiamo il metodo `view_list` in `lists/views.py` in modo di utilizzare il nostro _form_:
+
+```py
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	error = None
+
+	if request.method == 'POST':
+		try:
+			item = Item(text=request.POST['text'], list=list_)
+			item.full_clean()
+			item.save()
+			return redirect(list_)
+		except ValidationError:
+			error = "You can't have an empty list item"
+
+	form = ItemForm()
+	return render(request, 'list.html', {
+		'list': list_, "form": form, "error": error
+	})
+
+```
+
+In `lists/tests/test_views.py` sostituiamo suddividiamo il metodo `test_validation_errors_end_up_on_lists_page` nei seguenti cinque metodi:
+
+```py
+
+def post_invalid_input(self):
+		list_ = List.objects.create()
+		return self.client.post(
+			f'/lists/{list_.id}/',
+			data={'text': ''}
+		)
+
+
+	def test_for_invalid_input_nothing_saved_to_db(self):
+		self.post_invalid_input()
+		self.assertEqual(Item.objects.count(), 0)
+
+
+	def test_for_invalid_input_renders_list_template(self):
+		response = self.post_invalid_input()
+		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(response, 'list.html')
+
+
+	def test_for_invalid_input_passes_form_to_template(self):
+		response = self.post_invalid_input()
+		self.assertIsInstance(response.context['form'], ItemForm)
+
+
+	def test_for_invalid_input_shows_error_on_page(self):
+		response = self.post_invalid_input()
+		self.assertContains(response, escape(EMPTY_ITEM_ERROR))
+
+```
+
+Così facendo possiamo osservare che il test di unità non passa a causa del metodo `test_for_invalid_input_shows_error_on_page`, il quale restituisce un `AssertionError`.
+Correggiamo il metodo `view_list` in `lists/views.py` affinché il test passi correttamente:
+
+```py
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	form = ItemForm()
+	if request.method == 'POST':
+		form = ItemForm(data=request.POST)
+		if form.is_valid():
+			Item.objects.create(text=request.POST['text'], list=list_)
+			return redirect(list_)
+	return render(request, 'list.html', {'list': list_, "form": form})
+
+```
+
+Tuttavia il nostro test funzionale restituirà ancora un errore.
+
+
+### An Unexpected Benefit: Free Client-Side Validation from HTML5
+
 [...]
+
+
