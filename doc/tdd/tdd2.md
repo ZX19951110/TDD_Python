@@ -2097,4 +2097,59 @@ Ora verifichiamo che il test d'unità passi correttamente.
 
 ### Some Integrity Errors Do Show Up on Save
 
+Eseguiamo il comando:
+
+`$ python manage.py makemigrations`
+
+
+### Experimenting with Duplicate Item Validation at the Views Layer
+
+Eseguendo il test funzionale otteniamo il seguente errore:
+
+```
+
+ERROR: test_cannot_add_duplicate_items (functional_tests.test_list_item_validation.ItemValidationTest)
+----------------------------------------------------------------------
+
+[...]
+selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .has-error
+
+```
+
+Aggiungiamo un nuovo metodo alla classe `ListViewTest` del file `lists/tests/test_views.py`, ma aggiungiamo `@skip` per saltare momentaneamente la sua esecuzione dal momento che otterremmo un errore d'integrità:
+
+```py
+
+[...]
+from unittest import skip
+
+
+class ListViewTest(TestCase):
+
+	[...]	
+	
+	@skip
+	def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
+		list1 = List.objects.create()
+		item1 = Item.objects.create(list=list1, text='textey')
+		response = self.client.post(
+			f'/lists/{list1.id}/',
+			data={'text': 'textey'}
+		)
+
+		expected_error = escape("You've already got this in your list")
+		self.assertContains(response, expected_error)
+		self.assertTemplateUsed(response, 'list.html')
+		self.assertEqual(Item.objects.all().count(), 1)
+
+
+	def test_displays_item_form(self):
+		[...]
+
+
+```
+
+
+### A More Complex Form to Handle Uniqueness Validation
+
 [...]
