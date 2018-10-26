@@ -2221,3 +2221,127 @@ class ExistingListItemForm(ItemForm):
 ```
 
 Ora il nostro test di unità dovrebbe passare correttamente.
+
+
+### Using the Existing List Item Form in the List View
+
+Facciamo in modo che il _form_ funzioi nella nostra _view_. Per prima cosa andiamo a modificare il metodo `test_duplicate_item_validation_errors_end_up_on_lists_page` e altri metodi della classe `ListViewTest` in `lists/tests/test_views.py`:
+
+```py
+
+from django.urls import resolve
+from django.test import TestCase
+from django.http import HttpRequest
+from lists.views import home_page
+from django.template.loader import render_to_string
+from django.db import models	#utile?
+from lists.models import Item, List
+from django.utils.html import escape
+from unittest import skip
+from lists.forms import (
+	DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR,
+	ExistingListItemForm, ItemForm,
+)
+
+
+
+[...]
+
+class ListViewTest(TestCase):
+
+	[...]
+
+
+	def test_for_invalid_input_passes_form_to_template(self):
+		response = self.post_invalid_input()
+		self.assertIsInstance(response.context['form'], ExistingListItemForm)
+
+
+	[...]
+
+
+	def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
+		list1 = List.objects.create()
+		item1 = Item.objects.create(list=list1, text='textey')
+		response = self.client.post(
+			f'/lists/{list1.id}/',
+			data={'text': 'textey'}
+		)
+
+		expected_error = escape(DUPLICATE_ITEM_ERROR)
+		self.assertContains(response, expected_error)
+		self.assertTemplateUsed(response, 'list.html')
+		self.assertEqual(Item.objects.all().count(), 1)
+
+
+	def test_displays_item_form(self):
+		list_ = List.objects.create()
+		response = self.client.get(f'/lists/{list_.id}/')
+		self.assertIsInstance(response.context['form'], ExistingListItemForm)
+		self.assertContains(response, 'name="text"')
+
+```
+
+Modifichiamo anche il metodo `view_list` in `lists/views.py`:
+
+```py
+
+from django.shortcuts import redirect, render
+from lists.models import Item, List
+from django.core.exceptions import ValidationError
+from lists.forms import ExistingListItemForm, ItemForm
+from lists.models import Item, List
+
+
+
+def home_page(request):
+	return render(request, 'home.html', {'form': ItemForm()})
+
+def new_list(request):
+	form = ItemForm(data=request.POST)  
+	if form.is_valid():  
+		list_ = List.objects.create()
+		form.save(for_list=list_)
+		return redirect(list_)
+	else:
+		return render(request, 'home.html', {"form": form})
+
+def view_list(request, list_id):
+	list_ = List.objects.get(id=list_id)
+	form = ExistingListItemForm(for_list=list_)
+	if request.method == 'POST':
+		form = ExistingListItemForm(for_list=list_, data=request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect(list_)
+	return render(request, 'list.html', {'list': list_, "form": form})
+
+```
+
+Creiamo un nuovo metodo di test nella classe `ExistingListItemFormTest` del file `lists/tests/test_forms.py` per verificare che nell'`if` interno del frammento di codice precedente possiamo chiamare il metodo `save` senza passare alcun parametro:
+
+```py
+
+def test_form_save(self):
+	list_ = List.objects.create()
+	form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
+	new_item = form.save()
+	self.assertEqual(new_item, Item.objects.all()[0])
+
+```
+
+e aggiungiamo il metodo `save` alla classe `ExistingListItemForm` presente nel file `lists/forms.py`:
+
+```py
+
+def save(self):
+	return forms.models.ModelForm.save(self)
+
+```
+
+A questo punto, dovrebbero passare sia il test funzionale che il test d'unità.
+
+
+### Wrapping Up: What We’ve Learned About Testing Django
+
+[...]
