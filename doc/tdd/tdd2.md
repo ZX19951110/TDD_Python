@@ -2342,6 +2342,6 @@ def save(self):
 A questo punto, dovrebbero passare sia il test funzionale che il test d'unità.
 
 
-### Wrapping Up: What We’ve Learned About Testing Django
+## Chapter 16: Dipping Our Toes, Very Tentatively, into JavaScript
 
 [...]
