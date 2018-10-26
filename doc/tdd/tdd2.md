@@ -2398,4 +2398,50 @@ class ItemValidationTest(FunctionalTest):
 
 ```
 
-Il metodo `isDisplayed` ci dice se un elemento è visibile oppure no.
+Il metodo `isDisplayed` ci dice se un elemento è visibile oppure no. Queste modifiche, attualmente ci impediscono di terminare correttamente il nostro test funzionale eseguito solo sul file appena modificato:
+
+`AssertionError: True is not false`
+
+
+### Setting Up a Basic JavaScript Test Runner
+
+Scarichiamo i seguenti file dal sito di (QUnit)[http://qunitjs.com/]:
+
+* (qunit-2.7.1.js)[https://code.jquery.com/qunit/qunit-2.7.1.js]
+* (qunit-2.7.1.css)[https://code.jquery.com/qunit/qunit-2.7.1.css]
+
+copiamoli in `lists/statics/tests` e, nella stessa _directory_ creiamo anche il file `tests.html`:
+
+```html
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Javascript tests</title>
+        <link rel="stylesheet" href="qunit-2.7.1.css">
+    </head>
+
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        <script src="qunit-2.7.1.js"></script>
+
+        <script>
+
+		QUnit.test("smoke test", function (assert) {
+			assert.equal(1, 1, "Maths works!");
+		});
+
+        </script>
+    </body>
+</html>
+
+
+```
+
+**NB**: Al momento in cui ho scritto questa guida la versione 2.7.1 di _QUnit_ è la più recente. In caso di aggiornamenti sarà necessario adattare anche il file `tests.html` in modo tale che faccia riferimento alla più recente versione scaricata.
+
+ 
