@@ -2759,4 +2759,49 @@ A questo punto entrambi i test dovrebbero passare correttamente! Ora, quindi, po
 
 ### Columbo Says: Onload Boilerplate and Namespacing
 
+Modifichiamo la funzione `initialize` in `lists/static/list.js`:
+
+```js
+
+window.Superlists = {}; 
+window.Superlists.initialize = function () { 
+	$('input[name="text"]').on('keypress', function () {
+		$('.has-error').hide();
+	});
+};
+
+```
+
+Così facendo, con la prima istruzione, abbiamo esplicitamente dichiarato un oggetto come una proprietà di `window`; inoltre, per mezzo della seconda istruzione, abbiamo reso la funzione `initialize` un attributo  dell'oggetto appena dichiarato.
+A questo punto dobbiamo modificare anche le chiamate alla funzione `initialize` nel file `lists/static/tests/tests.html`:
+
+```js
+
+QUnit.test("errors should be hidden on keypress", function (assert) {
+	window.Superlists.initialize();
+	$('input[name="text"]').trigger('keypress'); 
+	assert.equal($('.has-error').is(':visible'), false);
+});
+
+QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
+	window.Superlists.initialize();
+	assert.equal($('.has-error').is(':visible'), true);
+});
+
+```
+
+Modifichiamo anche lo _script_ in `lists/templates/base.html` per accertarci che esso venga eseguito solo quando la pagina è pronta:
+
+```js
+
+$(document).ready(function () {
+	window.Superlists.initialize();
+});
+
+```
+
+
+
+## Chapter 17: Deploying Our New Code
+
 [...]
