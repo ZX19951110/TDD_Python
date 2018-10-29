@@ -2444,4 +2444,40 @@ copiamoli in `lists/statics/tests` e, nella stessa _directory_ creiamo anche il 
 
 **NB**: Al momento in cui ho scritto questa guida la versione 2.7.1 di _QUnit_ è la più recente. In caso di aggiornamenti sarà necessario adattare anche il file `tests.html` in modo tale che faccia riferimento alla più recente versione scaricata.
 
+
+### Using jQuery and the Fixtures Div
+
+Scarichiamo (_jQuery_)[https://jquery.com/download/] e salviamolo in `lists/static`. Iniziamo ad usare _jQuery_ in `lists/static/tests/tests.html`:
+
+```html
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <form>  
+        <input name="text" />
+        <div class="has-error">Error text</div>
+    </form>
+
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="qunit-2.7.1.js"></script>
+
+    <script>
+
+	QUnit.test("smoke test", function (assert) {
+  		assert.equal($('.has-error').is(':visible'), true);   
+  		$('.has-error').hide();  
+  		assert.equal($('.has-error').is(':visible'), false);  
+	});
+
+    </script>
+</body>
+
+```
+
+Analizziamo lo `script`:
+* `$` è utilizzato per trovare i bits del DOM (Document Object Model). In questo caso è utilizzato per cercare tutti gli elementi che hanno la classe `has-error`.
+* l'attributo `is` è utilizzato per controllare se un elemento possiede una particolare proprietà CSS.
+
  
