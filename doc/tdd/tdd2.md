@@ -2618,12 +2618,61 @@ assertions of 2 passed, 1 failed.
 
 2. errors aren't hidden if there is no keypress
 
-    1.okay
+	1.okay
 
 ```
 
 
 ### Fixtures, Execution Order, and Global State: Key Challenges of JS Testing
+
+Una delle difficoltà di _JavaScript_ consiste nel capire l'ordine di esecuzione del nostro codice; per questo motivo aggiungiamo al nostro `script` delle istruzioni per stampare a schermo quale test è in esecuzione utilizzando `console.logs`:
+
+```html
+
+<script>
+
+	console.log('qunit tests start');
+
+	QUnit.test("errors should be hidden on keypress", function (assert) {
+		console.log('in test 1');
+		$('input[name="text"]').trigger('keypress'); 
+		assert.equal($('.has-error').is(':visible'), false);
+	});
+
+	QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
+		console.log('in test 2');
+		assert.equal($('.has-error').is(':visible'), true);
+	});
+
+</script>
+
+```
+
+Facciamo la stessa cosa anche per `lists/static/list.js`:
+
+```js
+
+$('input[name="text"]').on('keypress', function () {
+	console.log('in keypress handler');
+	$('.has-error').hide();
+});
+console.log('list.js loaded');
+
+```
+
+Aprendo la console di debug (**Ctrl-Shift-I**) e ricaricando la pagina web del test è possibile vedere l'ordine di esecuzione:
+
+```
+
+list.js loaded		list.js:5:1
+qunit tests start	tests.html:26:3
+in test 1		tests.html:29:4
+in test 2		tests.html:35:4 
+
+```
+
+
+### Using an Initialize Function for More Control Over Execution Time
 
 [...]
 
