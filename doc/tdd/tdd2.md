@@ -2478,6 +2478,9 @@ Scarichiamo (_jQuery_)[https://jquery.com/download/] e salviamolo in `lists/stat
 
 Analizziamo lo `script`:
 * `$` è utilizzato per trovare i bits del DOM (Document Object Model). In questo caso è utilizzato per cercare tutti gli elementi che hanno la classe `has-error`.
-* l'attributo `is` è utilizzato per controllare se un elemento possiede una particolare proprietà CSS.
+* l'attributo `is` è utilizzato per controllare se un elemento possiede una particolare proprietà CSS. In questo caso viene utilizzato insieme a `:visible` per controllare se l'elemento è visibile oppure nascosto.
+* `hide` è utilizzato per nascondere `div`
+
+Avviando `lists/static/tests/tests.html` nel browser vediamo che tutti i test passano con successo.
 
  
