@@ -2674,6 +2674,89 @@ in test 2		tests.html:35:4
 
 ### Using an Initialize Function for More Control Over Execution Time
 
-[...]
+in `lists/static/list.js` definiamo la funzione `initialize` affinchè possa essere chiamata ogni volta che vogliamo nei nostri test:
 
- 
+```js
+
+var initialize = function () {
+	console.log('initialize called');
+	$('input[name="text"]').on('keypress', function () {
+		console.log('in keypress handler');
+		$('.has-error').hide();
+	});
+};
+console.log('list.js loaded');
+
+```
+
+e in `lists/static/tests/tests.html` modifichiamo i test precedentemente scritti affinchè chiamino la funzione `initalize`:
+
+```js
+
+QUnit.test("errors should be hidden on keypress", function (assert) {
+	console.log('in test 1');
+	initialize();
+	$('input[name="text"]').trigger('keypress'); 
+	assert.equal($('.has-error').is(':visible'), false);
+});
+
+QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
+	console.log('in test 2');
+	initialize();
+	assert.equal($('.has-error').is(':visible'), true);
+});
+
+```
+
+A questo punto entrambi i test dovrebbero passare correttamente! Ora, quindi, possiamo rimuovere l'istruzione `console.log('[...]')` che abbiamo aggiunto in tutto il codice _JavaScript_.
+
+È arrivato il momento di invocare la funzione `initialize` dal _template_ `ists/templates/base.html `:
+
+```html
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 jumbotron" style="margin-left:auto;margin-right:auto;">
+                <div class="text-center">
+                  <h1>{% block header_text %}{% endblock %}</h1>
+                    <form method="POST" action="{% block form_action %}{% endblock %}">
+                        {{ form.text }}
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="form-group has-error">
+                                <span class="help-block">{{ form.text.errors }}</span>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {% block table %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/jquery-3.3.1.js"></script>
+    <script src="/static/list.js"></script>
+
+    <script>
+	initialize();
+    </script>
+
+</body>
+
+```
+
+**N.B.**:È buona norma mettere il codice _JavaScript_ alla fine del `body` in modo tale che l'utente non debba aspettare l'esecuzione dello _script_ prima di visualizzare qualcosa sulla pagina web.
+
+
+### Columbo Says: Onload Boilerplate and Namespacing
+
+[...]
