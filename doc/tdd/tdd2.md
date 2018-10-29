@@ -2528,6 +2528,103 @@ otteniamo un errore. Per risolverlo dobbiamo modificare il `body` di `lists/stat
 
 ### Building a JavaScript Unit Test for Our Desired Functionality
 
+Modifichiamo nuovamente il nostro `script` per adattarlo a testare la nostra _To-do list_:
+
+```html
+
+<script>
+
+	QUnit.test("errors should be hidden on keypress", function (assert) {
+		$('input[name="text"]').trigger('keypress'); 
+		assert.equal($('.has-error').is(':visible'), false);
+	});
+
+</script>
+
+```
+
+Ricaricando la pagina web del test otteniamo il seguente errore:
+
+```
+
+errors should be hidden on keypress (1, 0, 1)
+Expected:	false
+Result:		true
+
+```
+
+Modifichiamo il file `lists/static/tests/tests.html`in modo tale da inserire il riferimento al file `lists/static/list.js` che tra poco andremo a creare:
+
+```html
+
+<script src="../jquery-3.3.1.js"></script>
+<script src="../list.js"></script>
+<script src="qunit-2.7.1.js"></script>
+
+```
+
+e, come appena anticipato, creiamo il file `lists/static/list.js`:
+
+```js
+
+$('.has-error').hide();
+
+```
+
+Eseguendo il test _jQuery_ otteniamo un successo.
+
+Aggiungiamo un secondo test _jQuery_:
+
+```html
+
+<script>
+
+	QUnit.test("errors should be hidden on keypress", function (assert) {
+		$('input[name="text"]').trigger('keypress'); 
+		assert.equal($('.has-error').is(':visible'), false);
+	});
+
+	QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
+		assert.equal($('.has-error').is(':visible'), true);
+	});
+
+</script>
+
+```
+
+E iniziamo a modificare `lists/static/list.js` per ottenere un successo anche per il secondo test:
+
+```js
+
+$('input[name="text"]').on('keypress', function () { 
+	$('.has-error').hide();
+});
+
+```
+
+Tuttavia ciò non è sufficiente per ottenere un successo:
+
+```
+
+assertions of 2 passed, 1 failed.
+
+1. errors aren't hidden if there is no keypress
+	
+	1.errors should be hidden on keypress (1, 0, 1)
+
+	Expected:	false
+	Result: 	true
+
+
+2. errors aren't hidden if there is no keypress
+
+    1.okay
+
+```
+
+
+### Fixtures, Execution Order, and Global State: Key Challenges of JS Testing
+
 [...]
 
  

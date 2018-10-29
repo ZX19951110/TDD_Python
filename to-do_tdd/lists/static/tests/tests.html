@@ -18,20 +18,18 @@
         </div>
 
         <script src="../jquery-3.3.1.js"></script>
+        <script src="../list.js"></script>
         <script src="qunit-2.7.1.js"></script>
 
         <script>
 
-		QUnit.test("smoke test", function (assert) {
-  			assert.equal($('.has-error').is(':visible'), true);   
-  			$('.has-error').hide();  
-  			assert.equal($('.has-error').is(':visible'), false);  
+		QUnit.test("errors should be hidden on keypress", function (assert) {
+			$('input[name="text"]').trigger('keypress'); 
+			assert.equal($('.has-error').is(':visible'), false);
 		});
 
-		QUnit.test("smoke test 2", function (assert) {
+		QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
 			assert.equal($('.has-error').is(':visible'), true);
-			$('.has-error').hide();
-			assert.equal($('.has-error').is(':visible'), false);
 		});
 
         </script>
