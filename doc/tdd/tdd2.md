@@ -2481,6 +2481,53 @@ Analizziamo lo `script`:
 * l'attributo `is` è utilizzato per controllare se un elemento possiede una particolare proprietà CSS. In questo caso viene utilizzato insieme a `:visible` per controllare se l'elemento è visibile oppure nascosto.
 * `hide` è utilizzato per nascondere `div`
 
-Avviando `lists/static/tests/tests.html` nel browser vediamo che tutti i test passano con successo.
+Avviando `lists/static/tests/tests.html` nel browser vediamo che tutti i test passano con successo. Modificando lo `script` del nostro test con _jQuery_:
+
+```html
+
+<script>
+
+	QUnit.test("smoke test", function (assert) {
+  		assert.equal($('.has-error').is(':visible'), true);   
+  		$('.has-error').hide();  
+  		assert.equal($('.has-error').is(':visible'), false);  
+	});
+
+	QUnit.test("smoke test 2", function (assert) {
+		assert.equal($('.has-error').is(':visible'), true);
+		$('.has-error').hide();
+		assert.equal($('.has-error').is(':visible'), false);
+	});
+
+</script>
+
+```
+
+otteniamo un errore. Per risolverlo dobbiamo modificare il `body` di `lists/static/tests/tests.html` come segue:
+
+```html
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        <form>
+            <input name="text" />
+            <div class="has-error">Error text</div>
+        </form>
+    </div>
+
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="qunit-2.7.1.js"></script>
+
+    [...]
+
+</body>
+
+```
+
+
+### Building a JavaScript Unit Test for Our Desired Functionality
+
+[...]
 
  
