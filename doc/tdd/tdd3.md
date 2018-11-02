@@ -125,4 +125,227 @@ EMAIL_USE_TLS = True
 
 ### Another Secret, Another Environment Variable
 
+Dobbiamo escogitare una tecnica per nascondere la password del nostro indirizzo di posta elettronica. Perciò digitiamo:
+
+`$ export EMAIL_PASSWORD="sekrit"`
+
+
+### Storing Tokens in the Database
+
+Ora abbiamo bisogno di un nuovo modello che ci permetta di salvare i _token_ all'interno del database. Perciò modifichiamo il file `accounts/models.py`:
+
+```py
+
+from django.db import models
+
+
+
+class Token(models.Model):
+	email = models.EmailField()
+	uid = models.CharField(max_length=255)
+
+```
+
+
+### Custom Authentication Models
+
+Creiamo un modello per l'utente in `accounts/models.py`:
+
+```py
+from django.db import models
+from django.contrib.auth.models import (
+	AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
+
+
+
+class Token(models.Model):
+	[...]
+
+
+class ListUser(AbstractBaseUser, PermissionsMixin):
+	email = models.EmailField(primary_key=True)
+	USERNAME_FIELD = 'email'
+	#REQUIRED_FIELDS = ['email', 'height']
+
+	objects = ListUserManager()
+
+	@property
+	def is_staff(self):
+		return self.email == 'harry.percival@example.com'
+
+	@property
+	def is_active(self):
+		return True
+
+```
+
+Nello stesso file creiamo un _model manager_ per l'utente:
+
+```py
+
+from django.db import models
+from django.contrib.auth.models import (
+	AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
+
+
+
+class Token(models.Model):
+	[...]
+
+
+class ListUserManager(BaseUserManager):
+
+	def create_user(self, email):
+		ListUser.objects.create(email=email)
+
+	def create_superuser(self, email, password):
+		self.create_user(email)
+
+
+
+class ListUser(AbstractBaseUser, PermissionsMixin):
+	[...]
+
+```
+
+
+### Finishing the Custom Django Auth
+
+Scriviamo una _view_ per gestire il click sul link inviato all'utente per email in `accounts/views.py`:
+
+```py
+
+import uuid
+import sys
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+from accounts.models import Token
+
+
+
+def send_login_email(request):
+	[...]
+
+
+def login(request):
+	print('login view', file=sys.stderr)
+	uid = request.GET.get('uid')
+	user = authenticate(uid=uid)
+	if user is not None:
+		auth_login(request, user)
+	return redirect('/')
+
+```
+
+La funzione `authenticate` invoca il framework di Django per l'autenticazione. È il momento di scrivere tale funzione in `accounts/authentication.py`:
+
+```py
+
+import sys
+from accounts.models import ListUser, Token
+
+
+
+class PasswordlessAuthenticationBackend(object):
+
+	def authenticate(self, uid):
+		print('uid', uid, file=sys.stderr)
+		if not Token.objects.filter(uid=uid).exists():
+			print('no token found', file=sys.stderr)
+			return None
+		token = Token.objects.get(uid=uid)
+		print('got token', file=sys.stderr)
+		try:
+			user = ListUser.objects.get(email=token.email)
+			print('got user', file=sys.stderr)
+			return user
+		except ListUser.DoesNotExist:
+			print('new user', file=sys.stderr)
+			return ListUser.objects.create(email=token.email)
+
+
+	def get_user(self, email):
+		return ListUser.objects.get(email=email)
+
+```
+
+Scriviamo la funzione di logout in `accounts/views.py`:
+
+```py
+
+import uuid
+import sys
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+from accounts.models import Token
+from django.contrib.auth import login as auth_login, logout as auth_logout
+
+
+
+def send_login_email(request):
+	[...]
+
+
+def login(request):
+	[...]
+
+
+def logout(request):
+	auth_logout(request)
+	return redirect('/')
+
+```
+
+e aggiungiamo le funzioni di login e logout al file `accounts/urls.py`:
+
+```py
+
+from django.conf.urls import url
+from accounts import views
+
+urlpatterns = [
+	url(r'^send_email$', views.send_login_email, name='send_login_email'),
+	url(r'^login$', views.login, name='login'),
+	url(r'^logout$', views.logout, name='logout'),
+]
+
+```
+
+Modifichiamo `superlists/settings.py`:
+
+```py
+
+NSTALLED_APPS = [
+    #'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'lists',
+    'accounts',
+]
+
+AUTH_USER_MODEL = 'accounts.ListUser'
+AUTHENTICATION_BACKENDS = [
+	'accounts.authentication.PasswordlessAuthenticationBackend',
+]
+
+MIDDLEWARE = [
+    [...]
+]
+
+```
+
+ed eseguiamo:
+
+`python manage.py makemigrations`
+`python manage.py migrate`
+
 [...]
