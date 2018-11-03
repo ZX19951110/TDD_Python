@@ -197,3 +197,64 @@ e rilanciamo il comando:
 `python manage.py makemigrations`
 
 Ora il nostro test d'unità dovrebbe passare correttamente.
+
+
+### A Token Model to Link Emails with a Unique ID
+
+In `accounts/tests/test_models.py` creiamo una nuova classe di test per il modello dei _token_:
+
+```py
+
+from django.test import TestCase
+from django.contrib.auth import get_user_model
+from accounts.models import Token
+
+User = get_user_model()
+
+
+class UserModelTest(TestCase):
+	[...]
+
+
+class TokenModelTest(TestCase):
+
+	def test_links_user_with_auto_generated_uid(self):
+		token1 = Token.objects.create(email='a@b.com')
+		token2 = Token.objects.create(email='a@b.com')
+		self.assertNotEqual(token1.uid, token2.uid)
+
+```
+
+Creiamo la classe `Token` in `accounts/models.py`:
+
+```py
+
+from django.db import models
+import uuid
+
+
+
+class User(models.Model):
+	[...]
+
+
+class Token(models.Model):
+	email = models.EmailField()
+	uid = models.CharField(default=uuid.uuid4, max_length=40)
+
+```
+
+ed eseguiamo:
+
+`$ python manage.py makemigrations`
+`$ python manage.py migrate`
+
+Abbiamo importato il modulo `uuid` al fine di generare codici univoci con una lunghezza prefissata.
+
+Ora il nostro test d'unità dovrebbe passare correttamente.
+
+
+
+## Chapter 19: Using Mocks to Test External Dependencies or Reduce Duplication
+
+[...]
