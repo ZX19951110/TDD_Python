@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.ListUser'
 AUTHENTICATION_BACKENDS = [
-	'accounts.authentication.PasswordlessAuthenticationBackend',
+    'accounts.authentication.PasswordlessAuthenticationBackend',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # to edit with server mail credentials
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'obeythetestinggoat@gmail.com'
+EMAIL_HOST_USER = 'nicolascaroloblog@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

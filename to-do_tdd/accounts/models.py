@@ -28,7 +28,7 @@ class ListUser(AbstractBaseUser, PermissionsMixin):
 
 	@property
 	def is_staff(self):
-		return self.email == 'harry.percival@example.com'
+		return self.email == 'nicolas.carolo@outlook.com'
 
 	@property
 	def is_active(self):

@@ -29,6 +29,7 @@ def login(request):
 	uid = request.GET.get('uid')
 	user = authenticate(uid=uid)
 	if user is not None:
+		print('ok log')
 		auth_login(request, user)
 	return redirect('/')
 
