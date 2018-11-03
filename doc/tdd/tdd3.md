@@ -159,4 +159,41 @@ ed eseguiamo il comando:
 
 `$ python manage.py makemigrations`
 
-A questo punto il test funzionale per `accounts` dovrebbe passare correttamente!
+A questo punto il test d'unità per `accounts` dovrebbe passare correttamente!
+
+
+### Tests as Documentation
+
+Scriviamo un nuovo test in `accounts/tests/test_models.py`:
+
+```py
+
+def test_email_is_primary_key(self):
+	user = User(email='a@b.com')
+	self.assertEqual(user.pk, 'a@b.com')
+
+```
+
+Tale test ci permette di evidenziare che user non è al momento chiave primaria; perciò, in `accounts/models.py` effettuiamo la seguente modifica:
+
+```py
+
+class User(models.Model):
+	email = models.EmailField(primary_key=True)
+	
+	REQUIRED_FIELDS = []
+	USERNAME_FIELD = 'email'
+	is_anonymous = False
+	is_authenticated = True
+
+```
+
+cancelliamo l'ultima `migrations`:
+
+`rm accounts/migrations/0001_initial.py`
+
+e rilanciamo il comando:
+
+`python manage.py makemigrations`
+
+Ora il nostro test d'unità dovrebbe passare correttamente.
