@@ -1,11 +1,3 @@
-# Part 3: More Advanced Topics
-
-## Chapter 18: User Authentication, Spiking and De-Spiking
-
-Scriviamo un metodo per testare il login in `functional_tests/test_login.py`:
-
-```py
-
 from django.core import mail
 from selenium.webdriver.common.keys import Keys
 import re
@@ -55,26 +47,3 @@ class LoginTest(FunctionalTest):
         	)
 		navbar = self.browser.find_element_by_css_selector('.navbar')
 		self.assertIn(TEST_EMAIL, navbar.text)
-
-```
-
-Modifichiamo il file `lists/templates/base.html` in modo tale da inserire una barra di navigazione:
-
-```html
-
-<div class="container">
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Superlists</a>
-            <form class="navbar-form navbar-right" method="POST" action="#">
-                <span>Enter email to log in:</span>
-                <input class="form-control" name="email" type="text" />
-                {% csrf_token %}
-            </form>
-        </div>
-    </nav>
-
-    <div class="row">
-
-```
