@@ -78,3 +78,85 @@ Modifichiamo il file `lists/templates/base.html` in modo tale da inserire una ba
     <div class="row">
 
 ```
+
+Creiamo una nuova app `accounts` contenente tutti i file relativi alla funzione di login:
+
+`$ python manage.py startapp accounts`
+
+
+### A Minimal Custom User Model
+
+Eliminiamo `accounts/tests.py` e creiamo la directory `accounts/tests` con all'interno i file `__init__.py` e `test_models.py`. Scriviamo una nuova classe in quest'ultimo:
+
+```py
+
+from django.test import TestCase
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+
+class UserModelTest(TestCase):
+
+	def test_user_is_valid_with_email_only(self):
+		user = User(email='a@b.com')
+		user.full_clean()  # should not raise
+
+
+```
+
+Creiamo un modello per l'utente in `accounts/models.py`:
+
+```py
+
+from django.db import models
+
+
+
+class User(models.Model):
+	email = models.EmailField()
+
+```
+
+e in `superlists/settings.py` aggiungiamo `accounts` in `INSTALLED_APPS` e una nuova variabile chiamata `AUTH_USER_MODEL`:
+
+```py
+
+INSTALLED_APPS = [
+    #'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'lists',
+    'accounts',
+]
+
+AUTH_USER_MODEL = 'accounts.User'
+
+```
+
+Eseguendo il test:
+
+`$ python manage.py test accounts/`
+
+otteniamo un errore generato dal database; perciò modifichiamo la classe `User` in `accounts/models.py`:
+
+```py
+
+class User(models.Model):
+	email = models.EmailField(unique=True)
+	
+	REQUIRED_FIELDS = []
+	USERNAME_FIELD = 'email'
+	is_anonymous = False
+	is_authenticated = True
+
+```
+
+ed eseguiamo il comando:
+
+`$ python manage.py makemigrations`
+
+A questo punto il test funzionale per `accounts` dovrebbe passare correttamente!
