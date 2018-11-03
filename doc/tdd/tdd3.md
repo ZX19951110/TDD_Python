@@ -257,4 +257,81 @@ Ora il nostro test d'unità dovrebbe passare correttamente.
 
 ## Chapter 19: Using Mocks to Test External Dependencies or Reduce Duplication
 
+### Before We Start: Getting the Basic Plumbing In
+
+Scriviamo un test in `accounts/tests/test_views.py` per testare che il nuovo URL per mandare la mail di login ci reindirizzi alla _home page_:
+
+```py
+
+from django.test import TestCase
+
+
+class SendLoginEmailViewTest(TestCase):
+
+	def test_redirects_to_home_page(self):
+		response = self.client.post('/accounts/send_login_email', data={
+			'email': 'edith@example.com'
+		})
+		self.assertRedirects(response, '/')
+
+```
+
+e creiamo la nostra _view_ in `accounts/views.py`:
+
+```py
+
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+
+
+
+def send_login_email(request):
+	return redirect('/')
+
+```
+
+Modifichiamo `superlists/urls.py`:
+
+```py
+
+from django.conf.urls import include, url
+from accounts import urls as accounts_urls
+from lists import views as list_views
+from lists import urls as list_urls
+
+
+
+urlpatterns = [
+	url(r'^$', list_views.home_page, name='home'),
+	url(r'^lists/', include(list_urls)),
+	url(r'^accounts/', include(accounts_urls)),
+]
+
+```
+
+e `accounts/urls.py`:
+
+```py
+
+from django.conf.urls import url
+from accounts import views
+
+
+
+urlpatterns = [
+	url(r'^send_login_email$', views.send_login_email, name='send_login_email'),
+]
+
+```
+
+Ora il test d'unità di `accounts` dovrebbe passare correttamente.
+
+
+### Mocking Manually, aka Monkeypatching
+
 [...]
+
+
+
+
