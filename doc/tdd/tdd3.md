@@ -424,7 +424,72 @@ class SendLoginEmailViewTest(TestCase):
 
 ### Getting the FT a Little Further Along
 
+Modifichiamo la `navbar`in `lists/templates/base.html` in modo tale che possa inviare l'input alla nosta _view_:
+
+```html
+
+<form class="navbar-form navbar-right"
+                        method="POST"
+                        action="{% url 'send_login_email' %}">
+                        <span>Enter email to log in:</span>
+                        <input class="form-control" name="email" type="text" />
+                        {% csrf_token %}
+                    </form>
+
+```
+
+
+### Testing the Django Messages Framework
+
+Scriviamo un test per controllare che la nostra applicazione notifichi l'invio della mail con il link per l'autenticazione:
+
+```py
+
+def test_adds_success_message(self):
+	response = self.client.post('/accounts/send_login_email', data={
+		'email': 'edith@example.com'
+	}, follow=True)
+
+	message = list(response.context['messages'])[0]
+	self.assertEqual(
+		message.message,
+		"Check your email, we've sent you a link you can use to log in."
+	)
+	self.assertEqual(message.tags, "success")
+
+```
+
+e modifichiamo il metodo `send_login_email` in `accounts/views.py`:
+
+```py
+
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.contrib import messages
+
+
+
+def send_login_email(request):
+	email = request.POST['email']
+	send_mail(
+		'Your login link for Superlists',
+		'body text tbc',
+		'noreply@superlists',
+		[email]
+	)
+	
+	messages.success(
+		request,
+		"Check your email, we've sent you a link you can use to log in."
+	)
+
+	return redirect('/')
+
+```
+
+A questo punto il test d'unità dovrebbe terminare con successo.
+
+
+### Adding Messages to Our HTML
+
 [...]
-
-
-
