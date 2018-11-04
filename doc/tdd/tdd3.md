@@ -492,4 +492,56 @@ A questo punto il test d'unità dovrebbe terminare con successo.
 
 ### Adding Messages to Our HTML
 
+Aggiungiamo il messaggio precedentemente discusso in `lists/templates/base.html `:
+
+```html
+
+[...]
+</nav>
+
+{% if messages %}
+    <div class="row">
+        <div class="col-md-8">
+            {% for message in messages %}
+                {% if message.level_tag == 'success' %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% else %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+```
+
+Il test d'unità otterrà un successo.
+
+Ora modifichiamo il metodo `send_login_mail` in `accounts/views.py`:
+
+```py
+
+def send_login_email(request):
+	email = request.POST['email']
+	send_mail(
+		'Your login link for Superlists',
+		'Use this link to log in',
+		'noreply@superlists',
+		[email]
+	)
+	
+	messages.success(
+		request,
+		"Check your email, we've sent you a link you can use to log in."
+	)
+
+	return redirect('/')
+
+```
+
+Tuttavia il nostro test funzionale ci mostrerà ancora un errore.
+
+
+### Starting on the Login URL
+
 [...]
