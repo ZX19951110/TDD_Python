@@ -762,6 +762,21 @@ in modo tale da far passare correttamente il nostro test d'unità.
 
 ### Using Our Auth Backend in the Login View
 
+Modifichiamo il file `superlists/settings.py` in modo tale da utilizzare l'autenticazione _backend_ che abbiamo appena sviluppato nella nostra _view_ di login:
+
+```py
+
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = [
+	'accounts.authentication.PasswordlessAuthenticationBackend',
+]
+
+[...]
+
+```
+
+### An Alternative Reason to Use Mocks: Reducing Duplication
+
 [...]
 
 
