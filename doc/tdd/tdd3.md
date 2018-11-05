@@ -659,7 +659,66 @@ def send_login_email(request):
 
 ### De-spiking Our Custom Authentication Backend
 
-[...]
+Creiamo un nuovo file `accounts/tests/test_authentication.py` che servirà per testare il file `accounts/authentication.py` che andremo a creare successivamente:
+
+```py
+
+from django.test import TestCase
+from django.contrib.auth import get_user_model
+from accounts.authentication import PasswordlessAuthenticationBackend
+from accounts.models import Token
+User = get_user_model()
 
 
 
+class AuthenticateTest(TestCase):
+
+	def test_returns_None_if_no_such_token(self):
+		result = PasswordlessAuthenticationBackend().authenticate(
+			'no-such-token'
+		)
+		self.assertIsNone(result)
+
+
+	def test_returns_new_user_with_correct_email_if_token_exists(self):
+		email = 'edith@example.com'
+		token = Token.objects.create(email=email)
+		user = PasswordlessAuthenticationBackend().authenticate(token.uid)
+		new_user = User.objects.get(email=email)
+		self.assertEqual(user, new_user)
+
+
+	def test_returns_existing_user_with_correct_email_if_token_exists(self):
+		email = 'edith@example.com'
+		existing_user = User.objects.create(email=email)
+		token = Token.objects.create(email=email)
+		user = PasswordlessAuthenticationBackend().authenticate(token.uid)
+		self.assertEqual(user, existing_user)
+
+```
+
+In `accounts/authentication.py`:
+
+```py
+
+from accounts.models import User, Token
+
+
+
+class PasswordlessAuthenticationBackend(object):
+
+	def authenticate(self, uid):
+		try:
+			token = Token.objects.get(uid=uid)
+			return User.objects.get(email=token.email)
+		except User.DoesNotExist:
+			return User.objects.create(email=token.email)
+		except Token.DoesNotExist:
+			return None
+
+```
+
+A questo punto il nostro test d'unità dovrebbe passare correttamente!
+
+
+### The get_user Method
