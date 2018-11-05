@@ -580,4 +580,86 @@ def login(request):
 in modo tale da far passare il test funzionale che abbiamo appena scritto.
 
 
+### Checking That We Send the User a Link with a Token
+
+Scriviamo due nuovi metodi di test in `accounts/tests/test_views.py`:
+
+```py
+
+from django.test import TestCase
+from unittest.mock import patch
+import accounts.views
+from accounts.models import Token
+
+
+class SendLoginEmailViewTest(TestCase):
+
+	[...]
+
+	def test_creates_token_associated_with_email(self):
+		self.client.post('/accounts/send_login_email', data={
+			'email': 'edith@example.com'
+		})
+	  	token = Token.objects.first()
+		self.assertEqual(token.email, 'edith@example.com')
+
+
+	@patch('accounts.views.send_mail')
+	def test_sends_link_to_login_using_token_uid(self, mock_send_mail):
+		self.client.post('/accounts/send_login_email', data={
+			'email': 'edith@example.com'
+		})
+
+		token = Token.objects.first()
+		expected_url = f'http://testserver/accounts/login?token={token.uid}'
+		(subject, body, from_email, to_list), kwargs = mock_send_mail.call_args
+		self.assertIn(expected_url, body)
+
+[...]
+
+```
+
+Modifichiamo il file `accounts/views.py`i due test:
+
+```py
+
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.contrib import messages
+from accounts.models import Token
+from django.urls import reverse
+
+
+
+def send_login_email(request):
+	email = request.POST['email']
+	token = Token.objects.create(email=email)
+	url = request.build_absolute_uri(  
+		reverse('login') + '?token=' + str(token.uid)
+	)
+	message_body = f'Use this link to log in:\n\n{url}'
+	send_mail(
+		'Your login link for Superlists',
+		message_body,
+		'noreply@superlists',
+		[email]
+	)
+	
+	messages.success(
+		request,
+		"Check your email, we've sent you a link you can use to log in."
+	)
+
+	return redirect('/')
+
+[...]
+
+```
+
+
+### De-spiking Our Custom Authentication Backend
+
+[...]
+
+
 
