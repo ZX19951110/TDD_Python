@@ -544,4 +544,40 @@ Tuttavia il nostro test funzionale ci mostrerà ancora un errore.
 
 ### Starting on the Login URL
 
-[...]
+In `accounts/tests/test_views.py ` creiamo una nuova classe di test per la _view_:
+
+```py
+
+class LoginViewTest(TestCase):
+
+	def test_redirects_to_home_page(self):
+		response = self.client.get('/accounts/login?token=abcd123')
+		self.assertRedirects(response, '/')
+
+```
+
+Modifichiamo il file `accounts/urls.py`:
+
+```py
+
+urlpatterns = [
+	url(r'^send_login_email$', views.send_login_email, name='send_login_email'),
+	url(r'^login$', views.login, name='login'),
+]
+
+```
+
+In `accounts/views.py` definiamo il metodo `login`:
+
+```py
+
+def login(request):
+	#incomplete
+	return redirect('/')
+
+```
+
+in modo tale da far passare il test funzionale che abbiamo appena scritto.
+
+
+
