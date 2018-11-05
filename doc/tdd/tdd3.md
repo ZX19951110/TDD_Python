@@ -722,3 +722,46 @@ A questo punto il nostro test d'unità dovrebbe passare correttamente!
 
 
 ### The get_user Method
+
+È il momento di creare una nuova classe in `accounts/tests/test_authentication.py` per testare il metodo `get_user`:
+
+```py
+
+class GetUserTest(TestCase):
+
+	def test_gets_user_by_email(self):
+		User.objects.create(email='another@example.com')
+		desired_user = User.objects.create(email='edith@example.com')
+		found_user = PasswordlessAuthenticationBackend().get_user(
+			'edith@example.com'
+		)
+		self.assertEqual(found_user, desired_user)
+
+
+	def test_returns_None_if_no_user_with_that_email(self):
+		self.assertIsNone(
+			PasswordlessAuthenticationBackend().get_user('edith@example.com')
+		)
+
+```
+
+Creiamo il metodo `get_user` nella classe `PasswordlessAuthenticationBackend` del file `accounts/authentication.py`:
+
+```py
+
+def get_user(self, email):
+	try:
+		return User.objects.get(email=email)
+	except User.DoesNotExist:
+		return None
+
+```
+
+in modo tale da far passare correttamente il nostro test d'unità.
+
+
+### Using Our Auth Backend in the Login View
+
+[...]
+
+
