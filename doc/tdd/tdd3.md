@@ -777,6 +777,68 @@ AUTHENTICATION_BACKENDS = [
 
 ### An Alternative Reason to Use Mocks: Reducing Duplication
 
+Modifichiamo il file `accounts/tests/test_views.py`:
+
+```py
+
+from django.test import TestCase
+from unittest.mock import patch
+import accounts.views
+from accounts.models import Token
+from unittest.mock import patch, call
+
+
+class SendLoginEmailViewTest(TestCase):
+	[...]
+
+
+
+class LoginViewTest(TestCase):
+
+	def test_redirects_to_home_page(self):
+		response = self.client.get('/accounts/login?token=abcd123')
+		self.assertRedirects(response, '/')
+
+
+	@patch('accounts.views.auth')  
+	def test_calls_authenticate_with_uid_from_get_request(self, mock_auth):  
+		self.client.get('/accounts/login?token=abcd123')
+		self.assertEqual(
+			mock_auth.authenticate.call_args,  
+			call(uid='abcd123')  
+		)
+
+```
+
+In questo test stiamo facendo il _mocking_ di un intero modulo.
+Infine completiamo il metodo `login` in `accounts/views.py`:
+
+```py
+
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.contrib import messages
+from accounts.models import Token
+from django.urls import reverse
+from django.contrib import auth, messages
+
+
+
+def send_login_email(request):
+	[...]
+
+
+def login(request):
+	auth.authenticate(uid=request.GET.get('token'))
+	return redirect('/')
+
+```
+
+Ora il nostro test funzionale passerà senza alcun problema!
+
+
+### Using mock.return_value
+
 [...]
 
 

@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from accounts.models import Token
 from django.urls import reverse
+from django.contrib import auth, messages
 
 
 
@@ -29,6 +30,6 @@ def send_login_email(request):
 
 
 def login(request):
-	#incomplete
+	auth.authenticate(uid=request.GET.get('token'))
 	return redirect('/')
 

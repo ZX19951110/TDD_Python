@@ -2,6 +2,7 @@ from django.test import TestCase
 from unittest.mock import patch
 import accounts.views
 from accounts.models import Token
+from unittest.mock import patch, call
 
 
 class SendLoginEmailViewTest(TestCase):
@@ -85,3 +86,12 @@ class LoginViewTest(TestCase):
 	def test_redirects_to_home_page(self):
 		response = self.client.get('/accounts/login?token=abcd123')
 		self.assertRedirects(response, '/')
+
+
+	@patch('accounts.views.auth')  
+	def test_calls_authenticate_with_uid_from_get_request(self, mock_auth):  
+		self.client.get('/accounts/login?token=abcd123')
+		self.assertEqual(
+			mock_auth.authenticate.call_args,  
+			call(uid='abcd123')  
+		)
