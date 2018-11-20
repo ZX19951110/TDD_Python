@@ -146,7 +146,7 @@ otteniamo un errore generato dal database; perciò modifichiamo la classe `User`
 ```py
 
 class User(models.Model):
-	email = models.EmailField(unique=True)
+	email = models.EmailField(primary_key=True)
 	
 	REQUIRED_FIELDS = []
 	USERNAME_FIELD = 'email'
@@ -429,12 +429,12 @@ Modifichiamo la `navbar`in `lists/templates/base.html` in modo tale che possa in
 ```html
 
 <form class="navbar-form navbar-right"
-                        method="POST"
-                        action="{% url 'send_login_email' %}">
-                        <span>Enter email to log in:</span>
-                        <input class="form-control" name="email" type="text" />
-                        {% csrf_token %}
-                    </form>
+    method="POST"
+    action="{% url 'send_login_email' %}">
+    <span>Enter email to log in:</span>
+    <input class="form-control" name="email" type="text" />
+    {% csrf_token %}
+</form>
 
 ```
 
@@ -619,7 +619,7 @@ class SendLoginEmailViewTest(TestCase):
 
 ```
 
-Modifichiamo il file `accounts/views.py`i due test:
+Modifichiamo il file `accounts/views.py` i due test:
 
 ```py
 
@@ -898,4 +898,10 @@ Ora completiamo definitivamente la funzione di login per far passare il test d'u
 
 ### The Moment of Truth: Will the FT Pass?
 
-[...]
+Modifichiamo il file `lists/templates/base.html` affinché la _nav bar_ mostri il pulsante di log out nel caso in cui l'utente sia già loggato:
+
+```html
+
+
+
+```

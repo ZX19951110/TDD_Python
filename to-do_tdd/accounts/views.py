@@ -1,6 +1,5 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from django.contrib import messages
 from accounts.models import Token
 from django.urls import reverse
 from django.contrib import auth, messages
@@ -34,4 +33,3 @@ def login(request):
 	if user:
 		auth.login(request, user)
 	return redirect('/')
-
